@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "about": "À Propos",
+    "services": "Services",
+    "experience": "Expérience",
+    "gallery": "Galerie",
+    "education": "Formation",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Karim Boudabous",
+    "subtitle": "Sciences du Sport & Performance d'Élite",
+    "tagline": "S'entraîner intelligemment. Performer davantage. Vivre plus fort.",
+    "cta": "Découvrir Mon Travail",
+    "scroll": "Défiler"
+  },
+  "about": {
+    "sectionTitle": "À Propos",
+    "sectionSubtitle": "Scientifique. Entraîneur. Préparateur.",
+    "academic": {
+      "title": "Socle Académique",
+      "body": "Je suis titulaire d'une Licence en Sciences du Sport et de l'Activité Physique de l'UCAM (Universidad Católica San Antonio de Murcia) et je poursuis actuellement un Master en Sport de Haute Performance : Force et Conditionnement dans la même institution. Ma formation couvre la physiologie de l'exercice, la biomécanique, la nutrition sportive, la psychologie, l'analyse de données et la méthodologie de l'entraînement."
+    },
+    "coaching": {
+      "title": "Philosophie d'Entraînement",
+      "body": "En tant que candidat à la Licence UEFA C, je crois que la performance d'élite repose sur l'intelligence tactique, le conditionnement physique et la résilience mentale. Ma méthodologie intègre les principes des sciences du sport directement dans la conception des séances — chaque exercice a un but, chaque séance a un résultat mesurable. J'applique les principes du développement à long terme de l'athlète à chaque étape."
+    },
+    "vision": {
+      "title": "Vision Professionnelle",
+      "body": "Mon objectif est de continuer à évoluer en tant que préparateur physique, entraîneur de football et coach personnel, en appliquant des méthodes fondées sur des preuves pour aider athlètes et particuliers à atteindre leur plein potentiel. Je suis particulièrement motivé à contribuer aux académies de football, centres de performance et environnements fitness où le développement à long terme et l'excellence vont de pair."
+    }
+  },
+  "services": {
+    "sectionTitle": "Services",
+    "sectionSubtitle": "Ce Que Je Propose",
+    "items": [
+      {
+        "title": "Entraînement Personnel",
+        "description": "Programmes d'entraînement individualisés conçus pour améliorer la force, le conditionnement et la santé globale. Accent sur l'exécution sécurisée des exercices, la gestion progressive de la charge et des habitudes fitness durables pour des résultats à long terme.",
+        "icon": "dumbbell"
+      },
+      {
+        "title": "Entraînement Football",
+        "description": "Méthodologie UEFA C appliquée au développement des jeunes et des équipes. Entraînement technique, tactique et physique entièrement intégré, avec un fort accent sur le développement à long terme de l'athlète.",
+        "icon": "trophy"
+      },
+      {
+        "title": "Préparation Physique",
+        "description": "Programmes spécialisés de force et conditionnement axés sur un conditionnement adapté à l'âge, la prévention des blessures, la gestion de la charge et le développement athlétique, alignés sur les exigences de l'entraînement et de la compétition.",
+        "icon": "activity"
+      }
+    ]
+  },
+  "experience": {
+    "sectionTitle": "Expérience",
+    "sectionSubtitle": "Mon Parcours Professionnel",
+    "items": [
+      {
+        "role": "Coach Personnel",
+        "company": "Funziona Entrenamiento Personal (Basic-Fit)",
+        "period": "Sep 2025 — Présent",
+        "location": "Murcie, Espagne · Présentiel",
+        "description": "Création de programmes d'entraînement personnalisés pour améliorer la force, le conditionnement et la santé des clients. Accent sur les techniques d'exercice sûres, la gestion progressive de la charge, la motivation et le développement d'habitudes fitness durables."
+      },
+      {
+        "role": "Entraîneur Adjoint de Football",
+        "company": "AD Vistalegre · Stage",
+        "period": "Sep 2025 — Présent",
+        "location": "Murcie, Espagne · Présentiel",
+        "description": "Stage supervisé dans le cadre de l'obtention de la Licence UEFA C. Participation à la planification et à l'animation des séances d'entraînement jeunes selon la méthodologie UEFA, soutien à la préparation des matchs et assistance dans les objectifs techniques et tactiques."
+      },
+      {
+        "role": "Préparateur Physique",
+        "company": "AD Vistalegre · Stage",
+        "period": "Fév 2025 — Juin 2025",
+        "location": "Murcie, Espagne · Présentiel",
+        "description": "Premier stage universitaire supervisé soutenant le développement physique des jeunes footballeurs dans plusieurs catégories d'âge. Conception et animation de séances de conditionnement adaptées à l'âge, surveillance des performances physiques, prévention des blessures et collaboration avec le staff technique."
+      },
+      {
+        "role": "Entraîneur Adjoint de Football",
+        "company": "Club Sportif Sfaxien",
+        "period": "Juil 2024 — Sep 2024",
+        "location": "Sfax, Tunisie",
+        "description": "Expérience pratique d'entraînement dans l'une des principales académies de football de Tunisie. Soutien aux programmes d'entraînement jeunes via des exercices techniques, une préparation physique et une instruction tactique. Assistance à l'entraîneur principal pour le développement technique des joueurs."
+      }
+    ]
+  },
+  "gallery": {
+    "sectionTitle": "Galerie",
+    "sectionSubtitle": "Entraînement, Coaching & Réalisations",
+    "filters": {
+      "all": "Tout",
+      "training": "Entraînement",
+      "coaching": "Coaching",
+      "certificates": "Certificats"
+    },
+    "playVideo": "Lire la Vidéo"
+  },
+  "education": {
+    "sectionTitle": "Formation",
+    "sectionSubtitle": "Diplômes Académiques et Professionnels",
+    "items": [
+      {
+        "degree": "Master — Sport de Haute Performance : Force & Conditionnement",
+        "institution": "UCAM Universidad Católica San Antonio de Murcia",
+        "year": "Jan 2026 — Nov 2026",
+        "description": "Spécialisation en musculation, prévention des blessures, stratégies de récupération, gestion de la charge et développement global des performances pour les athlètes de haut niveau."
+      },
+      {
+        "degree": "Licence UEFA C — Entraînement Football",
+        "institution": "Fédération Royale Espagnole de Football (RFEF)",
+        "year": "2025 — Présent",
+        "description": "Qualification d'entraîneur reconnue internationalement couvrant la méthodologie UEFA, la planification des séances, le développement des jeunes joueurs, le développement à long terme de l'athlète et l'analyse du jeu."
+      },
+      {
+        "degree": "Licence — Sciences du Sport et de l'Activité Physique",
+        "institution": "UCAM Universidad Católica San Antonio de Murcia",
+        "year": "Oct 2021 — Juin 2025",
+        "description": "Formation complète en anatomie humaine, physiologie de l'exercice, nutrition sportive, méthodologie de l'entraînement, analyse de données, psychologie du sport et activité physique & santé."
+      },
+      {
+        "degree": "Baccalauréat — Mathématiques & Physique",
+        "institution": "Ahmed Al-Omran Secondary School",
+        "year": "Sep 2018 — Juin 2021",
+        "description": "Diplômé avec une mention de 95%, avec un fort accent sur les mathématiques, la physique et le raisonnement scientifique."
+      }
+    ]
+  },
+  "contact": {
+    "sectionTitle": "Contact",
+    "sectionSubtitle": "Travaillons Ensemble",
+    "namePlaceholder": "Votre Nom",
+    "emailPlaceholder": "Votre Email",
+    "messagePlaceholder": "Votre Message",
+    "send": "Envoyer le Message",
+    "sending": "Envoi en cours...",
+    "success": "Message envoyé avec succès ! Je vous répondrai bientôt.",
+    "error": "Une erreur s'est produite. Veuillez réessayer.",
+    "follow": "Suivez-Moi",
+    "availableTitle": "Disponible pour de nouvelles opportunités",
+    "availableText": "Ouvert aux postes d'entraîneur, de préparateur physique et aux clients en coaching personnel."
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "madeWith": "Créé avec passion pour le sport et la science."
+  }
+}

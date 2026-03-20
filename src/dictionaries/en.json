@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "experience": "Experience",
+    "gallery": "Gallery",
+    "education": "Education",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Karim Boudabous",
+    "subtitle": "Sports Science & Elite Performance",
+    "tagline": "Training smarter. Performing better. Living stronger.",
+    "cta": "Discover My Work",
+    "scroll": "Scroll Down"
+  },
+  "about": {
+    "sectionTitle": "About Me",
+    "sectionSubtitle": "Scientist. Coach. Trainer.",
+    "academic": {
+      "title": "Academic Foundation",
+      "body": "I hold a Bachelor's degree in Sport Sciences & Physical Activity from UCAM (Universidad Católica San Antonio de Murcia) and am currently pursuing a Master's degree in High Performance Sport: Strength & Conditioning at the same institution. My academic training spans exercise physiology, biomechanics, sports nutrition, psychology, data analysis, and training methodology."
+    },
+    "coaching": {
+      "title": "Coaching Philosophy",
+      "body": "As a UEFA C Coaching Licence candidate, I believe elite performance is built on tactical intelligence, physical conditioning, and mental resilience. My methodology integrates sports science principles directly into training design — every drill has a purpose, every session has a measurable outcome. I apply long-term athlete development principles at every stage."
+    },
+    "vision": {
+      "title": "Professional Vision",
+      "body": "My goal is to grow as a strength and conditioning coach, football coach, and personal trainer — applying evidence-based methods to help athletes and individuals reach their full potential. I am particularly motivated to contribute to football academies, performance centers, and fitness environments where long-term development and performance excellence go hand in hand."
+    }
+  },
+  "services": {
+    "sectionTitle": "Services",
+    "sectionSubtitle": "What I Offer",
+    "items": [
+      {
+        "title": "Personal Training",
+        "description": "Individualized training programs designed to improve strength, conditioning, and overall health. Emphasis on safe exercise execution, progressive load management, and sustainable fitness habits for long-term results.",
+        "icon": "dumbbell"
+      },
+      {
+        "title": "Football Coaching",
+        "description": "UEFA C methodology applied to youth and team development. Technical, tactical, and physical training fully integrated, with a strong focus on long-term athlete development and player-centered coaching.",
+        "icon": "trophy"
+      },
+      {
+        "title": "Strength & Conditioning",
+        "description": "Specialized S&C programs focused on age-appropriate conditioning, injury prevention, load management, and athletic development — aligned with training and match demands.",
+        "icon": "activity"
+      }
+    ]
+  },
+  "experience": {
+    "sectionTitle": "Experience",
+    "sectionSubtitle": "My Professional Journey",
+    "items": [
+      {
+        "role": "Personal Trainer",
+        "company": "Funziona Entrenamiento Personal (Basic-Fit)",
+        "period": "Sep 2025 — Present",
+        "location": "Murcia, Spain · On-site",
+        "description": "Creating customized training programs to improve clients' strength, conditioning, and overall health. Focus on safe exercise techniques, progressive load management, motivation, and building sustainable fitness habits for long-term results."
+      },
+      {
+        "role": "Assistant Football Coach",
+        "company": "AD Vistalegre · Internship",
+        "period": "Sep 2025 — Present",
+        "location": "Murcia, Spain · On-site",
+        "description": "Currently completing a supervised internship as part of the UEFA C Football Coaching Certification. Involved in planning and delivery of youth training sessions following UEFA coaching methodology, supporting match preparation, and assisting in technical and tactical objectives. Strong focus on long-term athlete development and player-centered coaching."
+      },
+      {
+        "role": "Strength & Conditioning Coach",
+        "company": "AD Vistalegre · Internship",
+        "period": "Feb 2025 — Jun 2025",
+        "location": "Murcia, Spain · On-site",
+        "description": "First supervised university internship supporting the physical development of youth football players across multiple age categories. Responsibilities included age-appropriate conditioning sessions, monitoring physical performance, basic load management, and injury prevention. Collaborated closely with technical staff to align physical preparation with training and match demands."
+      },
+      {
+        "role": "Assistant Football Coach",
+        "company": "Club Sportif Sfaxien",
+        "period": "Jul 2024 — Sep 2024",
+        "location": "Sfax, Tunisia",
+        "description": "Gained hands-on coaching experience in one of Tunisia's leading football academies. Supported youth training programs through technical drills, physical preparation, and tactical instruction. Assisted head coaches in developing players' technical skills and match awareness within a top-tier club environment."
+      }
+    ]
+  },
+  "gallery": {
+    "sectionTitle": "Gallery",
+    "sectionSubtitle": "Training, Coaching & Achievements",
+    "filters": {
+      "all": "All",
+      "training": "Training",
+      "coaching": "Coaching",
+      "certificates": "Certificates"
+    },
+    "playVideo": "Play Video"
+  },
+  "education": {
+    "sectionTitle": "Education",
+    "sectionSubtitle": "Academic & Professional Credentials",
+    "items": [
+      {
+        "degree": "Master's Degree — High Performance Sport: Strength & Conditioning",
+        "institution": "UCAM Universidad Católica San Antonio de Murcia",
+        "year": "Jan 2026 — Nov 2026",
+        "description": "Specialization in strength training, injury prevention, recovery strategies, load management, and holistic performance development for elite athletes."
+      },
+      {
+        "degree": "UEFA C Coaching Licence — Football Coaching",
+        "institution": "Royal Spanish Football Federation (RFEF)",
+        "year": "2025 — Present",
+        "description": "Internationally recognized coaching qualification covering UEFA football methodology, session planning, youth player development, long-term athlete development, and match analysis."
+      },
+      {
+        "degree": "Bachelor's Degree — Sport Sciences & Physical Activity",
+        "institution": "UCAM Universidad Católica San Antonio de Murcia",
+        "year": "Oct 2021 — Jun 2025",
+        "description": "Comprehensive foundation in human anatomy, exercise physiology, sports nutrition, training methodology, data analysis, psychology in sport, and physical activity & health."
+      },
+      {
+        "degree": "High School Diploma — Mathematics & Physics",
+        "institution": "Ahmed Al-Omran Secondary School",
+        "year": "Sep 2018 — Jun 2021",
+        "description": "Graduated with a grade of 95%, with a strong focus on mathematics, physics, and scientific reasoning."
+      }
+    ]
+  },
+  "contact": {
+    "sectionTitle": "Contact",
+    "sectionSubtitle": "Let's Work Together",
+    "namePlaceholder": "Your Name",
+    "emailPlaceholder": "Your Email",
+    "messagePlaceholder": "Your Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully! I'll get back to you soon.",
+    "error": "Something went wrong. Please try again.",
+    "follow": "Follow Me",
+    "availableTitle": "Available for new opportunities",
+    "availableText": "Open to coaching roles, S&C positions & personal training clients."
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "madeWith": "Crafted with passion for sport & science."
+  }
+}
