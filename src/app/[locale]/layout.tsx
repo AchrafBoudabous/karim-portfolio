@@ -47,7 +47,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
+    <html lang={locale} className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${oswald.variable} font-sans bg-neutral-950 text-white antialiased`}
         suppressHydrationWarning

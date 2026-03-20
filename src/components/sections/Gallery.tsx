@@ -62,6 +62,22 @@ const galleryItems: GalleryItem[] = [
     title: "Bachelor's Degree — UCAM Graduation",
     span: "normal",
   },
+  {
+    id: 6,
+    type: "video",
+    category: "training",
+    src: "/videos/session-1.mp4",
+    title: "Training Session",
+    span: "normal",
+  },
+  {
+    id: 7,
+    type: "video",
+    category: "training",
+    src: "/videos/session-2.mp4",
+    title: "Training Session",
+    span: "normal",
+  },
 ];
 
 const filterKeys: Category[] = ["all", "training", "coaching", "certificates"];
