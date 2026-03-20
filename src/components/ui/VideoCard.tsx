@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 interface VideoCardProps {
   src: string;
@@ -12,6 +13,51 @@ interface VideoCardProps {
   onClick: () => void;
   index: number;
   playLabel: string;
+}
+
+function AutoThumbnail({ src }: { src: string }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [dataUrl, setDataUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    const video = document.createElement("video");
+    video.src = src;
+    video.crossOrigin = "anonymous";
+    video.muted = true;
+    video.playsInline = true;
+    video.currentTime = 1.5;
+
+    video.addEventListener("seeked", () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      setDataUrl(canvas.toDataURL("image/jpeg"));
+    });
+
+    video.load();
+  }, [src]);
+
+  return (
+    <>
+      <canvas ref={canvasRef} className="hidden" />
+      {dataUrl ? (
+        <Image
+          src={dataUrl}
+          alt="Video thumbnail"
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      ) : (
+        <div className="absolute inset-0 bg-linear-to-br from-neutral-800 to-neutral-900 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full border-2 border-green-500/30 border-t-green-400 animate-spin" />
+        </div>
+      )}
+    </>
+  );
 }
 
 export default function VideoCard({
@@ -42,19 +88,13 @@ export default function VideoCard({
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="absolute inset-0 bg-linear-to-br from-neutral-800 to-neutral-900 flex items-center justify-center">
-            <div className="w-16 h-16 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center">
-              <Play size={24} className="text-green-400 ml-1" />
-            </div>
-          </div>
+          <AutoThumbnail src={src} />
         )}
 
         <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300" />
 
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
             whileHover={{ scale: 1.1 }}
             className="w-14 h-14 rounded-full bg-green-500/90 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-green-500/30 group-hover:bg-green-400 transition-colors duration-200"
           >
@@ -73,7 +113,9 @@ export default function VideoCard({
         <span className="text-xs font-semibold text-green-400 uppercase tracking-wider">
           {category}
         </span>
-        <p className="text-white/80 text-sm font-medium mt-0.5 truncate">{title}</p>
+        <p className="text-white/80 text-sm font-medium mt-0.5 truncate">
+          {title}
+        </p>
       </div>
     </motion.div>
   );
