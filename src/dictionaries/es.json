@@ -143,5 +143,37 @@
   "footer": {
     "rights": "Todos los derechos reservados.",
     "madeWith": "Creado con pasión por el deporte y la ciencia."
+  },
+  "booking": {
+  "title": "Reservar una Sesión",
+  "subtitle": "Elige tu servicio y horario preferido",
+  "step1": "Elige Servicio",
+  "step2": "Tipo de Sesión",
+  "step3": "Tus Datos",
+  "step4": "Confirmado",
+  "inPerson": "Presencial",
+  "inPersonSub": "Murcia, España",
+  "online": "Online",
+  "onlineSub": "Zoom / Google Meet",
+  "namePlaceholder": "Tu Nombre Completo",
+  "emailPlaceholder": "Tu Correo Electrónico",
+  "phonePlaceholder": "Tu Número de Teléfono",
+  "datePlaceholder": "Fecha Preferida",
+  "timePlaceholder": "Hora Preferida",
+  "messagePlaceholder": "Tus objetivos o información adicional...",
+  "next": "Siguiente",
+  "back": "Atrás",
+  "submit": "Enviar Solicitud",
+  "submitting": "Enviando...",
+  "successTitle": "¡Solicitud Enviada!",
+  "successText": "¡Gracias! Karim confirmará tu sesión en 24 horas. Revisa tu correo para una confirmación.",
+  "close": "Cerrar",
+  "floatingBtn": "Reservar Sesión",
+  "services": {
+    "pt": "Entrenamiento Personal",
+    "football": "Entrenamiento de Fútbol",
+    "sc": "Preparación Física",
+    "discovery": "Llamada de Descubrimiento Gratuita"
   }
+}
 }

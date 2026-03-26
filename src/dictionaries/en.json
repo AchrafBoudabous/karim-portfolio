@@ -143,5 +143,37 @@
   "footer": {
     "rights": "All rights reserved.",
     "madeWith": "Crafted with passion for sport & science."
+  },
+  "booking": {
+  "title": "Book a Session",
+  "subtitle": "Choose your service and preferred time",
+  "step1": "Choose Service",
+  "step2": "Session Type",
+  "step3": "Your Details",
+  "step4": "Confirmed",
+  "inPerson": "In-Person",
+  "inPersonSub": "Murcia, Spain",
+  "online": "Online",
+  "onlineSub": "Zoom / Google Meet",
+  "namePlaceholder": "Your Full Name",
+  "emailPlaceholder": "Your Email",
+  "phonePlaceholder": "Your Phone Number",
+  "datePlaceholder": "Preferred Date",
+  "timePlaceholder": "Preferred Time",
+  "messagePlaceholder": "Your goals or any additional info...",
+  "next": "Next",
+  "back": "Back",
+  "submit": "Send Booking Request",
+  "submitting": "Sending...",
+  "successTitle": "Booking Request Sent!",
+  "successText": "Thank you! Karim will confirm your session within 24 hours. Check your email for a confirmation.",
+  "close": "Close",
+  "floatingBtn": "Book a Session",
+  "services": {
+    "pt": "Personal Training",
+    "football": "Football Coaching",
+    "sc": "Strength & Conditioning",
+    "discovery": "Free Discovery Call"
   }
+}
 }

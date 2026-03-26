@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, CalendarDays } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
+import BookingModal from "@/components/ui/BookingModal";
 
 const navLinks = [
   { key: "about", href: "#about" },
@@ -17,9 +18,11 @@ const navLinks = [
 
 export default function Navbar() {
   const t = useTranslations("nav");
+  const tBooking = useTranslations("booking");
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,6 +55,11 @@ export default function Navbar() {
 
   return (
     <>
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+      />
+
       <motion.header
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -59,6 +67,7 @@ export default function Navbar() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerClass}`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
+          {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="flex items-center gap-2 group"
@@ -72,16 +81,27 @@ export default function Navbar() {
             </span>
           </button>
 
+          {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <button
                 key={link.key}
                 onClick={() => handleNavClick(link.href)}
                 className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-lg hover:text-green-400 ${
-                  activeSection === link.key ? "text-green-400" : "text-white/70"
+                  activeSection === link.key
+                    ? "text-green-400"
+                    : "text-white/70"
                 }`}
               >
-                {t(link.key as "about" | "services" | "experience" | "gallery" | "education" | "contact")}
+                {t(
+                  link.key as
+                    | "about"
+                    | "services"
+                    | "experience"
+                    | "gallery"
+                    | "education"
+                    | "contact"
+                )}
                 {activeSection === link.key && (
                   <motion.div
                     layoutId="activeNav"
@@ -93,7 +113,17 @@ export default function Navbar() {
             ))}
           </nav>
 
+          {/* Right side */}
           <div className="flex items-center gap-3">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsBookingOpen(true)}
+              className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-linear-to-r from-green-500 to-emerald-600 text-black font-bold text-sm"
+            >
+              <CalendarDays size={15} />
+              {tBooking("title")}
+            </motion.button>
             <LanguageSwitcher />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -106,6 +136,7 @@ export default function Navbar() {
         </div>
       </motion.header>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -134,10 +165,34 @@ export default function Navbar() {
                         : "text-white/70 hover:text-white hover:bg-white/5"
                     }`}
                   >
-                    {t(link.key as "about" | "services" | "experience" | "gallery" | "education" | "contact")}
+                    {t(
+                      link.key as
+                        | "about"
+                        | "services"
+                        | "experience"
+                        | "gallery"
+                        | "education"
+                        | "contact"
+                    )}
                   </motion.button>
                 ))}
+
+                {/* Book button in mobile menu */}
+                <motion.button
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navLinks.length * 0.05 }}
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setIsBookingOpen(true);
+                  }}
+                  className="mt-2 flex items-center gap-2 px-4 py-3 rounded-xl bg-linear-to-r from-green-500 to-emerald-600 text-black font-bold text-sm"
+                >
+                  <CalendarDays size={16} />
+                  {tBooking("title")}
+                </motion.button>
               </nav>
+
               <div className="mt-auto pt-6 border-t border-white/10">
                 <p className="text-xs text-white/30 mb-4 uppercase tracking-widest">
                   Language

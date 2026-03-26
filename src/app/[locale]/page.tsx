@@ -7,6 +7,7 @@ import Experience from "@/components/sections/Experience";
 import Gallery from "@/components/sections/Gallery";
 import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
+import FloatingBookingButton from "@/components/ui/FloatingBookingButton";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Education />
       <Contact />
       <Footer />
+      <FloatingBookingButton />
     </main>
   );
 }
