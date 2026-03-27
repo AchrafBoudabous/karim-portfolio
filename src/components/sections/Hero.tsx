@@ -15,6 +15,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background image */}
       <div className="absolute inset-0">
         <Image
           src="/images/karim-hero.jpg"
@@ -26,6 +27,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-neutral-950/75" />
       </div>
 
+      {/* Grid pattern */}
       <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
@@ -35,9 +37,11 @@ export default function Hero() {
         }}
       />
 
+      {/* Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 rounded-full bg-green-500/5 blur-3xl pointer-events-none" />
       <div className="absolute top-1/3 left-1/4 w-100 h-100 rounded-full bg-emerald-600/5 blur-3xl pointer-events-none" />
 
+      {/* Floating particles */}
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
@@ -59,7 +63,9 @@ export default function Hero() {
         />
       ))}
 
+      {/* Main content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-8 text-center">
+        {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -67,9 +73,10 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-500/20 bg-green-500/5 text-green-400 text-sm font-medium mb-8"
         >
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          UEFA C Candidate · Sports Scientist · UCAM Murcia
+          UEFA C Licensed Coach · MSc S&C Candidate · NSCA CSCS® In Progress
         </motion.div>
 
+        {/* Main title */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -79,6 +86,7 @@ export default function Hero() {
           <span className="text-white">{t("title")}</span>
         </motion.h1>
 
+        {/* Subtitle */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -90,6 +98,7 @@ export default function Hero() {
           </span>
         </motion.div>
 
+        {/* Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -99,6 +108,7 @@ export default function Hero() {
           {t("tagline")}
         </motion.p>
 
+        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -129,6 +139,7 @@ export default function Hero() {
           </motion.button>
         </motion.div>
 
+        {/* Stats row */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -137,7 +148,7 @@ export default function Hero() {
         >
           {[
             { value: "1+", label: "Year Experience" },
-            { value: "UEFA C", label: "Candidate" },
+            { value: "UEFA C", label: "Licensed Coach" },
             { value: "MSc S&C", label: "UCAM" },
           ].map((stat, i) => (
             <div
@@ -155,6 +166,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
+      {/* Scroll indicator */}
       <motion.button
         onClick={handleScroll}
         initial={{ opacity: 0 }}

@@ -23,11 +23,11 @@
     },
     "coaching": {
       "title": "Coaching Philosophy",
-      "body": "As a UEFA C Coaching Licence candidate, I believe elite performance is built on tactical intelligence, physical conditioning, and mental resilience. My methodology integrates sports science principles directly into training design — every drill has a purpose, every session has a measurable outcome. I apply long-term athlete development principles at every stage."
+      "body": "As a UEFA C licensed football coach, I believe elite performance is built on tactical intelligence, physical conditioning, and mental resilience. My methodology integrates sports science principles directly into training design — every drill has a purpose, every session has a measurable outcome. I apply long-term athlete development principles at every stage."
     },
     "vision": {
       "title": "Professional Vision",
-      "body": "My goal is to grow as a strength and conditioning coach, football coach, and personal trainer — applying evidence-based methods to help athletes and individuals reach their full potential. I am particularly motivated to contribute to football academies, performance centers, and fitness environments where long-term development and performance excellence go hand in hand."
+      "body": "My goal is to grow as a strength and conditioning coach, football coach, and personal trainer — applying evidence-based methods to help athletes and individuals reach their full potential. Currently pursuing NSCA CSCS® certification and advancing my knowledge through Barça Innovation Hub, I am motivated to contribute to football clubs, performance centers, and fitness environments where long-term development and excellence go hand in hand."
     }
   },
   "services": {
@@ -41,7 +41,7 @@
       },
       {
         "title": "Football Coaching",
-        "description": "UEFA C methodology applied to youth and team development. Technical, tactical, and physical training fully integrated, with a strong focus on long-term athlete development and player-centered coaching.",
+        "description": "UEFA C licensed football coaching applied to youth and team development. Technical, tactical, and physical training fully integrated, with a strong focus on long-term athlete development and player-centered coaching.",
         "icon": "trophy"
       },
       {
@@ -56,32 +56,46 @@
     "sectionSubtitle": "My Professional Journey",
     "items": [
       {
+        "role": "Strength & Conditioning Coach",
+        "company": "El Palmar CF — Estrella Grana · Master's Internship",
+        "period": "Apr 2026 — Present",
+        "location": "Murcia, Spain · On-site",
+        "description": "Master's internship as S&C Coach at a football club, collaborating in the planning and application of training programs, load monitoring, injury prevention, and performance improvement. Working closely with the technical staff on physical preparation for training sessions and competition."
+      },
+      {
         "role": "Personal Trainer",
         "company": "Funziona Entrenamiento Personal (Basic-Fit)",
         "period": "Sep 2025 — Present",
         "location": "Murcia, Spain · On-site",
-        "description": "Creating customized training programs to improve clients' strength, conditioning, and overall health. Focus on safe exercise techniques, progressive load management, motivation, and building sustainable fitness habits for long-term results."
+        "description": "Design and execution of personalized training programs focused on strength, physical conditioning, and performance improvement. Client progress monitoring, load control, and application of evidence-based training principles for health and sport performance."
       },
       {
         "role": "Assistant Football Coach",
-        "company": "AD Vistalegre · Internship",
-        "period": "Sep 2025 — Present",
+        "company": "AD Vistalegre · UEFA C Internship",
+        "period": "Sep 2025 — Mar 2026",
         "location": "Murcia, Spain · On-site",
-        "description": "Currently completing a supervised internship as part of the UEFA C Football Coaching Certification. Involved in planning and delivery of youth training sessions following UEFA coaching methodology, supporting match preparation, and assisting in technical and tactical objectives. Strong focus on long-term athlete development and player-centered coaching."
+        "description": "Technical support in youth football within the UEFA C coaching certification framework. Participated in training session planning, match preparation, and implementation of technical-tactical objectives. Collaborated with the coaching staff in the integral development of players and the organization of training sessions."
       },
       {
         "role": "Strength & Conditioning Coach",
-        "company": "AD Vistalegre · Internship",
+        "company": "AD Vistalegre · Degree Internship",
         "period": "Feb 2025 — Jun 2025",
         "location": "Murcia, Spain · On-site",
-        "description": "First supervised university internship supporting the physical development of youth football players across multiple age categories. Responsibilities included age-appropriate conditioning sessions, monitoring physical performance, basic load management, and injury prevention. Collaborated closely with technical staff to align physical preparation with training and match demands."
+        "description": "First supervised university internship supporting the physical development of youth football players across multiple age categories. Responsibilities included age-appropriate conditioning sessions, monitoring physical performance, load management principles, and injury prevention. Collaborated closely with technical staff to align physical preparation with training and match demands."
       },
       {
         "role": "Assistant Football Coach",
         "company": "Club Sportif Sfaxien",
         "period": "Jul 2024 — Sep 2024",
         "location": "Sfax, Tunisia",
-        "description": "Gained hands-on coaching experience in one of Tunisia's leading football academies. Supported youth training programs through technical drills, physical preparation, and tactical instruction. Assisted head coaches in developing players' technical skills and match awareness within a top-tier club environment."
+        "description": "Hands-on coaching experience in one of Tunisia's leading football academies. Supported youth training programs through technical drills, physical preparation, and tactical instruction. Assisted head coaches in developing players' technical skills and match awareness within a top-tier club environment."
+      },
+      {
+        "role": "Football Player & Team Captain",
+        "company": "Busaiteen Club",
+        "period": "2009 — 2021",
+        "location": "Busaiteen, Bahrain",
+        "description": "Former competitive footballer and team captain with experience in federated competition. Developed leadership skills, teamwork, and tactical understanding of football through structured training and official competitions."
       }
     ]
   },
@@ -109,7 +123,7 @@
       {
         "degree": "UEFA C Coaching Licence — Football Coaching",
         "institution": "Royal Spanish Football Federation (RFEF)",
-        "year": "2025 — Present",
+        "year": "2025 — 2026",
         "description": "Internationally recognized coaching qualification covering UEFA football methodology, session planning, youth player development, long-term athlete development, and match analysis."
       },
       {
@@ -145,35 +159,35 @@
     "madeWith": "Crafted with passion for sport & science."
   },
   "booking": {
-  "title": "Book a Session",
-  "subtitle": "Choose your service and preferred time",
-  "step1": "Choose Service",
-  "step2": "Session Type",
-  "step3": "Your Details",
-  "step4": "Confirmed",
-  "inPerson": "In-Person",
-  "inPersonSub": "Murcia, Spain",
-  "online": "Online",
-  "onlineSub": "Zoom / Google Meet",
-  "namePlaceholder": "Your Full Name",
-  "emailPlaceholder": "Your Email",
-  "phonePlaceholder": "Your Phone Number",
-  "datePlaceholder": "Preferred Date",
-  "timePlaceholder": "Preferred Time",
-  "messagePlaceholder": "Your goals or any additional info...",
-  "next": "Next",
-  "back": "Back",
-  "submit": "Send Booking Request",
-  "submitting": "Sending...",
-  "successTitle": "Booking Request Sent!",
-  "successText": "Thank you! Karim will confirm your session within 24 hours. Check your email for a confirmation.",
-  "close": "Close",
-  "floatingBtn": "Book a Session",
-  "services": {
-    "pt": "Personal Training",
-    "football": "Football Coaching",
-    "sc": "Strength & Conditioning",
-    "discovery": "Free Discovery Call"
+    "title": "Book a Session",
+    "subtitle": "Choose your service and preferred time",
+    "step1": "Choose Service",
+    "step2": "Session Type",
+    "step3": "Your Details",
+    "step4": "Confirmed",
+    "inPerson": "In-Person",
+    "inPersonSub": "Murcia, Spain",
+    "online": "Online",
+    "onlineSub": "Zoom / Google Meet",
+    "namePlaceholder": "Your Full Name",
+    "emailPlaceholder": "Your Email",
+    "phonePlaceholder": "Your Phone Number",
+    "datePlaceholder": "Preferred Date",
+    "timePlaceholder": "Preferred Time",
+    "messagePlaceholder": "Your goals or any additional info...",
+    "next": "Next",
+    "back": "Back",
+    "submit": "Send Booking Request",
+    "submitting": "Sending...",
+    "successTitle": "Booking Request Sent!",
+    "successText": "Thank you! Karim will confirm your session within 24 hours. Check your email for a confirmation.",
+    "close": "Close",
+    "floatingBtn": "Book a Session",
+    "services": {
+      "pt": "Personal Training",
+      "football": "Football Coaching",
+      "sc": "Strength & Conditioning",
+      "discovery": "Free Discovery Call"
+    }
   }
-}
 }

@@ -24,7 +24,10 @@ export default function About() {
   const t = useTranslations("about");
 
   return (
-    <section id="about" className="section-padding bg-neutral-950 relative overflow-hidden">
+    <section
+      id="about"
+      className="section-padding bg-neutral-950 relative overflow-hidden"
+    >
       <div className="absolute top-0 right-0 w-96 h-96 bg-green-500/3 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
@@ -33,6 +36,7 @@ export default function About() {
           subtitle={t("sectionSubtitle")}
         />
 
+        {/* Cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {keys.map((key, i) => {
             const Icon = icons[i];
@@ -67,6 +71,7 @@ export default function About() {
           })}
         </div>
 
+        {/* Bottom profile strip */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,6 +79,7 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-10 rounded-2xl border border-white/8 bg-white/3 px-8 py-6 flex flex-col md:flex-row items-center gap-6"
         >
+          {/* Avatar */}
           <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-green-400 to-emerald-600 flex items-center justify-center font-oswald text-2xl font-bold text-black shrink-0">
             KB
           </div>
@@ -83,7 +89,7 @@ export default function About() {
               Karim Boudabous
             </p>
             <p className="text-white/50 text-sm mt-0.5">
-              MSc High Performance S&C · UEFA C Candidate · Personal Trainer · UCAM
+              MSc S&C · UEFA C Coach · Personal Trainer · NSCA CSCS® Candidate · UCAM
             </p>
           </div>
 
@@ -91,7 +97,7 @@ export default function About() {
             {[
               { label: "Murcia", sublabel: "Spain" },
               { label: "UCAM", sublabel: "Graduate" },
-              { label: "Basic-Fit", sublabel: "Trainer" },
+              { label: "El Palmar CF", sublabel: "S&C Coach" },
             ].map((item, i) => (
               <div key={i} className="text-center">
                 <p className="font-oswald text-base font-bold text-green-400">

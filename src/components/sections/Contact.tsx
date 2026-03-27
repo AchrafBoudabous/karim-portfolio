@@ -12,6 +12,7 @@ import {
   Mail,
   MapPin,
   Phone,
+  Link,
 } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
 
@@ -165,15 +166,28 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-2 flex flex-col gap-6"
           >
+            {/* Info card */}
             <div className="rounded-2xl border border-white/8 bg-white/3 p-6">
               <h3 className="font-oswald text-lg font-bold text-white tracking-wide mb-5">
                 Get In Touch
               </h3>
               <div className="space-y-4">
                 {[
-                  { icon: MapPin, label: "Location", value: "Murcia, Spain" },
-                  { icon: Mail, label: "Email", value: "karim.boudabous@example.com" },
-                  { icon: Phone, label: "Phone", value: "+34 600 000 000" },
+                  {
+                    icon: MapPin,
+                    label: "Location",
+                    value: "Murcia, Spain",
+                  },
+                  {
+                    icon: Mail,
+                    label: "Email",
+                    value: "karimboudabous04@gmail.com",
+                  },
+                  {
+                    icon: Phone,
+                    label: "Phone",
+                    value: "+34 666 850 841",
+                  },
                 ].map(({ icon: Icon, label, value }) => (
                   <div key={label} className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center shrink-0">
@@ -192,6 +206,7 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* Social links */}
             <div className="rounded-2xl border border-white/8 bg-white/3 p-6">
               <p className="text-white/40 text-xs uppercase tracking-widest mb-4">
                 {t("follow")}
@@ -201,22 +216,22 @@ export default function Contact() {
                   {
                     icon: Linkedin,
                     label: "LinkedIn",
-                    handle: "/in/karim-boudabous",
-                    href: "https://linkedin.com",
+                    handle: "Karim Boudabous",
+                    href: "https://linkedin.com/in/karim-boudabous",
                     color: "hover:border-blue-500/40 hover:bg-blue-500/5 hover:text-blue-400",
                   },
                   {
                     icon: Instagram,
                     label: "Instagram",
                     handle: "@karim.boudabous",
-                    href: "https://instagram.com",
+                    href: "https://instagram.com/karim.boudabous",
                     color: "hover:border-pink-500/40 hover:bg-pink-500/5 hover:text-pink-400",
                   },
                   {
-                    icon: Mail,
-                    label: "Email",
-                    handle: "karim.boudabous@example.com",
-                    href: "mailto:karim.boudabous@example.com",
+                    icon: Link,
+                    label: "Linktree",
+                    handle: "linktr.ee/Karim.boudabous",
+                    href: "https://linktr.ee/Karim.boudabous",
                     color: "hover:border-green-500/40 hover:bg-green-500/5 hover:text-green-400",
                   },
                 ].map(({ icon: Icon, label, handle, href, color }) => (
@@ -238,6 +253,7 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* Availability badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}

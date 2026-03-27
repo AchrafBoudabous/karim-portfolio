@@ -19,15 +19,15 @@
     "sectionSubtitle": "Científico. Entrenador. Preparador.",
     "academic": {
       "title": "Base Académica",
-      "body": "Soy titulado con un Grado en Ciencias del Deporte y la Actividad Física por la UCAM (Universidad Católica San Antonio de Murcia) y actualmente estoy cursando un Máster en Alto Rendimiento Deportivo: Fuerza y Acondicionamiento en la misma institución. Mi formación académica abarca fisiología del ejercicio, biomecánica, nutrición deportiva, psicología, análisis de datos y metodología del entrenamiento."
+      "body": "Soy titulado con un Grado en Ciencias de la Actividad Física y del Deporte por la UCAM (Universidad Católica San Antonio de Murcia) y actualmente estoy cursando un Máster en Alto Rendimiento Deportivo: Fuerza y Acondicionamiento en la misma institución. Mi formación abarca fisiología del ejercicio, biomecánica, nutrición deportiva, psicología, análisis de datos y metodología del entrenamiento."
     },
     "coaching": {
       "title": "Filosofía de Entrenamiento",
-      "body": "Como candidato a la Licencia UEFA C de Entrenador, creo que el rendimiento de élite se construye sobre inteligencia táctica, acondicionamiento físico y resiliencia mental. Mi metodología integra los principios de las ciencias del deporte directamente en el diseño del entrenamiento — cada ejercicio tiene un propósito, cada sesión tiene un resultado medible. Aplico principios de desarrollo a largo plazo del deportista en cada etapa."
+      "body": "Como entrenador de fútbol titulado UEFA C, creo que el rendimiento de élite se construye sobre inteligencia táctica, acondicionamiento físico y resiliencia mental. Mi metodología integra los principios de las ciencias del deporte directamente en el diseño del entrenamiento — cada ejercicio tiene un propósito, cada sesión tiene un resultado medible. Aplico principios de desarrollo a largo plazo del deportista en cada etapa."
     },
     "vision": {
       "title": "Visión Profesional",
-      "body": "Mi objetivo es crecer como preparador físico, entrenador de fútbol y entrenador personal, aplicando métodos basados en evidencia para ayudar a deportistas e individuos a alcanzar su máximo potencial. Estoy especialmente motivado para contribuir a academias de fútbol, centros de rendimiento y entornos fitness donde el desarrollo a largo plazo y la excelencia en el rendimiento van de la mano."
+      "body": "Mi objetivo es crecer como preparador físico, entrenador de fútbol y entrenador personal, aplicando métodos basados en evidencia para ayudar a deportistas e individuos a alcanzar su máximo potencial. Actualmente en proceso de certificación NSCA CSCS® y formación avanzada en Barça Innovation Hub, estoy motivado para contribuir a clubes de fútbol, centros de rendimiento y entornos fitness donde el desarrollo a largo plazo y la excelencia van de la mano."
     }
   },
   "services": {
@@ -41,7 +41,7 @@
       },
       {
         "title": "Entrenamiento de Fútbol",
-        "description": "Metodología UEFA C aplicada al desarrollo juvenil y de equipo. Entrenamiento técnico, táctico y físico completamente integrado, con fuerte énfasis en el desarrollo a largo plazo del deportista y el coaching centrado en el jugador.",
+        "description": "Coaching de fútbol con licencia UEFA C aplicado al desarrollo individual y de equipo. Entrenamiento técnico, táctico y físico completamente integrado, con fuerte énfasis en el desarrollo a largo plazo del deportista.",
         "icon": "trophy"
       },
       {
@@ -56,32 +56,46 @@
     "sectionSubtitle": "Mi Trayectoria Profesional",
     "items": [
       {
+        "role": "Preparador Físico",
+        "company": "El Palmar CF — Estrella Grana · Prácticas de Máster",
+        "period": "Abr 2026 — Presente",
+        "location": "Murcia, España · Presencial",
+        "description": "Prácticas del Máster en Alto Rendimiento Deportivo como preparador físico en club de fútbol, colaborando en la planificación y aplicación de programas de entrenamiento, control de cargas, prevención de lesiones y mejora del rendimiento. Trabajo conjunto con el cuerpo técnico en la preparación física para entrenamientos y competición."
+      },
+      {
         "role": "Entrenador Personal",
         "company": "Funziona Entrenamiento Personal (Basic-Fit)",
         "period": "Sep 2025 — Presente",
         "location": "Murcia, España · Presencial",
-        "description": "Creación de programas de entrenamiento personalizados para mejorar la fuerza, el acondicionamiento y la salud de los clientes. Enfoque en técnicas de ejercicio seguras, gestión progresiva de la carga, motivación y desarrollo de hábitos de fitness sostenibles."
+        "description": "Diseño y ejecución de programas de entrenamiento personalizados enfocados en fuerza, acondicionamiento físico y mejora del rendimiento. Seguimiento de la progresión de los clientes, control de cargas y aplicación de principios de entrenamiento basados en evidencia para salud y rendimiento deportivo."
       },
       {
-        "role": "Asistente de Entrenador de Fútbol",
-        "company": "AD Vistalegre · Prácticas",
-        "period": "Sep 2025 — Presente",
+        "role": "Entrenador Asistente de Fútbol",
+        "company": "AD Vistalegre · Prácticas UEFA C",
+        "period": "Sep 2025 — Mar 2026",
         "location": "Murcia, España · Presencial",
-        "description": "Prácticas supervisadas como parte de la obtención de la Licencia UEFA C. Participación en la planificación y dirección de sesiones de entrenamiento juvenil siguiendo la metodología UEFA, apoyo en la preparación de partidos y asistencia en objetivos técnicos y tácticos."
+        "description": "Apoyo técnico en fútbol base dentro del marco formativo UEFA C, participando en la planificación de entrenamientos, preparación de partidos y aplicación de objetivos técnico-tácticos. Colaboración con el cuerpo técnico en el desarrollo integral de los jugadores y en la organización de las sesiones de entrenamiento."
       },
       {
         "role": "Preparador Físico",
-        "company": "AD Vistalegre · Prácticas",
+        "company": "AD Vistalegre · Prácticas de Grado",
         "period": "Feb 2025 — Jun 2025",
         "location": "Murcia, España · Presencial",
         "description": "Primera práctica universitaria supervisada apoyando el desarrollo físico de jugadores juveniles de fútbol en múltiples categorías de edad. Diseño y entrega de sesiones de acondicionamiento apropiadas para cada edad, monitoreo del rendimiento físico, prevención de lesiones y colaboración con el cuerpo técnico."
       },
       {
-        "role": "Asistente de Entrenador de Fútbol",
+        "role": "Entrenador Asistente de Fútbol",
         "company": "Club Sportif Sfaxien",
         "period": "Jul 2024 — Sep 2024",
         "location": "Sfax, Túnez",
         "description": "Experiencia práctica de entrenamiento en una de las principales academias de fútbol de Túnez. Apoyo a programas de entrenamiento juvenil mediante ejercicios técnicos, preparación física e instrucción táctica. Asistencia al entrenador principal en el desarrollo técnico de los jugadores."
+      },
+      {
+        "role": "Jugador de Fútbol y Capitán de Equipo",
+        "company": "Busaiteen Club",
+        "period": "2009 — 2021",
+        "location": "Busaiteen, Baréin",
+        "description": "Exfutbolista y capitán de equipo con experiencia en competición federada. Desarrollo de liderazgo, trabajo en equipo y comprensión táctica del fútbol, participando en entrenamientos estructurados y competiciones oficiales."
       }
     ]
   },
@@ -109,11 +123,11 @@
       {
         "degree": "Licencia UEFA C — Entrenamiento de Fútbol",
         "institution": "Real Federación Española de Fútbol (RFEF)",
-        "year": "2025 — Presente",
+        "year": "2025 — 2026",
         "description": "Certificación de entrenador reconocida internacionalmente que cubre la metodología UEFA, planificación de sesiones, desarrollo de jugadores juveniles, desarrollo a largo plazo del deportista y análisis del juego."
       },
       {
-        "degree": "Grado — Ciencias del Deporte y la Actividad Física",
+        "degree": "Grado — Ciencias de la Actividad Física y del Deporte",
         "institution": "UCAM Universidad Católica San Antonio de Murcia",
         "year": "Oct 2021 — Jun 2025",
         "description": "Formación integral en anatomía humana, fisiología del ejercicio, nutrición deportiva, metodología del entrenamiento, análisis de datos, psicología del deporte y actividad física y salud."
@@ -145,35 +159,35 @@
     "madeWith": "Creado con pasión por el deporte y la ciencia."
   },
   "booking": {
-  "title": "Reservar una Sesión",
-  "subtitle": "Elige tu servicio y horario preferido",
-  "step1": "Elige Servicio",
-  "step2": "Tipo de Sesión",
-  "step3": "Tus Datos",
-  "step4": "Confirmado",
-  "inPerson": "Presencial",
-  "inPersonSub": "Murcia, España",
-  "online": "Online",
-  "onlineSub": "Zoom / Google Meet",
-  "namePlaceholder": "Tu Nombre Completo",
-  "emailPlaceholder": "Tu Correo Electrónico",
-  "phonePlaceholder": "Tu Número de Teléfono",
-  "datePlaceholder": "Fecha Preferida",
-  "timePlaceholder": "Hora Preferida",
-  "messagePlaceholder": "Tus objetivos o información adicional...",
-  "next": "Siguiente",
-  "back": "Atrás",
-  "submit": "Enviar Solicitud",
-  "submitting": "Enviando...",
-  "successTitle": "¡Solicitud Enviada!",
-  "successText": "¡Gracias! Karim confirmará tu sesión en 24 horas. Revisa tu correo para una confirmación.",
-  "close": "Cerrar",
-  "floatingBtn": "Reservar Sesión",
-  "services": {
-    "pt": "Entrenamiento Personal",
-    "football": "Entrenamiento de Fútbol",
-    "sc": "Preparación Física",
-    "discovery": "Llamada de Descubrimiento Gratuita"
+    "title": "Reservar una Sesión",
+    "subtitle": "Elige tu servicio y horario preferido",
+    "step1": "Elige Servicio",
+    "step2": "Tipo de Sesión",
+    "step3": "Tus Datos",
+    "step4": "Confirmado",
+    "inPerson": "Presencial",
+    "inPersonSub": "Murcia, España",
+    "online": "Online",
+    "onlineSub": "Zoom / Google Meet",
+    "namePlaceholder": "Tu Nombre Completo",
+    "emailPlaceholder": "Tu Correo Electrónico",
+    "phonePlaceholder": "Tu Número de Teléfono",
+    "datePlaceholder": "Fecha Preferida",
+    "timePlaceholder": "Hora Preferida",
+    "messagePlaceholder": "Tus objetivos o información adicional...",
+    "next": "Siguiente",
+    "back": "Atrás",
+    "submit": "Enviar Solicitud",
+    "submitting": "Enviando...",
+    "successTitle": "¡Solicitud Enviada!",
+    "successText": "¡Gracias! Karim confirmará tu sesión en 24 horas. Revisa tu correo para una confirmación.",
+    "close": "Cerrar",
+    "floatingBtn": "Reservar Sesión",
+    "services": {
+      "pt": "Entrenamiento Personal",
+      "football": "Entrenamiento de Fútbol",
+      "sc": "Preparación Física",
+      "discovery": "Llamada de Descubrimiento Gratuita"
+    }
   }
-}
 }
