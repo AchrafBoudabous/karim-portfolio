@@ -116,7 +116,7 @@ export async function POST(req: NextRequest) {
             <p style="color: #d1d5db; line-height: 1.6;">
               Best regards,<br/>
               <strong style="color: #fff;">Karim Boudabous</strong><br/>
-              <span style="color: #22c55e; font-size: 13px;">Sports Scientist · Personal Trainer · UEFA C Coach Candidate</span>
+              <span style="color: #22c55e; font-size: 13px;">NSCA CSCS® · Football Coach (UEFA C) · Personal Trainer · MSc S&C</span>
             </p>
           </div>
           <div style="background: #111; padding: 16px; text-align: center;">

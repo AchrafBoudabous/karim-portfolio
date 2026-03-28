@@ -18,16 +18,22 @@ const oswald = Oswald({
 const locales = ["en", "es", "fr"];
 
 export const metadata: Metadata = {
-  title: "Karim Boudabous | Sports Science & Elite Performance",
+  title: "Karim Boudabous | NSCA CSCS® · Football Coach (UEFA C) · MSc S&C",
   description:
-    "UEFA C Football Coach & Sports Scientist specializing in High Performance, S&C, and Personal Training.",
+    "NSCA CSCS® certified strength and conditioning coach, Football Coach (UEFA C), and Personal Trainer based in Murcia, Spain. Specializing in high performance S&C, football coaching, and personal training.",
   keywords: [
-    "sports science",
+    "NSCA CSCS",
+    "strength and conditioning",
     "football coach",
     "UEFA C",
-    "strength and conditioning",
+    "personal trainer",
+    "sports science",
     "high performance",
     "UCAM",
+    "Murcia",
+    "Karim Boudabous",
+    "El Palmar CF",
+    "Barça Innovation Hub",
   ],
 };
 

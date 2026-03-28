@@ -89,7 +89,7 @@ export default function About() {
               Karim Boudabous
             </p>
             <p className="text-white/50 text-sm mt-0.5">
-              MSc S&C · UEFA C Coach · Personal Trainer · NSCA CSCS® Candidate · UCAM
+              NSCA CSCS® · Football Coach (UEFA C) · MSc S&C · Personal Trainer · UCAM
             </p>
           </div>
 

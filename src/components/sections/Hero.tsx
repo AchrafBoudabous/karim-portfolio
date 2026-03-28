@@ -73,7 +73,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-500/20 bg-green-500/5 text-green-400 text-sm font-medium mb-8"
         >
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          UEFA C Licensed Coach · MSc S&C Candidate · NSCA CSCS® In Progress
+          NSCA CSCS® · Football Coach (UEFA C) · MSc S&C
         </motion.div>
 
         {/* Main title */}
@@ -148,14 +148,14 @@ export default function Hero() {
         >
           {[
             { value: "1+", label: "Year Experience" },
-            { value: "UEFA C", label: "Licensed Coach" },
-            { value: "MSc S&C", label: "UCAM" },
+            { value: "NSCA CSCS®", label: "Certified" },
+            { value: "UEFA C", label: "Football Coach" },
           ].map((stat, i) => (
             <div
               key={i}
               className="text-center px-4 py-3 rounded-xl border border-white/5 bg-white/3"
             >
-              <p className="font-oswald text-2xl font-bold text-green-400">
+              <p className="font-oswald text-xl font-bold text-green-400">
                 {stat.value}
               </p>
               <p className="text-white/40 text-xs mt-0.5 tracking-wide">

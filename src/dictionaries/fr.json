@@ -23,11 +23,11 @@
     },
     "coaching": {
       "title": "Philosophie d'Entraînement",
-      "body": "En tant qu'entraîneur de football titulaire de la Licence UEFA C, je crois que la performance d'élite repose sur l'intelligence tactique, le conditionnement physique et la résilience mentale. Ma méthodologie intègre les principes des sciences du sport directement dans la conception des séances — chaque exercice a un but, chaque séance a un résultat mesurable. J'applique les principes du développement à long terme de l'athlète à chaque étape."
+      "body": "En tant qu'Entraîneur de Football (UEFA C), je crois que la performance d'élite repose sur l'intelligence tactique, le conditionnement physique et la résilience mentale. Ma méthodologie intègre les principes des sciences du sport directement dans la conception des séances — chaque exercice a un but, chaque séance a un résultat mesurable. J'applique les principes du développement à long terme de l'athlète à chaque étape."
     },
     "vision": {
       "title": "Vision Professionnelle",
-      "body": "Mon objectif est de continuer à évoluer en tant que préparateur physique, entraîneur de football et coach personnel, en appliquant des méthodes fondées sur des preuves. Actuellement en cours de certification NSCA CSCS® et de formation avancée au Barça Innovation Hub, je suis motivé à contribuer aux clubs de football, centres de performance et environnements fitness où le développement à long terme et l'excellence vont de pair."
+      "body": "Mon objectif est de continuer à évoluer en tant que préparateur physique, entraîneur de football et coach personnel, en appliquant des méthodes fondées sur des preuves. En tant que coach certifié NSCA CSCS® et formé au Barça Innovation Hub, je suis motivé à contribuer aux clubs de football, centres de performance et environnements fitness où le développement à long terme et l'excellence vont de pair."
     }
   },
   "services": {
@@ -41,12 +41,12 @@
       },
       {
         "title": "Entraînement Football",
-        "description": "Coaching football avec licence UEFA C appliqué au développement individuel et collectif. Entraînement technique, tactique et physique entièrement intégré, avec un fort accent sur le développement à long terme de l'athlète.",
+        "description": "Méthodologie d'Entraîneur de Football (UEFA C) appliquée au développement individuel et collectif. Entraînement technique, tactique et physique entièrement intégré, avec un fort accent sur le développement à long terme de l'athlète.",
         "icon": "trophy"
       },
       {
         "title": "Préparation Physique",
-        "description": "Programmes spécialisés de force et conditionnement axés sur un conditionnement adapté à l'âge, la prévention des blessures, la gestion de la charge et le développement athlétique, alignés sur les exigences de l'entraînement et de la compétition.",
+        "description": "Programmes spécialisés de force et conditionnement certifiés NSCA CSCS®, axés sur un conditionnement adapté à l'âge, la prévention des blessures, la gestion de la charge et le développement athlétique.",
         "icon": "activity"
       }
     ]
@@ -70,7 +70,7 @@
         "description": "Conception et exécution de programmes d'entraînement personnalisés axés sur la force, le conditionnement physique et l'amélioration des performances. Suivi de la progression des clients, contrôle de la charge et application de principes d'entraînement fondés sur des preuves pour la santé et la performance sportive."
       },
       {
-        "role": "Entraîneur Adjoint de Football",
+        "role": "Entraîneur Adjoint de Football (UEFA C)",
         "company": "AD Vistalegre · Stage UEFA C",
         "period": "Sep 2025 — Mar 2026",
         "location": "Murcie, Espagne · Présentiel",
@@ -121,10 +121,16 @@
         "description": "Spécialisation en musculation, prévention des blessures, stratégies de récupération, gestion de la charge et développement global des performances pour les athlètes de haut niveau."
       },
       {
-        "degree": "Licence UEFA C — Entraînement Football",
+        "degree": "NSCA CSCS® — Spécialiste Certifié en Force et Conditionnement",
+        "institution": "National Strength and Conditioning Association (NSCA)",
+        "year": "2025",
+        "description": "Certification internationalement reconnue en force et conditionnement, couvrant les sciences de l'exercice, la conception de programmes, l'évaluation et l'administration pour la performance athlétique."
+      },
+      {
+        "degree": "Entraîneur de Football — Licence UEFA C",
         "institution": "Fédération Royale Espagnole de Football (RFEF)",
         "year": "2025 — 2026",
-        "description": "Qualification d'entraîneur reconnue internationalement couvrant la méthodologie UEFA, la planification des séances, le développement des jeunes joueurs, le développement à long terme de l'athlète et l'analyse du jeu."
+        "description": "Qualification d'entraîneur de football reconnue internationalement couvrant la méthodologie UEFA, la planification des séances, le développement des jeunes joueurs, le développement à long terme de l'athlète et l'analyse du jeu."
       },
       {
         "degree": "Licence — Sciences du Sport et de l'Activité Physique",
@@ -152,7 +158,7 @@
     "error": "Une erreur s'est produite. Veuillez réessayer.",
     "follow": "Suivez-Moi",
     "availableTitle": "Disponible pour de nouvelles opportunités",
-    "availableText": "Ouvert aux postes d'entraîneur, de préparateur physique et aux clients en coaching personnel."
+    "availableText": "Ouvert aux postes de préparateur physique, d'Entraîneur de Football (UEFA C) et aux clients en coaching personnel."
   },
   "footer": {
     "rights": "Tous droits réservés.",

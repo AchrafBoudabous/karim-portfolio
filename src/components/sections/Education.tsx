@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { GraduationCap, Award, BookOpen, School } from "lucide-react";
+import { GraduationCap, Award, BookOpen, School, Star } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
 
 interface EducationItem {
@@ -12,7 +12,7 @@ interface EducationItem {
   description: string;
 }
 
-const icons = [GraduationCap, Award, BookOpen, School];
+const icons = [GraduationCap, Award, Star, BookOpen, School];
 
 const cardStyles = [
   {
@@ -28,6 +28,13 @@ const cardStyles = [
     icon: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
     badge: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
     accent: "from-yellow-500/0 via-yellow-500/50 to-yellow-500/0",
+  },
+  {
+    border: "border-orange-500/20 hover:border-orange-500/40",
+    glow: "bg-orange-500/3",
+    icon: "text-orange-400 bg-orange-500/10 border-orange-500/20",
+    badge: "bg-orange-500/10 text-orange-400 border-orange-500/20",
+    accent: "from-orange-500/0 via-orange-500/50 to-orange-500/0",
   },
   {
     border: "border-blue-500/20 hover:border-blue-500/40",
@@ -66,6 +73,7 @@ export default function Education() {
           subtitle={t("sectionSubtitle")}
         />
 
+        {/* Top 2 cards — Master + NSCA CSCS® */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           {items.slice(0, 2).map((item, i) => {
             const Icon = icons[i];
@@ -84,31 +92,25 @@ export default function Education() {
                 <div
                   className={`absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r ${style.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                 />
-
                 <div
                   className={`w-12 h-12 rounded-xl border flex items-center justify-center mb-6 ${style.icon} group-hover:scale-110 transition-transform duration-300`}
                 >
                   <Icon size={22} />
                 </div>
-
                 <span
                   className={`inline-block text-xs font-semibold px-3 py-1 rounded-full border mb-4 ${style.badge}`}
                 >
                   {item.year}
                 </span>
-
                 <h3 className="font-oswald text-lg font-bold text-white tracking-wide mb-2 leading-tight">
                   {item.degree}
                 </h3>
-
                 <p className="text-white/50 text-xs font-medium mb-4 uppercase tracking-wider">
                   {item.institution}
                 </p>
-
                 <p className="text-white/55 text-sm leading-relaxed">
                   {item.description}
                 </p>
-
                 <span className="absolute bottom-4 right-4 font-oswald text-6xl font-bold text-white/3 select-none">
                   0{i + 1}
                 </span>
@@ -117,8 +119,9 @@ export default function Education() {
           })}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {items.slice(2, 4).map((item, i) => {
+        {/* Bottom 3 cards — UEFA C + Bachelor + High School */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {items.slice(2, 5).map((item, i) => {
             const actualIndex = i + 2;
             const Icon = icons[actualIndex];
             const style = cardStyles[actualIndex];
@@ -136,31 +139,25 @@ export default function Education() {
                 <div
                   className={`absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r ${style.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                 />
-
                 <div
                   className={`w-12 h-12 rounded-xl border flex items-center justify-center mb-6 ${style.icon} group-hover:scale-110 transition-transform duration-300`}
                 >
                   <Icon size={22} />
                 </div>
-
                 <span
                   className={`inline-block text-xs font-semibold px-3 py-1 rounded-full border mb-4 ${style.badge}`}
                 >
                   {item.year}
                 </span>
-
                 <h3 className="font-oswald text-lg font-bold text-white tracking-wide mb-2 leading-tight">
                   {item.degree}
                 </h3>
-
                 <p className="text-white/50 text-xs font-medium mb-4 uppercase tracking-wider">
                   {item.institution}
                 </p>
-
                 <p className="text-white/55 text-sm leading-relaxed">
                   {item.description}
                 </p>
-
                 <span className="absolute bottom-4 right-4 font-oswald text-6xl font-bold text-white/3 select-none">
                   0{actualIndex + 1}
                 </span>
@@ -169,6 +166,7 @@ export default function Education() {
           })}
         </div>
 
+        {/* Certifications strip */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -188,12 +186,12 @@ export default function Education() {
 
             <div className="flex flex-wrap justify-center md:justify-end gap-3">
               {[
-                "UEFA C Candidate",
+                "NSCA CSCS®",
+                "Football Coach (UEFA C)",
                 "MSc S&C",
                 "BSc Sport Science",
+                "Barça Innovation Hub",
                 "CPR Certified",
-                "Sports Nutrition",
-                "Load Management",
               ].map((cert, i) => (
                 <span
                   key={i}

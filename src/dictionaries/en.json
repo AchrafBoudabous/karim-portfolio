@@ -23,11 +23,11 @@
     },
     "coaching": {
       "title": "Coaching Philosophy",
-      "body": "As a UEFA C licensed football coach, I believe elite performance is built on tactical intelligence, physical conditioning, and mental resilience. My methodology integrates sports science principles directly into training design — every drill has a purpose, every session has a measurable outcome. I apply long-term athlete development principles at every stage."
+      "body": "As a Football Coach (UEFA C), I believe elite performance is built on tactical intelligence, physical conditioning, and mental resilience. My methodology integrates sports science principles directly into training design — every drill has a purpose, every session has a measurable outcome. I apply long-term athlete development principles at every stage."
     },
     "vision": {
       "title": "Professional Vision",
-      "body": "My goal is to grow as a strength and conditioning coach, football coach, and personal trainer — applying evidence-based methods to help athletes and individuals reach their full potential. Currently pursuing NSCA CSCS® certification and advancing my knowledge through Barça Innovation Hub, I am motivated to contribute to football clubs, performance centers, and fitness environments where long-term development and excellence go hand in hand."
+      "body": "My goal is to grow as a strength and conditioning coach, football coach, and personal trainer — applying evidence-based methods to help athletes and individuals reach their full potential. As a NSCA CSCS® certified coach and Barça Innovation Hub trained professional, I am motivated to contribute to football clubs, performance centers, and fitness environments where long-term development and excellence go hand in hand."
     }
   },
   "services": {
@@ -41,12 +41,12 @@
       },
       {
         "title": "Football Coaching",
-        "description": "UEFA C licensed football coaching applied to youth and team development. Technical, tactical, and physical training fully integrated, with a strong focus on long-term athlete development and player-centered coaching.",
+        "description": "Football Coach (UEFA C) methodology applied to youth and team development. Technical, tactical, and physical training fully integrated, with a strong focus on long-term athlete development and player-centered coaching.",
         "icon": "trophy"
       },
       {
         "title": "Strength & Conditioning",
-        "description": "Specialized S&C programs focused on age-appropriate conditioning, injury prevention, load management, and athletic development — aligned with training and match demands.",
+        "description": "NSCA CSCS® certified S&C programs focused on age-appropriate conditioning, injury prevention, load management, and athletic development — aligned with training and match demands.",
         "icon": "activity"
       }
     ]
@@ -70,7 +70,7 @@
         "description": "Design and execution of personalized training programs focused on strength, physical conditioning, and performance improvement. Client progress monitoring, load control, and application of evidence-based training principles for health and sport performance."
       },
       {
-        "role": "Assistant Football Coach",
+        "role": "Football Coach Assistant (UEFA C)",
         "company": "AD Vistalegre · UEFA C Internship",
         "period": "Sep 2025 — Mar 2026",
         "location": "Murcia, Spain · On-site",
@@ -121,10 +121,16 @@
         "description": "Specialization in strength training, injury prevention, recovery strategies, load management, and holistic performance development for elite athletes."
       },
       {
-        "degree": "UEFA C Coaching Licence — Football Coaching",
+        "degree": "NSCA CSCS® — Certified Strength & Conditioning Specialist",
+        "institution": "National Strength and Conditioning Association (NSCA)",
+        "year": "2025",
+        "description": "Internationally recognized certification in strength and conditioning, covering exercise science, program design, testing and evaluation, and organization and administration for athletic performance."
+      },
+      {
+        "degree": "Football Coach — UEFA C Licence",
         "institution": "Royal Spanish Football Federation (RFEF)",
         "year": "2025 — 2026",
-        "description": "Internationally recognized coaching qualification covering UEFA football methodology, session planning, youth player development, long-term athlete development, and match analysis."
+        "description": "Internationally recognized football coaching qualification covering UEFA methodology, session planning, youth player development, long-term athlete development, and match analysis."
       },
       {
         "degree": "Bachelor's Degree — Sport Sciences & Physical Activity",
@@ -152,7 +158,7 @@
     "error": "Something went wrong. Please try again.",
     "follow": "Follow Me",
     "availableTitle": "Available for new opportunities",
-    "availableText": "Open to coaching roles, S&C positions & personal training clients."
+    "availableText": "Open to S&C coaching roles, Football Coach (UEFA C) positions & personal training clients."
   },
   "footer": {
     "rights": "All rights reserved.",
