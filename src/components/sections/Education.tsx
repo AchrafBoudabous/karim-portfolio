@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { GraduationCap, Award, BookOpen, School, Star } from "lucide-react";
+import { GraduationCap, Award, BookOpen, School, Star, Zap } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
 
 interface EducationItem {
@@ -12,7 +12,7 @@ interface EducationItem {
   description: string;
 }
 
-const icons = [GraduationCap, Award, Star, BookOpen, School];
+const icons = [GraduationCap, Award, Star, BookOpen, School, Zap];
 
 const cardStyles = [
   {
@@ -50,6 +50,13 @@ const cardStyles = [
     badge: "bg-purple-500/10 text-purple-400 border-purple-500/20",
     accent: "from-purple-500/0 via-purple-500/50 to-purple-500/0",
   },
+  {
+    border: "border-red-500/20 hover:border-red-500/40",
+    glow: "bg-red-500/3",
+    icon: "text-red-400 bg-red-500/10 border-red-500/20",
+    badge: "bg-red-500/10 text-red-400 border-red-500/20",
+    accent: "from-red-500/0 via-red-500/50 to-red-500/0",
+  }
 ];
 
 export default function Education() {
@@ -119,9 +126,9 @@ export default function Education() {
           })}
         </div>
 
-        {/* Bottom 3 cards — UEFA C + Bachelor + High School */}
+        {/* Bottom 4 cards — UEFA C + Bachelor + High School + Barça */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {items.slice(2, 5).map((item, i) => {
+          {items.slice(2, 6).map((item, i) => {
             const actualIndex = i + 2;
             const Icon = icons[actualIndex];
             const style = cardStyles[actualIndex];
