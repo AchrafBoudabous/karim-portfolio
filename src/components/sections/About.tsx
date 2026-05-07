@@ -89,7 +89,7 @@ export default function About() {
               Karim Boudabous
             </p>
             <p className="text-white/50 text-sm mt-0.5">
-              NSCA CSCS® · Football Coach (UEFA C) · MSc S&C · Personal Trainer · UCAM
+              NSCA CSCS® · S&C Coach · MSc S&C · Personal Trainer · UCAM
             </p>
           </div>
 
@@ -97,7 +97,7 @@ export default function About() {
             {[
               { label: "Murcia", sublabel: "Spain" },
               { label: "UCAM", sublabel: "Graduate" },
-              { label: "El Palmar CF", sublabel: "S&C Coach" },
+              { label: "Syria NT", sublabel: "S&C Coach" },
             ].map((item, i) => (
               <div key={i} className="text-center">
                 <p className="font-oswald text-base font-bold text-green-400">
