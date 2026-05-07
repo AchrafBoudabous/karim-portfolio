@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { checkRateLimit } from "@/lib/rateLimit";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -7,10 +8,44 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  tls: {
-    rejectUnauthorized: false,
-  },
 });
+
+// All translated variants of service and session type values
+const ALLOWED_SERVICES = new Set([
+  "Personal Training",
+  "Football Coaching",
+  "Strength & Conditioning",
+  "Free Discovery Call",
+  "Entraînement Personnel",
+  "Entraînement Football",
+  "Préparation Physique",
+  "Appel Découverte Gratuit",
+  "Entrenamiento Personal",
+  "Entrenamiento de Fútbol",
+  "Preparación Física",
+  "Llamada de Descubrimiento Gratuita",
+]);
+
+const ALLOWED_SESSION_TYPES = new Set([
+  "In-Person",
+  "Online",
+  "Présentiel",
+  "En Ligne",
+  "Presencial",
+]);
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;");
+}
+
+function stripNewlines(str: string): string {
+  return str.replace(/[\r\n]/g, "");
+}
 
 function validateBooking(data: {
   name: string;
@@ -55,10 +90,14 @@ function validateBooking(data: {
 
   if (!data.service?.trim()) {
     errors.service = "Please select a service";
+  } else if (!ALLOWED_SERVICES.has(data.service.trim())) {
+    errors.service = "Invalid service selected";
   }
 
   if (!data.sessionType?.trim()) {
     errors.sessionType = "Please select a session type";
+  } else if (!ALLOWED_SESSION_TYPES.has(data.sessionType.trim())) {
+    errors.sessionType = "Invalid session type selected";
   }
 
   if (data.preferredDate?.trim()) {
@@ -80,6 +119,16 @@ function validateBooking(data: {
 }
 
 export async function POST(req: NextRequest) {
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+
+  if (!checkRateLimit(ip, 5, 60_000).allowed) {
+    return NextResponse.json(
+      { error: "Too many requests. Please wait a moment." },
+      { status: 429 }
+    );
+  }
+
   try {
     const body = await req.json();
     const {
@@ -108,15 +157,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ errors }, { status: 422 });
     }
 
-    const sanitizedName = name.trim();
+    const sanitizedName = escapeHtml(name.trim());
     const sanitizedEmail = email.trim().toLowerCase();
-    const sanitizedPhone = phone?.trim() || "Not provided";
-    const sanitizedMessage = message?.trim() || "No message provided";
+    const sanitizedPhone = escapeHtml(phone?.trim() || "Not provided");
+    const sanitizedMessage = escapeHtml(message?.trim() || "No message provided");
+    const safeService = escapeHtml(service.trim());
+    const safeSessionType = escapeHtml(sessionType.trim());
+    const safeDate = escapeHtml(preferredDate?.trim() || "Flexible");
+    const safeTime = escapeHtml(preferredTime?.trim() || "Flexible");
+
+    const subjectService = stripNewlines(service.trim());
+    const subjectSessionType = stripNewlines(sessionType.trim());
 
     await transporter.sendMail({
       from: `"Karim Portfolio" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
-      subject: `New Booking Request — ${service} (${sessionType})`,
+      subject: `New Booking Request — ${subjectService} (${subjectSessionType})`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #ffffff; border-radius: 12px; overflow: hidden;">
           <div style="background: linear-gradient(135deg, #22c55e, #059669); padding: 32px; text-align: center;">
@@ -139,19 +195,19 @@ export async function POST(req: NextRequest) {
               </tr>
               <tr>
                 <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #9ca3af;">Service</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff;">${service}</td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff;">${safeService}</td>
               </tr>
               <tr>
                 <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #9ca3af;">Session Type</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff;">${sessionType}</td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff;">${safeSessionType}</td>
               </tr>
               <tr>
                 <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #9ca3af;">Preferred Date</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff;">${preferredDate || "Flexible"}</td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff;">${safeDate}</td>
               </tr>
               <tr>
                 <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #9ca3af;">Preferred Time</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff;">${preferredTime || "Flexible"}</td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff;">${safeTime}</td>
               </tr>
               <tr>
                 <td style="padding: 12px 0; color: #9ca3af; vertical-align: top;">Message</td>
@@ -169,7 +225,7 @@ export async function POST(req: NextRequest) {
     await transporter.sendMail({
       from: `"Karim Boudabous" <${process.env.EMAIL_USER}>`,
       to: sanitizedEmail,
-      subject: `Booking Request Received — ${service}`,
+      subject: `Booking Request Received — ${subjectService}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #ffffff; border-radius: 12px; overflow: hidden;">
           <div style="background: linear-gradient(135deg, #22c55e, #059669); padding: 32px; text-align: center;">
@@ -180,16 +236,16 @@ export async function POST(req: NextRequest) {
             <p style="color: #d1d5db; line-height: 1.6;">Hi <strong style="color: #fff;">${sanitizedName}</strong>,</p>
             <p style="color: #d1d5db; line-height: 1.6;">
               Thank you for your booking request! I have received your request for a
-              <strong style="color: #22c55e;">${service}</strong> session
-              (${sessionType}) and will confirm your booking within
+              <strong style="color: #22c55e;">${safeService}</strong> session
+              (${safeSessionType}) and will confirm your booking within
               <strong style="color: #fff;">24 hours</strong>.
             </p>
             <div style="background: #111; border: 1px solid #1a1a1a; border-radius: 8px; padding: 20px; margin: 24px 0;">
               <h3 style="margin: 0 0 16px; color: #22c55e; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Your Booking Summary</h3>
-              <p style="margin: 8px 0; color: #9ca3af;">Service: <span style="color: #fff;">${service}</span></p>
-              <p style="margin: 8px 0; color: #9ca3af;">Type: <span style="color: #fff;">${sessionType}</span></p>
-              <p style="margin: 8px 0; color: #9ca3af;">Date: <span style="color: #fff;">${preferredDate || "To be confirmed"}</span></p>
-              <p style="margin: 8px 0; color: #9ca3af;">Time: <span style="color: #fff;">${preferredTime || "To be confirmed"}</span></p>
+              <p style="margin: 8px 0; color: #9ca3af;">Service: <span style="color: #fff;">${safeService}</span></p>
+              <p style="margin: 8px 0; color: #9ca3af;">Type: <span style="color: #fff;">${safeSessionType}</span></p>
+              <p style="margin: 8px 0; color: #9ca3af;">Date: <span style="color: #fff;">${safeDate}</span></p>
+              <p style="margin: 8px 0; color: #9ca3af;">Time: <span style="color: #fff;">${safeTime}</span></p>
             </div>
             <p style="color: #d1d5db; line-height: 1.6;">
               If you have any questions in the meantime, feel free to reply to this email.

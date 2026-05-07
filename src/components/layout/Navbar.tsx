@@ -19,6 +19,7 @@ const navLinks = [
 export default function Navbar() {
   const t = useTranslations("nav");
   const tBooking = useTranslations("booking");
+
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -195,7 +196,7 @@ export default function Navbar() {
 
               <div className="mt-auto pt-6 border-t border-white/10">
                 <p className="text-xs text-white/30 mb-4 uppercase tracking-widest">
-                  Language
+                  {t("language")}
                 </p>
                 <LanguageSwitcher />
               </div>

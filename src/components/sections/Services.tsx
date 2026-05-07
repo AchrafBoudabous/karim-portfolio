@@ -59,7 +59,7 @@ export default function Services() {
           className="mt-12 text-center"
         >
           <p className="text-white/40 text-sm mb-4">
-            Ready to elevate your performance?
+            {t("readyCta")}
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -70,7 +70,7 @@ export default function Services() {
             }}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-linear-to-r from-green-500 to-emerald-600 text-black font-bold text-sm tracking-wide"
           >
-            Get In Touch
+            {t("getInTouch")}
           </motion.button>
         </motion.div>
       </div>

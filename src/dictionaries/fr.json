@@ -1,6 +1,7 @@
 {
   "nav": {
     "about": "À Propos",
+    "language": "Langue",
     "services": "Services",
     "experience": "Expérience",
     "gallery": "Galerie",
@@ -12,6 +13,11 @@
     "subtitle": "Sciences du Sport & Performance d'Élite",
     "tagline": "S'entraîner intelligemment. Performer davantage. Vivre plus fort.",
     "cta": "Découvrir Mon Travail",
+    "watchWork": "Voir Mon Travail",
+    "badge": "NSCA CSCS® · Entraîneur Football (UEFA C) · MSc S&C",
+    "statsExperienceLabel": "An d'Expérience",
+    "statsCscsLabel": "En Cours",
+    "statsUefaLabel": "Coach Football",
     "scroll": "Défiler"
   },
   "about": {
@@ -33,6 +39,8 @@
   "services": {
     "sectionTitle": "Services",
     "sectionSubtitle": "Ce Que Je Propose",
+    "readyCta": "Prêt à élever votre performance ?",
+    "getInTouch": "Prendre Contact",
     "items": [
       {
         "title": "Entraînement Personnel",
@@ -54,18 +62,27 @@
   "experience": {
     "sectionTitle": "Expérience",
     "sectionSubtitle": "Mon Parcours Professionnel",
+    "careerPathTitle": "Parcours Professionnel",
+    "careerPathSubtitle": "De la Tunisie à l'Espagne — construire une expertise dans les milieux sportifs d'élite.",
     "items": [
       {
         "role": "Préparateur Physique",
+        "company": "Équipe Nationale de Football de Syrie — Moins de 20 ans",
+        "period": "Mai 2026 — Présent",
+        "location": "Syrie · Présentiel",
+        "description": "Préparateur physique pour l'équipe nationale de football de Syrie U20, chargé de concevoir et mettre en œuvre des programmes de préparation physique adaptés aux exigences du football international des jeunes. Missions incluant les séances de conditionnement, le suivi des charges, la prévention des blessures et la collaboration avec le staff technique pour optimiser les performances physiques des joueurs avant les compétitions."
+      },
+      {
+        "role": "Préparateur Physique",
         "company": "El Palmar CF — Estrella Grana · Stage de Master",
-        "period": "Avr 2026 — Présent",
+        "period": "Avr 2026 — Mai 2026",
         "location": "Murcie, Espagne · Présentiel",
         "description": "Stage de Master en Sport de Haute Performance comme préparateur physique dans un club de football, collaborant à la planification et à l'application de programmes d'entraînement, au contrôle de la charge, à la prévention des blessures et à l'amélioration des performances. Travail conjoint avec le staff technique sur la préparation physique pour les entraînements et la compétition."
       },
       {
         "role": "Coach Personnel",
         "company": "Funziona Entrenamiento Personal (Basic-Fit)",
-        "period": "Sep 2025 — Présent",
+        "period": "Sep 2025 — Avr 2026",
         "location": "Murcie, Espagne · Présentiel",
         "description": "Conception et exécution de programmes d'entraînement personnalisés axés sur la force, le conditionnement physique et l'amélioration des performances. Suivi de la progression des clients, contrôle de la charge et application de principes d'entraînement fondés sur des preuves pour la santé et la performance sportive."
       },
@@ -108,11 +125,17 @@
       "coaching": "Coaching",
       "certificates": "Certificats"
     },
-    "playVideo": "Lire la Vidéo"
+    "playVideo": "Lire la Vidéo",
+    "noItems": "Aucun élément trouvé.",
+    "closeLabel": "Fermer la visionneuse",
+    "prevLabel": "Image précédente",
+    "nextLabel": "Image suivante"
   },
   "education": {
     "sectionTitle": "Formation",
     "sectionSubtitle": "Diplômes Académiques et Professionnels",
+    "skillsTitle": "Compétences Clés & Certifications",
+    "skillsSubtitle": "Qualifications internationalement reconnues en sciences du sport et en coaching.",
     "items": [
       {
         "degree": "Master — Sport de Haute Performance : Force & Conditionnement",
@@ -129,13 +152,13 @@
       {
         "degree": "NSCA CSCS® — Spécialiste Certifié en Force et Conditionnement",
         "institution": "National Strength and Conditioning Association (NSCA)",
-        "year": "2025",
+        "year": "En Cours",
         "description": "Certification internationalement reconnue en force et conditionnement, couvrant les sciences de l'exercice, la conception de programmes, l'évaluation et l'administration pour la performance athlétique."
       },
       {
         "degree": "Entraîneur de Football — Licence UEFA C",
         "institution": "Fédération Royale Espagnole de Football (RFEF)",
-        "year": "2025 — 2026",
+        "year": "2026",
         "description": "Qualification d'entraîneur de football reconnue internationalement couvrant la méthodologie UEFA, la planification des séances, le développement des jeunes joueurs, le développement à long terme de l'athlète et l'analyse du jeu."
       },
       {
@@ -162,6 +185,12 @@
     "sending": "Envoi en cours...",
     "success": "Message envoyé avec succès ! Je vous répondrai bientôt.",
     "error": "Une erreur s'est produite. Veuillez réessayer.",
+    "infoTitle": "Prendre Contact",
+    "locationLabel": "Localisation",
+    "emailLabel": "Email",
+    "phoneLabel": "Téléphone",
+    "successTitle": "Message Envoyé !",
+    "sendAnother": "Envoyer un Autre",
     "follow": "Suivez-Moi",
     "availableTitle": "Disponible pour de nouvelles opportunités",
     "availableText": "Ouvert aux postes de préparateur physique, d'Entraîneur de Football (UEFA C) et aux clients en coaching personnel."
@@ -195,6 +224,10 @@
     "successText": "Merci ! Karim confirmera votre séance dans les 24 heures. Vérifiez votre email pour une confirmation.",
     "close": "Fermer",
     "floatingBtn": "Réserver une Séance",
+    "selected": "Sélectionné :",
+    "summary": "Résumé",
+    "at": "à",
+    "errorMsg": "Une erreur s'est produite. Veuillez réessayer.",
     "services": {
       "pt": "Entraînement Personnel",
       "football": "Entraînement Football",

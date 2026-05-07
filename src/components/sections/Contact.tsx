@@ -169,23 +169,23 @@ export default function Contact() {
             {/* Info card */}
             <div className="rounded-2xl border border-white/8 bg-white/3 p-6">
               <h3 className="font-oswald text-lg font-bold text-white tracking-wide mb-5">
-                Get In Touch
+                {t("infoTitle")}
               </h3>
               <div className="space-y-4">
                 {[
                   {
                     icon: MapPin,
-                    label: "Location",
+                    label: t("locationLabel"),
                     value: "Murcia, Spain",
                   },
                   {
                     icon: Mail,
-                    label: "Email",
+                    label: t("emailLabel"),
                     value: "karimboudabous04@gmail.com",
                   },
                   {
                     icon: Phone,
-                    label: "Phone",
+                    label: t("phoneLabel"),
                     value: "+34 666 850 841",
                   },
                 ].map(({ icon: Icon, label, value }) => (
@@ -295,7 +295,7 @@ export default function Contact() {
                       <CheckCircle size={32} className="text-green-400" />
                     </div>
                     <h3 className="font-oswald text-xl font-bold text-white">
-                      Message Sent!
+                      {t("successTitle")}
                     </h3>
                     <p className="text-white/50 text-sm max-w-sm leading-relaxed">
                       {t("success")}
@@ -304,7 +304,7 @@ export default function Contact() {
                       onClick={() => setStatus("idle")}
                       className="mt-2 px-5 py-2.5 rounded-xl border border-white/10 bg-white/5 text-white/60 hover:text-white hover:bg-white/10 text-sm transition-colors duration-200"
                     >
-                      Send Another
+                      {t("sendAnother")}
                     </button>
                   </motion.div>
                 ) : (
@@ -319,7 +319,11 @@ export default function Contact() {
                   >
                     {/* Name */}
                     <div>
+                      <label htmlFor="contact-name" className="sr-only">
+                        {t("namePlaceholder")}
+                      </label>
                       <input
+                        id="contact-name"
                         type="text"
                         name="name"
                         value={form.name}
@@ -347,7 +351,11 @@ export default function Contact() {
 
                     {/* Email */}
                     <div>
+                      <label htmlFor="contact-email" className="sr-only">
+                        {t("emailPlaceholder")}
+                      </label>
                       <input
+                        id="contact-email"
                         type="email"
                         name="email"
                         value={form.email}
@@ -375,7 +383,11 @@ export default function Contact() {
 
                     {/* Message */}
                     <div>
+                      <label htmlFor="contact-message" className="sr-only">
+                        {t("messagePlaceholder")}
+                      </label>
                       <textarea
+                        id="contact-message"
                         name="message"
                         value={form.message}
                         onChange={handleChange}

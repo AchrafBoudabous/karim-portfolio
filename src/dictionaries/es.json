@@ -1,6 +1,7 @@
 {
   "nav": {
     "about": "Sobre Mí",
+    "language": "Idioma",
     "services": "Servicios",
     "experience": "Experiencia",
     "gallery": "Galería",
@@ -12,6 +13,11 @@
     "subtitle": "Ciencias del Deporte y Rendimiento de Élite",
     "tagline": "Entrenar con inteligencia. Rendir mejor. Vivir más fuerte.",
     "cta": "Descubre Mi Trabajo",
+    "watchWork": "Ver Mi Trabajo",
+    "badge": "NSCA CSCS® · Entrenador de Fútbol (UEFA C) · MSc S&C",
+    "statsExperienceLabel": "Año de Experiencia",
+    "statsCscsLabel": "En Progreso",
+    "statsUefaLabel": "Entrenador Fútbol",
     "scroll": "Desplázate"
   },
   "about": {
@@ -33,6 +39,8 @@
   "services": {
     "sectionTitle": "Servicios",
     "sectionSubtitle": "Lo Que Ofrezco",
+    "readyCta": "¿Listo para elevar tu rendimiento?",
+    "getInTouch": "Contactar",
     "items": [
       {
         "title": "Entrenamiento Personal",
@@ -54,18 +62,27 @@
   "experience": {
     "sectionTitle": "Experiencia",
     "sectionSubtitle": "Mi Trayectoria Profesional",
+    "careerPathTitle": "Trayectoria Profesional",
+    "careerPathSubtitle": "De Túnez a España — construyendo experiencia en entornos deportivos de élite.",
     "items": [
       {
         "role": "Preparador Físico",
+        "company": "Selección Nacional de Fútbol de Siria — Sub-20",
+        "period": "May 2026 — Presente",
+        "location": "Siria · Presencial",
+        "description": "Preparador físico de la Selección Nacional de Fútbol de Siria Sub-20, responsable de diseñar e implementar programas de preparación física adaptados a las exigencias del fútbol juvenil internacional. Funciones que incluyen sesiones de acondicionamiento, control de cargas, prevención de lesiones y colaboración con el cuerpo técnico para optimizar el rendimiento físico de los jugadores de cara a las competiciones."
+      },
+      {
+        "role": "Preparador Físico",
         "company": "El Palmar CF — Estrella Grana · Prácticas de Máster",
-        "period": "Abr 2026 — Presente",
+        "period": "Abr 2026 — May 2026",
         "location": "Murcia, España · Presencial",
         "description": "Prácticas del Máster en Alto Rendimiento Deportivo como preparador físico en club de fútbol, colaborando en la planificación y aplicación de programas de entrenamiento, control de cargas, prevención de lesiones y mejora del rendimiento. Trabajo conjunto con el cuerpo técnico en la preparación física para entrenamientos y competición."
       },
       {
         "role": "Entrenador Personal",
         "company": "Funziona Entrenamiento Personal (Basic-Fit)",
-        "period": "Sep 2025 — Presente",
+        "period": "Sep 2025 — Abr 2026",
         "location": "Murcia, España · Presencial",
         "description": "Diseño y ejecución de programas de entrenamiento personalizados enfocados en fuerza, acondicionamiento físico y mejora del rendimiento. Seguimiento de la progresión de los clientes, control de cargas y aplicación de principios de entrenamiento basados en evidencia para salud y rendimiento deportivo."
       },
@@ -108,11 +125,17 @@
       "coaching": "Coaching",
       "certificates": "Certificados"
     },
-    "playVideo": "Reproducir Video"
+    "playVideo": "Reproducir Video",
+    "noItems": "No se encontraron elementos.",
+    "closeLabel": "Cerrar visor",
+    "prevLabel": "Imagen anterior",
+    "nextLabel": "Imagen siguiente"
   },
   "education": {
     "sectionTitle": "Educación",
     "sectionSubtitle": "Credenciales Académicas y Profesionales",
+    "skillsTitle": "Habilidades Clave & Certificaciones",
+    "skillsSubtitle": "Cualificaciones internacionalmente reconocidas en ciencias del deporte y coaching.",
     "items": [
       {
         "degree": "Máster — Alto Rendimiento Deportivo: Fuerza y Acondicionamiento",
@@ -129,13 +152,13 @@
       {
         "degree": "NSCA CSCS® — Especialista Certificado en Fuerza y Acondicionamiento",
         "institution": "National Strength and Conditioning Association (NSCA)",
-        "year": "2025",
+        "year": "En Progreso",
         "description": "Certificación internacionalmente reconocida en fuerza y acondicionamiento, que cubre ciencias del ejercicio, diseño de programas, evaluación y administración para el rendimiento atlético."
       },
       {
         "degree": "Entrenador de Fútbol — Licencia UEFA C",
         "institution": "Real Federación Española de Fútbol (RFEF)",
-        "year": "2025 — 2026",
+        "year": "2026",
         "description": "Titulación de entrenador de fútbol reconocida internacionalmente que cubre la metodología UEFA, planificación de sesiones, desarrollo de jugadores juveniles, desarrollo a largo plazo del deportista y análisis del juego."
       },
       {
@@ -162,6 +185,12 @@
     "sending": "Enviando...",
     "success": "¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.",
     "error": "Algo salió mal. Por favor, inténtalo de nuevo.",
+    "infoTitle": "Contactar",
+    "locationLabel": "Ubicación",
+    "emailLabel": "Email",
+    "phoneLabel": "Teléfono",
+    "successTitle": "¡Mensaje Enviado!",
+    "sendAnother": "Enviar Otro",
     "follow": "Sígueme",
     "availableTitle": "Disponible para nuevas oportunidades",
     "availableText": "Abierto a roles de preparación física, puestos de Entrenador de Fútbol (UEFA C) y clientes de entrenamiento personal."
@@ -195,6 +224,10 @@
     "successText": "¡Gracias! Karim confirmará tu sesión en 24 horas. Revisa tu correo para una confirmación.",
     "close": "Cerrar",
     "floatingBtn": "Reservar Sesión",
+    "selected": "Seleccionado:",
+    "summary": "Resumen",
+    "at": "a las",
+    "errorMsg": "Algo salió mal. Por favor, inténtalo de nuevo.",
     "services": {
       "pt": "Entrenamiento Personal",
       "football": "Entrenamiento de Fútbol",

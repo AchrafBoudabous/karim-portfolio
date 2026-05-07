@@ -184,10 +184,10 @@ export default function Education() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <p className="font-oswald text-lg font-bold text-white tracking-wide mb-1">
-                Key Skills & Certifications
+                {t("skillsTitle")}
               </p>
               <p className="text-white/40 text-sm">
-                Internationally recognized qualifications in sport science and coaching.
+                {t("skillsSubtitle")}
               </p>
             </div>
 

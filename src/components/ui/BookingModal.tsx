@@ -318,7 +318,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     className="space-y-3"
                   >
                     <p className="text-white/50 text-sm mb-4">
-                      Selected:{" "}
+                      {t("selected")}{" "}
                       <span className="text-green-400 font-semibold">
                         {form.service}
                       </span>
@@ -371,7 +371,11 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   >
                     {/* Name */}
                     <div>
+                      <label htmlFor="booking-name" className="sr-only">
+                        {t("namePlaceholder")}
+                      </label>
                       <input
+                        id="booking-name"
                         type="text"
                         name="name"
                         placeholder={t("namePlaceholder")}
@@ -398,7 +402,11 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
                     {/* Email */}
                     <div>
+                      <label htmlFor="booking-email" className="sr-only">
+                        {t("emailPlaceholder")}
+                      </label>
                       <input
+                        id="booking-email"
                         type="email"
                         name="email"
                         placeholder={t("emailPlaceholder")}
@@ -425,7 +433,11 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
                     {/* Phone */}
                     <div>
+                      <label htmlFor="booking-phone" className="sr-only">
+                        {t("phonePlaceholder")}
+                      </label>
                       <input
+                        id="booking-phone"
                         type="tel"
                         name="phone"
                         placeholder={t("phonePlaceholder")}
@@ -486,7 +498,11 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
                     {/* Message */}
                     <div>
+                      <label htmlFor="booking-message" className="sr-only">
+                        {t("messagePlaceholder")}
+                      </label>
                       <textarea
+                        id="booking-message"
                         name="message"
                         placeholder={t("messagePlaceholder")}
                         value={form.message}
@@ -534,7 +550,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                           className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm"
                         >
                           <AlertCircle size={16} />
-                          Something went wrong. Please try again.
+                          {t("errorMsg")}
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -565,7 +581,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     </p>
                     <div className="mt-2 px-4 py-3 rounded-xl bg-white/3 border border-white/8 text-left w-full">
                       <p className="text-white/40 text-xs mb-2 uppercase tracking-wider">
-                        Summary
+                        {t("summary")}
                       </p>
                       <p className="text-white text-sm">
                         {form.service} · {form.sessionType}
@@ -573,7 +589,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                       {form.preferredDate && (
                         <p className="text-white/50 text-xs mt-1">
                           {form.preferredDate}{" "}
-                          {form.preferredTime && `at ${form.preferredTime}`}
+                          {form.preferredTime && `${t("at")} ${form.preferredTime}`}
                         </p>
                       )}
                     </div>

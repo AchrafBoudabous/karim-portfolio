@@ -45,10 +45,10 @@ export default function Experience() {
                 <Briefcase size={22} className="text-green-400" />
               </div>
               <p className="font-oswald text-lg font-bold text-white tracking-wide mb-1">
-                Career Path
+                {t("careerPathTitle")}
               </p>
               <p className="text-white/40 text-xs leading-relaxed">
-                From Tunisia to Spain — building expertise across elite sport environments.
+                {t("careerPathSubtitle")}
               </p>
 
               <div className="mt-6 pt-6 border-t border-white/5 space-y-3">

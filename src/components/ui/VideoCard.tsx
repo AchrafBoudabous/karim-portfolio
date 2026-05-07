@@ -25,6 +25,7 @@ function AutoThumbnail({ src }: { src: string }) {
     video.crossOrigin = "anonymous";
     video.muted = true;
     video.playsInline = true;
+    video.preload = "metadata";
     video.currentTime = 1.5;
 
     video.addEventListener("seeked", () => {

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Oswald } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -16,6 +16,11 @@ const oswald = Oswald({
 });
 
 const locales = ["en", "es", "fr"];
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: "Karim Boudabous | NSCA CSCS® · Football Coach (UEFA C) · MSc S&C",
@@ -35,6 +40,27 @@ export const metadata: Metadata = {
     "El Palmar CF",
     "Barça Innovation Hub",
   ],
+  openGraph: {
+    type: "website",
+    title: "Karim Boudabous | NSCA CSCS® · Football Coach (UEFA C) · MSc S&C",
+    description:
+      "NSCA CSCS® certified strength and conditioning coach, Football Coach (UEFA C), and Personal Trainer based in Murcia, Spain.",
+    images: [
+      {
+        url: "/images/karim-hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Karim Boudabous — Sports Science & Elite Performance",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Karim Boudabous | NSCA CSCS® · Football Coach (UEFA C) · MSc S&C",
+    description:
+      "NSCA CSCS® certified strength and conditioning coach, Football Coach (UEFA C), and Personal Trainer based in Murcia, Spain.",
+    images: ["/images/karim-hero.jpg"],
+  },
 };
 
 export default async function LocaleLayout({
@@ -53,7 +79,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${oswald.variable} font-sans bg-neutral-950 text-white antialiased`}
         suppressHydrationWarning

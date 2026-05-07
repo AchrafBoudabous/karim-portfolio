@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { checkRateLimit } from "@/lib/rateLimit";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -7,10 +8,16 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  tls: {
-    rejectUnauthorized: false,
-  },
 });
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;");
+}
 
 function validateContact(data: {
   name: string;
@@ -49,6 +56,16 @@ function validateContact(data: {
 }
 
 export async function POST(req: NextRequest) {
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+
+  if (!checkRateLimit(ip, 5, 60_000).allowed) {
+    return NextResponse.json(
+      { error: "Too many requests. Please wait a moment." },
+      { status: 429 }
+    );
+  }
+
   try {
     const body = await req.json();
     const { name, email, message } = body;
@@ -58,14 +75,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ errors }, { status: 422 });
     }
 
-    const sanitizedName = name.trim();
+    const sanitizedName = escapeHtml(name.trim());
     const sanitizedEmail = email.trim().toLowerCase();
-    const sanitizedMessage = message.trim();
+    const sanitizedMessage = escapeHtml(message.trim());
 
     await transporter.sendMail({
       from: `"Karim Portfolio" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
-      subject: `New Contact Message from ${sanitizedName}`,
+      subject: `New Contact Message from ${name.trim().replace(/[\r\n]/g, "")}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #ffffff; border-radius: 12px; overflow: hidden;">
           <div style="background: linear-gradient(135deg, #22c55e, #059669); padding: 32px; text-align: center;">

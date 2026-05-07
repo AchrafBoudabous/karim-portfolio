@@ -1,6 +1,7 @@
 {
   "nav": {
     "about": "About",
+    "language": "Language",
     "services": "Services",
     "experience": "Experience",
     "gallery": "Gallery",
@@ -12,6 +13,11 @@
     "subtitle": "Sports Science & Elite Performance",
     "tagline": "Training smarter. Performing better. Living stronger.",
     "cta": "Discover My Work",
+    "watchWork": "Watch My Work",
+    "badge": "NSCA CSCS® · Football Coach (UEFA C) · MSc S&C",
+    "statsExperienceLabel": "Year Experience",
+    "statsCscsLabel": "In Progress",
+    "statsUefaLabel": "Football Coach",
     "scroll": "Scroll Down"
   },
   "about": {
@@ -33,6 +39,8 @@
   "services": {
     "sectionTitle": "Services",
     "sectionSubtitle": "What I Offer",
+    "readyCta": "Ready to elevate your performance?",
+    "getInTouch": "Get In Touch",
     "items": [
       {
         "title": "Personal Training",
@@ -54,18 +62,27 @@
   "experience": {
     "sectionTitle": "Experience",
     "sectionSubtitle": "My Professional Journey",
+    "careerPathTitle": "Career Path",
+    "careerPathSubtitle": "From Tunisia to Spain — building expertise across elite sport environments.",
     "items": [
+      {
+        "role": "Fitness Coach",
+        "company": "Syrian Football National Team — Under 20",
+        "period": "May 2026 — Present",
+        "location": "Syria · On-site",
+        "description": "Fitness Coach for the Syrian U20 National Football Team, responsible for designing and implementing physical preparation programs tailored to the demands of international youth football. Duties include conditioning sessions, load monitoring, injury prevention, and collaboration with the technical staff to optimize players' physical performance ahead of competitions."
+      },
       {
         "role": "Strength & Conditioning Coach",
         "company": "El Palmar CF — Estrella Grana · Master's Internship",
-        "period": "Apr 2026 — Present",
+        "period": "Apr 2026 — May 2026",
         "location": "Murcia, Spain · On-site",
         "description": "Master's internship as S&C Coach at a football club, collaborating in the planning and application of training programs, load monitoring, injury prevention, and performance improvement. Working closely with the technical staff on physical preparation for training sessions and competition."
       },
       {
         "role": "Personal Trainer",
         "company": "Funziona Entrenamiento Personal (Basic-Fit)",
-        "period": "Sep 2025 — Present",
+        "period": "Sep 2025 — April 2026",
         "location": "Murcia, Spain · On-site",
         "description": "Design and execution of personalized training programs focused on strength, physical conditioning, and performance improvement. Client progress monitoring, load control, and application of evidence-based training principles for health and sport performance."
       },
@@ -108,11 +125,17 @@
       "coaching": "Coaching",
       "certificates": "Certificates"
     },
-    "playVideo": "Play Video"
+    "playVideo": "Play Video",
+    "noItems": "No items found.",
+    "closeLabel": "Close lightbox",
+    "prevLabel": "Previous image",
+    "nextLabel": "Next image"
   },
   "education": {
     "sectionTitle": "Education",
     "sectionSubtitle": "Academic & Professional Credentials",
+    "skillsTitle": "Key Skills & Certifications",
+    "skillsSubtitle": "Internationally recognized qualifications in sport science and coaching.",
     "items": [
       {
         "degree": "Master's Degree — High Performance Sport: Strength & Conditioning",
@@ -129,13 +152,13 @@
       {
         "degree": "NSCA CSCS® — Certified Strength & Conditioning Specialist",
         "institution": "National Strength and Conditioning Association (NSCA)",
-        "year": "2025",
+        "year": "In Progress",
         "description": "Internationally recognized certification in strength and conditioning, covering exercise science, program design, testing and evaluation, and organization and administration for athletic performance."
       },
       {
         "degree": "Football Coach — UEFA C Licence",
         "institution": "Royal Spanish Football Federation (RFEF)",
-        "year": "2025 — 2026",
+        "year": "2026",
         "description": "Internationally recognized football coaching qualification covering UEFA methodology, session planning, youth player development, long-term athlete development, and match analysis."
       },
       {
@@ -162,6 +185,12 @@
     "sending": "Sending...",
     "success": "Message sent successfully! I'll get back to you soon.",
     "error": "Something went wrong. Please try again.",
+    "infoTitle": "Get In Touch",
+    "locationLabel": "Location",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "successTitle": "Message Sent!",
+    "sendAnother": "Send Another",
     "follow": "Follow Me",
     "availableTitle": "Available for new opportunities",
     "availableText": "Open to S&C coaching roles, Football Coach (UEFA C) positions & personal training clients."
@@ -195,6 +224,10 @@
     "successText": "Thank you! Karim will confirm your session within 24 hours. Check your email for a confirmation.",
     "close": "Close",
     "floatingBtn": "Book a Session",
+    "selected": "Selected:",
+    "summary": "Summary",
+    "at": "at",
+    "errorMsg": "Something went wrong. Please try again.",
     "services": {
       "pt": "Personal Training",
       "football": "Football Coaching",

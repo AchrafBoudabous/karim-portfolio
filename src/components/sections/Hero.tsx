@@ -73,7 +73,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-500/20 bg-green-500/5 text-green-400 text-sm font-medium mb-8"
         >
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          NSCA CSCS® · Football Coach (UEFA C) · MSc S&C
+          {t("badge")}
         </motion.div>
 
         {/* Main title */}
@@ -135,7 +135,7 @@ export default function Hero() {
             className="flex items-center gap-2 px-8 py-4 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:text-white hover:border-green-500/40 hover:bg-green-500/5 font-medium text-sm tracking-wide transition-all duration-200"
           >
             <Play size={14} className="text-green-400" />
-            Watch My Work
+            {t("watchWork")}
           </motion.button>
         </motion.div>
 
@@ -147,9 +147,9 @@ export default function Hero() {
           className="mt-16 grid grid-cols-3 gap-4 max-w-lg mx-auto"
         >
           {[
-            { value: "1+", label: "Year Experience" },
-            { value: "NSCA CSCS®", label: "Certified" },
-            { value: "UEFA C", label: "Football Coach" },
+            { value: "1+", label: t("statsExperienceLabel") },
+            { value: "NSCA CSCS®", label: t("statsCscsLabel") },
+            { value: "UEFA C", label: t("statsUefaLabel") },
           ].map((stat, i) => (
             <div
               key={i}

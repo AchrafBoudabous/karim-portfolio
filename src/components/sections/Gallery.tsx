@@ -78,6 +78,22 @@ const galleryItems: GalleryItem[] = [
     title: "Training Session",
     span: "normal",
   },
+  {
+    id: 8,
+    type: "image",
+    category: "coaching",
+    src: "/images/gallery/coaching-1.jpeg",
+    title: "Coaching Session",
+    span: "normal",
+  },
+  {
+    id: 9,
+    type: "image",
+    category: "coaching",
+    src: "/images/gallery/coaching-2.jpeg",
+    title: "Coaching Session",
+    span: "normal",
+  },
 ];
 
 const filterKeys: Category[] = ["all", "training", "coaching", "certificates"];
@@ -200,9 +216,10 @@ export default function Gallery() {
                     playLabel={t("playVideo")}
                   />
                 ) : (
-                  <div
+                  <button
                     onClick={() => openLightbox(item, i)}
-                    className="group relative rounded-2xl overflow-hidden border border-white/8 bg-neutral-900 cursor-pointer"
+                    aria-label={item.title}
+                    className="group relative rounded-2xl overflow-hidden border border-white/8 bg-neutral-900 cursor-pointer w-full text-left"
                   >
                     <div
                       className={`relative w-full overflow-hidden bg-neutral-900 ${
@@ -232,7 +249,7 @@ export default function Gallery() {
                         {item.title}
                       </p>
                     </div>
-                  </div>
+                  </button>
                 )}
               </motion.div>
             ))}
@@ -241,7 +258,7 @@ export default function Gallery() {
 
         {filtered.length === 0 && (
           <div className="text-center py-20 text-white/30">
-            <p className="text-lg">No items found.</p>
+            <p className="text-lg">{t("noItems")}</p>
           </div>
         )}
       </div>
@@ -258,6 +275,7 @@ export default function Gallery() {
           >
             <button
               onClick={closeLightbox}
+              aria-label={t("closeLabel")}
               className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/10 bg-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-colors z-10"
             >
               <X size={18} />
@@ -270,6 +288,7 @@ export default function Gallery() {
                     e.stopPropagation();
                     navigateLightbox("prev");
                   }}
+                  aria-label={t("prevLabel")}
                   className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-white/10 bg-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-colors z-10"
                 >
                   <ChevronLeft size={18} />
@@ -279,6 +298,7 @@ export default function Gallery() {
                     e.stopPropagation();
                     navigateLightbox("next");
                   }}
+                  aria-label={t("nextLabel")}
                   className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-white/10 bg-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-colors z-10"
                 >
                   <ChevronRight size={18} />
