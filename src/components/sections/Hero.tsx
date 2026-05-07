@@ -147,7 +147,7 @@ export default function Hero() {
           className="mt-16 grid grid-cols-3 gap-4 max-w-lg mx-auto"
         >
           {[
-            { value: "1+", label: t("statsExperienceLabel") },
+            { value: "2+", label: t("statsExperienceLabel") },
             { value: "NSCA CSCS®", label: t("statsCscsLabel") },
             { value: "UEFA C", label: t("statsUefaLabel") },
           ].map((stat, i) => (
