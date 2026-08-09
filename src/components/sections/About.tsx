@@ -95,9 +95,9 @@ export default function About() {
 
           <div className="flex items-center gap-6">
             {[
-              { label: "Murcia", sublabel: "Spain" },
+              { label: "Madrid", sublabel: "Spain" },
               { label: "UCAM", sublabel: "Graduate" },
-              { label: "Syria NT", sublabel: "S&C Coach" },
+              { label: "CDE Atlantis", sublabel: "Head Coach" },
             ].map((item, i) => (
               <div key={i} className="text-center">
                 <p className="font-oswald text-base font-bold text-green-400">

@@ -25,11 +25,11 @@
     "sectionSubtitle": "Científico. Entrenador. Preparador.",
     "academic": {
       "title": "Base Académica",
-      "body": "Soy titulado con un Grado en Ciencias de la Actividad Física y del Deporte por la UCAM (Universidad Católica San Antonio de Murcia) y actualmente estoy cursando un Máster en Alto Rendimiento Deportivo: Fuerza y Acondicionamiento en la misma institución. Mi formación abarca fisiología del ejercicio, biomecánica, nutrición deportiva, psicología, análisis de datos y metodología del entrenamiento."
+      "body": "Soy titulado con un Grado en Ciencias de la Actividad Física y del Deporte por la UCAM (Universidad Católica San Antonio de Murcia) y ya he completado un Máster en Alto Rendimiento Deportivo: Fuerza y Acondicionamiento en la misma institución. Mi formación abarca fisiología del ejercicio, biomecánica, nutrición deportiva, psicología, análisis de datos y metodología del entrenamiento."
     },
     "coaching": {
       "title": "Filosofía de Entrenamiento",
-      "body": "Como Entrenador de Fútbol (UEFA C), creo que el rendimiento de élite se construye sobre inteligencia táctica, acondicionamiento físico y resiliencia mental. Mi metodología integra los principios de las ciencias del deporte directamente en el diseño del entrenamiento — cada ejercicio tiene un propósito, cada sesión tiene un resultado medible. Aplico principios de desarrollo a largo plazo del deportista en cada etapa."
+      "body": "Como Entrenador de Fútbol (UEFA B), creo que el rendimiento de élite se construye sobre inteligencia táctica, acondicionamiento físico y resiliencia mental. Mi metodología integra los principios de las ciencias del deporte directamente en el diseño del entrenamiento — cada ejercicio tiene un propósito, cada sesión tiene un resultado medible. Aplico principios de desarrollo a largo plazo del deportista en cada etapa."
     },
     "vision": {
       "title": "Visión Profesional",
@@ -49,7 +49,7 @@
       },
       {
         "title": "Entrenamiento de Fútbol",
-        "description": "Metodología de Entrenador de Fútbol (UEFA C) aplicada al desarrollo individual y de equipo. Entrenamiento técnico, táctico y físico completamente integrado, con fuerte énfasis en el desarrollo a largo plazo del deportista.",
+        "description": "Metodología de Entrenador de Fútbol (UEFA B) aplicada al desarrollo individual y de equipo. Entrenamiento técnico, táctico y físico completamente integrado, con fuerte énfasis en el desarrollo a largo plazo del deportista.",
         "icon": "trophy"
       },
       {
@@ -66,53 +66,133 @@
     "careerPathSubtitle": "De Túnez a España — construyendo experiencia en entornos deportivos de élite.",
     "items": [
       {
-        "role": "Preparador Físico",
-        "company": "Selección Nacional de Fútbol de Siria — Sub-20",
-        "period": "May 2026 — Presente",
-        "location": "Siria · Presencial",
-        "description": "Preparador físico de la Selección Nacional de Fútbol de Siria Sub-20, responsable de diseñar e implementar programas de preparación física adaptados a las exigencias del fútbol juvenil internacional. Funciones que incluyen sesiones de acondicionamiento, control de cargas, prevención de lesiones y colaboración con el cuerpo técnico para optimizar el rendimiento físico de los jugadores de cara a las competiciones."
+        "role": "Entrenador Personal",
+        "company": "Funziona Entrenamiento Personal",
+        "period": "Sep 2026 — Presente",
+        "location": "Madrid, España · Presencial",
+        "description": [
+          "Diseña programas de entrenamiento individualizados según los objetivos de cada cliente.",
+          "Imparte sesiones de fuerza, acondicionamiento y entrenamiento físico.",
+          "Realiza seguimiento del progreso de los clientes y ajusta los planes de entrenamiento en consecuencia.",
+          "Proporciona instrucción en el ejercicio, motivación y asesoramiento sobre estilo de vida.",
+          "Ayuda a los clientes a mejorar el rendimiento, la salud y los hábitos de fitness a largo plazo."
+        ]
       },
       {
-        "role": "Preparador Físico",
-        "company": "El Palmar CF — Estrella Grana · Prácticas de Máster",
-        "period": "Abr 2026 — May 2026",
-        "location": "Murcia, España · Presencial",
-        "description": "Prácticas del Máster en Alto Rendimiento Deportivo como preparador físico en El Palmar CF — Estrella Grana, colaborando en la planificación y aplicación de programas de entrenamiento, control de cargas, prevención de lesiones y mejora del rendimiento. Trabajo conjunto con el cuerpo técnico en la preparación física para entrenamientos y competición."
+        "role": "Entrenador Principal de Academia y Preparador Físico",
+        "company": "CDE Fuenlabrada Atlantis",
+        "period": "Ago 2026 — Presente · 1 mes",
+        "location": "Fuenlabrada, Comunidad de Madrid, España · Presencial",
+        "description": [
+          "Entrenador principal del equipo Alevín D (U12) de Fútbol 11.",
+          "Preparador físico de los equipos de la academia, liderando el desarrollo físico y los programas de prevención de lesiones.",
+          "Entrenador asistente y preparador físico del equipo Juvenil D.",
+          "Colaboración con el cuerpo técnico para apoyar el desarrollo y el rendimiento de los jugadores."
+        ]
       },
       {
         "role": "Entrenador Personal",
-        "company": "Funziona Entrenamiento Personal (Basic-Fit)",
-        "period": "Sep 2025 — Abr 2026",
-        "location": "Murcia, España · Presencial",
-        "description": "Diseño y ejecución de programas de entrenamiento personalizados enfocados en fuerza, acondicionamiento físico y mejora del rendimiento. Seguimiento de la progresión de los clientes, control de cargas y aplicación de principios de entrenamiento basados en evidencia para salud y rendimiento deportivo."
-      },
-      {
-        "role": "Entrenador de Fútbol Asistente (UEFA C)",
-        "company": "AD Vistalegre · Prácticas UEFA C",
-        "period": "Sep 2025 — Mar 2026",
-        "location": "Murcia, España · Presencial",
-        "description": "Apoyo técnico en fútbol base dentro del marco formativo UEFA C, participando en la planificación de entrenamientos, preparación de partidos y aplicación de objetivos técnico-tácticos. Colaboración con el cuerpo técnico en el desarrollo integral de los jugadores y en la organización de las sesiones de entrenamiento."
+        "company": "Freelance | Autónomo",
+        "period": "May 2026 — Presente · 4 meses",
+        "location": "Remoto",
+        "description": [
+          "Diseño de programas individualizados de entrenamiento y nutrición online.",
+          "Seguimiento del progreso de los clientes y ajuste de los planes de entrenamiento según el rendimiento.",
+          "Coaching, motivación y responsabilidad continuos.",
+          "Ayuda a los clientes a mejorar la fuerza, la condición física, la composición corporal y la salud general.",
+          "Apoyo remoto mediante seguimientos regulares y control del rendimiento."
+        ]
       },
       {
         "role": "Preparador Físico",
-        "company": "AD Vistalegre · Prácticas de Grado",
-        "period": "Feb 2025 — Jun 2025",
+        "company": "Federación Siria de Fútbol (SFA)",
+        "period": "May 2026 — Jul 2026 · 3 meses",
+        "location": "Siria · Presencial",
+        "description": [
+          "Desarrollo de programas de fuerza y acondicionamiento específicos para fútbol para la Selección Nacional de Siria Sub-20.",
+          "Planificación y supervisión de sesiones de fuerza, acondicionamiento, recuperación y prevención de lesiones.",
+          "Preparación física de los jugadores para concentraciones y partidos de competición.",
+          "Control de la carga de entrenamiento mediante GPS, frecuencia cardíaca y herramientas de análisis del rendimiento.",
+          "Colaboración con el cuerpo técnico español para optimizar el rendimiento y el desarrollo a largo plazo de los jugadores."
+        ]
+      },
+      {
+        "role": "Preparador Físico",
+        "company": "El Palmar CF",
+        "period": "Abr 2026 — May 2026 · 2 meses",
         "location": "Murcia, España · Presencial",
-        "description": "Primera práctica universitaria supervisada apoyando el desarrollo físico de jugadores juveniles de fútbol en múltiples categorías de edad. Diseño y entrega de sesiones de acondicionamiento apropiadas para cada edad, monitoreo del rendimiento físico, prevención de lesiones y colaboración con el cuerpo técnico."
+        "description": [
+          "Apoyo en la preparación física del primer equipo en 3ª RFEF.",
+          "Asistencia en calentamientos, sesiones de fuerza y acondicionamiento, y recuperación.",
+          "Control de la carga de trabajo y de la disponibilidad de los jugadores para competir.",
+          "Contribución a la prevención de lesiones y a la optimización del rendimiento.",
+          "Colaboración con el cuerpo técnico en un entorno de fútbol competitivo."
+        ]
+      },
+      {
+        "role": "Entrenador Personal",
+        "company": "Funziona Entrenamiento Personal",
+        "period": "Sep 2025 — Abr 2026 · 8 meses",
+        "location": "Murcia, Región de Murcia, España · Presencial",
+        "description": [
+          "Diseño de programas de entrenamiento individualizados según los objetivos de cada cliente.",
+          "Impartición de sesiones de fuerza, acondicionamiento y entrenamiento físico.",
+          "Seguimiento del progreso de los clientes y ajuste de los planes de entrenamiento en consecuencia.",
+          "Instrucción en el ejercicio, motivación y asesoramiento sobre estilo de vida.",
+          "Ayuda a los clientes a mejorar el rendimiento, la salud y los hábitos de fitness a largo plazo."
+        ]
+      },
+      {
+        "role": "Entrenador de Fútbol Asistente",
+        "company": "Asociación Deportiva Vistalegre",
+        "period": "Sep 2025 — Mar 2026 · 7 meses",
+        "location": "Murcia, Región de Murcia, España · Presencial",
+        "description": [
+          "Apoyo en la planificación e impartición de sesiones de entrenamiento de fútbol base.",
+          "Apoyo en la preparación de partidos y en la dirección técnica sobre el terreno de juego.",
+          "Contribución al desarrollo técnico y táctico de los jugadores.",
+          "Trabajo estrecho con entrenadores con licencia UEFA en un entorno de academia competitivo.",
+          "Experiencia práctica de entrenamiento adquirida durante las prácticas de la Licencia de Entrenador UEFA C."
+        ]
+      },
+      {
+        "role": "Preparador Físico",
+        "company": "Asociación Deportiva Vistalegre",
+        "period": "Feb 2025 — Jun 2025 · 5 meses",
+        "location": "Murcia, Región de Murcia, España · Presencial",
+        "description": [
+          "Diseño e impartición de sesiones de fuerza y acondicionamiento adaptadas a la edad.",
+          "Seguimiento del desarrollo de los jugadores y de la carga de entrenamiento.",
+          "Apoyo en la prevención de lesiones y en el desarrollo atlético a largo plazo.",
+          "Colaboración con el cuerpo técnico para integrar la preparación física en los entrenamientos.",
+          "Aplicación de principios de ciencias del deporte en un entorno de fútbol juvenil."
+        ]
       },
       {
         "role": "Entrenador Asistente de Fútbol",
         "company": "Club Sportif Sfaxien",
-        "period": "Jul 2024 — Sep 2024",
+        "period": "Jul 2024 — Sep 2024 · 3 meses",
         "location": "Sfax, Túnez",
-        "description": "Experiencia práctica de entrenamiento en una de las principales academias de fútbol de Túnez. Apoyo a programas de entrenamiento juvenil mediante ejercicios técnicos, preparación física e instrucción táctica. Asistencia al entrenador principal en el desarrollo técnico de los jugadores."
+        "description": [
+          "Apoyo en el entrenamiento de las sesiones de la academia juvenil.",
+          "Apoyo en el desarrollo técnico, táctico y físico de los jugadores.",
+          "Contribución a la preparación de partidos y a la dirección técnica sobre el terreno de juego.",
+          "Trabajo junto a entrenadores experimentados en un entorno de academia profesional.",
+          "Desarrollo de habilidades prácticas de entrenamiento y liderazgo trabajando con jugadores jóvenes."
+        ]
       },
       {
-        "role": "Jugador de Fútbol y Capitán de Equipo",
-        "company": "Busaiteen Club",
-        "period": "2009 — 2021",
-        "location": "Busaiteen, Baréin",
-        "description": "Exfutbolista y capitán de equipo con experiencia en competición federada. Desarrollo de liderazgo, trabajo en equipo y comprensión táctica del fútbol, participando en entrenamientos estructurados y competiciones oficiales."
+        "role": "Jugador de Fútbol",
+        "company": "Busaiteen Football Club",
+        "period": "Sep 2010 — Jun 2021 · 10 años y 10 meses",
+        "location": "Busaiteen, Gobernación de Muharraq, Baréin · Presencial",
+        "description": [
+          "Formación como jugador de fútbol en el Busaiteen Football Club, progresando por todas las categorías juveniles hasta el nivel Sub-20.",
+          "Capitán del equipo, desarrollando liderazgo, comunicación y responsabilidad dentro y fuera del terreno de juego.",
+          "3er puesto en la Liga Sub-15 de Baréin.",
+          "Subcampeón de la Copa del Rey Sub-16 de Baréin.",
+          "Base sólida en trabajo en equipo, disciplina, conciencia táctica y fútbol competitivo durante más de 10 años en el club."
+        ]
       }
     ]
   },
@@ -150,13 +230,19 @@
         "description": "Curso avanzado que cubre el continuo desde la rehabilitación de lesiones hasta el rendimiento atlético de élite, integrando principios de entrenamiento de fuerza, calidad del movimiento y metodología basada en evidencia utilizada por el staff de rendimiento del FC Barcelona."
       },
       {
+        "degree": "Diploma Profesional en Scouting de Fútbol y Análisis Táctico",
+        "institution": "Barça Innovation Hub",
+        "year": "2026",
+        "description": "Diploma profesional que cubre la metodología de scouting de jugadores, el análisis táctico y las técnicas de observación de partidos utilizadas por el staff de rendimiento y captación del FC Barcelona."
+      },
+      {
         "degree": "NSCA CSCS® — Especialista Certificado en Fuerza y Acondicionamiento",
         "institution": "National Strength and Conditioning Association (NSCA)",
         "year": "En Progreso",
         "description": "Certificación internacionalmente reconocida en fuerza y acondicionamiento, que cubre ciencias del ejercicio, diseño de programas, evaluación y administración para el rendimiento atlético."
       },
       {
-        "degree": "Entrenador de Fútbol — Licencia UEFA C",
+        "degree": "Entrenador de Fútbol — Licencia UEFA B",
         "institution": "Real Federación Española de Fútbol (RFEF)",
         "year": "2026",
         "description": "Titulación de entrenador de fútbol reconocida internacionalmente que cubre la metodología UEFA, planificación de sesiones, desarrollo de jugadores juveniles, desarrollo a largo plazo del deportista y análisis del juego."
@@ -193,7 +279,7 @@
     "sendAnother": "Enviar Otro",
     "follow": "Sígueme",
     "availableTitle": "Disponible para nuevas oportunidades",
-    "availableText": "Abierto a roles de preparación física, puestos de Entrenador de Fútbol (UEFA C) y clientes de entrenamiento personal."
+    "availableText": "Abierto a roles de preparación física, puestos de Entrenador de Fútbol (UEFA B) y clientes de entrenamiento personal."
   },
   "footer": {
     "rights": "Todos los derechos reservados.",
@@ -207,7 +293,7 @@
     "step3": "Tus Datos",
     "step4": "Confirmado",
     "inPerson": "Presencial",
-    "inPersonSub": "Murcia, España",
+    "inPersonSub": "Madrid, España",
     "online": "Online",
     "onlineSub": "Zoom / Google Meet",
     "namePlaceholder": "Tu Nombre Completo",

@@ -11,7 +11,7 @@ interface ExperienceItem {
   company: string;
   period: string;
   location: string;
-  description: string;
+  description: string[];
 }
 
 export default function Experience() {

@@ -176,7 +176,7 @@ export default function Contact() {
                   {
                     icon: MapPin,
                     label: t("locationLabel"),
-                    value: "Murcia, Spain",
+                    value: "Madrid, Spain",
                   },
                   {
                     icon: Mail,

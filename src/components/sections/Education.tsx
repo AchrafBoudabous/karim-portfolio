@@ -126,7 +126,7 @@ export default function Education() {
           })}
         </div>
 
-        {/* Bottom 4 cards — UEFA C + Bachelor + High School + Barça */}
+        {/* Bottom 4 cards — UEFA B + Bachelor + High School + Barça */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {items.slice(2, 6).map((item, i) => {
             const actualIndex = i + 2;
@@ -194,7 +194,7 @@ export default function Education() {
             <div className="flex flex-wrap justify-center md:justify-end gap-3">
               {[
                 "NSCA CSCS®",
-                "Football Coach (UEFA C)",
+                "Football Coach (UEFA B)",
                 "MSc S&C",
                 "BSc Sport Science",
                 "Barça Innovation Hub",

@@ -8,7 +8,7 @@ interface TimelineItemProps {
   company: string;
   period: string;
   location: string;
-  description: string;
+  description: string[];
   index: number;
   isLast: boolean;
 }
@@ -75,7 +75,16 @@ export default function TimelineItem({
           </div>
         </div>
 
-        <p className="text-white/55 text-sm leading-relaxed">{description}</p>
+        <ul className="space-y-1.5">
+          {description.map((line, i) => (
+            <li
+              key={i}
+              className="text-white/55 text-sm leading-relaxed pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-green-500/60"
+            >
+              {line}
+            </li>
+          ))}
+        </ul>
       </motion.div>
     </motion.div>
   );

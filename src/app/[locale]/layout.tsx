@@ -23,28 +23,28 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Karim Boudabous | NSCA CSCS® · Football Coach (UEFA C) · MSc S&C",
+  title: "Karim Boudabous | NSCA CSCS® · Football Coach (UEFA B) · MSc S&C",
   description:
-    "NSCA CSCS® certified strength and conditioning coach, Football Coach (UEFA C), and Personal Trainer based in Murcia, Spain. Specializing in high performance S&C, football coaching, and personal training.",
+    "NSCA CSCS® certified strength and conditioning coach, Football Coach (UEFA B), and Personal Trainer based in Madrid, Spain. Specializing in high performance S&C, football coaching, and personal training.",
   keywords: [
     "NSCA CSCS",
     "strength and conditioning",
     "football coach",
-    "UEFA C",
+    "UEFA B",
     "personal trainer",
     "sports science",
     "high performance",
     "UCAM",
-    "Murcia",
+    "Madrid",
     "Karim Boudabous",
     "El Palmar CF",
     "Barça Innovation Hub",
   ],
   openGraph: {
     type: "website",
-    title: "Karim Boudabous | NSCA CSCS® · Football Coach (UEFA C) · MSc S&C",
+    title: "Karim Boudabous | NSCA CSCS® · Football Coach (UEFA B) · MSc S&C",
     description:
-      "NSCA CSCS® certified strength and conditioning coach, Football Coach (UEFA C), and Personal Trainer based in Murcia, Spain.",
+      "NSCA CSCS® certified strength and conditioning coach, Football Coach (UEFA B), and Personal Trainer based in Madrid, Spain.",
     images: [
       {
         url: "/images/karim-hero.jpg",
@@ -56,9 +56,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Karim Boudabous | NSCA CSCS® · Football Coach (UEFA C) · MSc S&C",
+    title: "Karim Boudabous | NSCA CSCS® · Football Coach (UEFA B) · MSc S&C",
     description:
-      "NSCA CSCS® certified strength and conditioning coach, Football Coach (UEFA C), and Personal Trainer based in Murcia, Spain.",
+      "NSCA CSCS® certified strength and conditioning coach, Football Coach (UEFA B), and Personal Trainer based in Madrid, Spain.",
     images: ["/images/karim-hero.jpg"],
   },
 };

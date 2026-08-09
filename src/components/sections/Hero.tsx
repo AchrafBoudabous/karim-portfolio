@@ -149,7 +149,7 @@ export default function Hero() {
           {[
             { value: "2+", label: t("statsExperienceLabel") },
             { value: "NSCA CSCS®", label: t("statsCscsLabel") },
-            { value: "UEFA C", label: t("statsUefaLabel") },
+            { value: "UEFA B", label: t("statsUefaLabel") },
           ].map((stat, i) => (
             <div
               key={i}
