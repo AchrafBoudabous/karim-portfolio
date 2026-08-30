@@ -12,9 +12,23 @@ import {
   Mail,
   MapPin,
   Phone,
-  Link,
 } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
+
+function TikTokIcon({ size = 24, className }: { size?: number; className?: string }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 448 512"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31v89.89a74.62 74.62 0 1 0 52.23 71.18V0h88a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z" />
+    </svg>
+  );
+}
 
 interface FormState {
   name: string;
@@ -223,16 +237,16 @@ export default function Contact() {
                   {
                     icon: Instagram,
                     label: "Instagram",
-                    handle: "@karim.boudabous",
-                    href: "https://instagram.com/karim.boudabous",
+                    handle: "@karimboudabous.coach",
+                    href: "https://www.instagram.com/karimboudabous.coach/",
                     color: "hover:border-pink-500/40 hover:bg-pink-500/5 hover:text-pink-400",
                   },
                   {
-                    icon: Link,
-                    label: "Linktree",
-                    handle: "linktr.ee/Karim.boudabous",
-                    href: "https://linktr.ee/Karim.boudabous",
-                    color: "hover:border-green-500/40 hover:bg-green-500/5 hover:text-green-400",
+                    icon: TikTokIcon,
+                    label: "TikTok",
+                    handle: "@karimboudabous.coach",
+                    href: "https://www.tiktok.com/@karimboudabous.coach",
+                    color: "hover:border-cyan-500/40 hover:bg-cyan-500/5 hover:text-cyan-400",
                   },
                 ].map(({ icon: Icon, label, handle, href, color }) => (
                   <motion.a

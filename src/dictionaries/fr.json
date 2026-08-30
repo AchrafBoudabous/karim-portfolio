@@ -10,30 +10,31 @@
   },
   "hero": {
     "title": "Karim Boudabous",
-    "subtitle": "Sciences du Sport & Performance d'Élite",
+    "subtitle": "Préparateur Physique | Entraîneur de Football UEFA | Coach Personnel | Scientifique du Sport | Analyste Tactique",
     "tagline": "S'entraîner intelligemment. Performer davantage. Vivre plus fort.",
     "cta": "Découvrir Mon Travail",
     "watchWork": "Voir Mon Travail",
     "badge": "NSCA CSCS® · Préparateur Physique · MSc S&C",
-    "statsExperienceLabel": "An d'Expérience",
+    "statsExperienceLabel": "Années d'Expérience",
     "statsCscsLabel": "En Cours",
     "statsUefaLabel": "Coach Football",
     "scroll": "Défiler"
   },
   "about": {
     "sectionTitle": "À Propos",
-    "sectionSubtitle": "Scientifique. Entraîneur. Préparateur.",
+    "sectionSubtitle": "Scientifique du Sport. Entraîneur de Football UEFA. Préparateur Physique.",
+    "intro": "Je suis Préparateur Physique, Entraîneur de Football UEFA B et Coach Personnel, avec une expérience dans le football professionnel, le développement des jeunes et les environnements de haute performance. J'entraîne actuellement et supervise la préparation physique au CDE FUENLABRADA ATLANTIS à Madrid, en parallèle de mon activité de Coach Personnel chez Funziona – BASIC-FIT.",
     "academic": {
       "title": "Socle Académique",
-      "body": "Je suis titulaire d'une Licence en Sciences du Sport et de l'Activité Physique de l'UCAM (Universidad Católica San Antonio de Murcia) et j'ai déjà obtenu un Master en Sport de Haute Performance : Force et Conditionnement dans la même institution. Ma formation couvre la physiologie de l'exercice, la biomécanique, la nutrition sportive, la psychologie, l'analyse de données et la méthodologie de l'entraînement."
+      "body": "Je suis titulaire d'une Licence en Sciences du Sport et de l'Activité Physique et d'un Master en Sport de Haute Performance, spécialisé en Force et Conditionnement. Ma formation me permet d'appliquer des principes scientifiques dans le développement de la force, le suivi de la charge d'entraînement, la prévention des blessures, le retour au jeu, l'analyse de la performance et le développement à long terme de l'athlète."
     },
     "coaching": {
       "title": "Philosophie d'Entraînement",
-      "body": "En tant qu'Entraîneur de Football (UEFA B), je crois que la performance d'élite repose sur l'intelligence tactique, le conditionnement physique et la résilience mentale. Ma méthodologie intègre les principes des sciences du sport directement dans la conception des séances — chaque exercice a un but, chaque séance a un résultat mesurable. J'applique les principes du développement à long terme de l'athlète à chaque étape."
+      "body": "Je crois que chaque joueur a besoin d'une approche individualisée pour atteindre son plein potentiel. Je conçois chaque séance avec un objectif clair, en combinant développement tactique, préparation physique et résilience mentale. Ma méthode d'entraînement repose sur des méthodes fondées sur des preuves, une progression mesurable, la discipline, l'esprit d'équipe et le développement à long terme de chaque athlète."
     },
     "vision": {
       "title": "Vision Professionnelle",
-      "body": "Mon objectif est de continuer à évoluer en tant que préparateur physique, entraîneur de football et coach personnel, en appliquant des méthodes fondées sur des preuves. En cours d'obtention de la certification NSCA CSCS® et formé au Barça Innovation Hub, je suis motivé à contribuer aux clubs de football, centres de performance et environnements fitness où le développement à long terme et l'excellence vont de pair."
+      "body": "Mon objectif est de continuer à évoluer en tant qu'Entraîneur de Football UEFA et professionnel de la Force et du Conditionnement dans des environnements ambitieux et de haute performance. Fort de mon expérience dans les académies de jeunes en Espagne et en Tunisie, avec la première équipe d'El Palmar CF en 3ª RFEF, et avec l'équipe nationale syrienne U20, je souhaite aider les joueurs à améliorer leurs performances, réduire le risque de blessure et atteindre leur plein potentiel."
     }
   },
   "services": {
@@ -44,17 +45,17 @@
     "items": [
       {
         "title": "Entraînement Personnel",
-        "description": "Programmes d'entraînement individualisés conçus pour améliorer la force, le conditionnement et la santé globale. Accent sur l'exécution sécurisée des exercices, la gestion progressive de la charge et des habitudes fitness durables pour des résultats à long terme.",
+        "description": "Je conçois des programmes d'entraînement individualisés pour améliorer la force, la condition physique, la santé et la performance globale. J'adapte chaque programme aux objectifs et au niveau du client, en mettant l'accent sur une technique correcte, une surcharge progressive et des résultats durables à long terme.",
         "icon": "dumbbell"
       },
       {
         "title": "Entraînement Football",
-        "description": "Méthodologie d'Entraîneur de Football (UEFA B) appliquée au développement individuel et collectif. Entraînement technique, tactique et physique entièrement intégré, avec un fort accent sur le développement à long terme de l'athlète.",
+        "description": "En tant qu'Entraîneur de Football UEFA B, je planifie et dispense un entraînement technique, tactique et physique aussi bien pour les joueurs individuels que pour les équipes. J'utilise une approche centrée sur le joueur afin d'améliorer la prise de décision, la compréhension du jeu, l'esprit d'équipe et le développement à long terme.",
         "icon": "trophy"
       },
       {
         "title": "Préparation Physique",
-        "description": "Programmes de force et conditionnement fondés sur des preuves, axés sur un conditionnement adapté à l'âge, la prévention des blessures, la gestion de la charge et le développement athlétique. Certification NSCA CSCS® en cours d'obtention.",
+        "description": "Je développe des programmes de force et de conditionnement fondés sur des preuves, adaptés à l'âge, au niveau, au poste et aux exigences de la compétition de chaque athlète. Mon travail porte sur le développement de la force et de la puissance, le suivi de la charge, la prévention des blessures, le retour au jeu et l'optimisation de la performance athlétique.",
         "icon": "activity"
       }
     ]
@@ -216,7 +217,14 @@
     "sectionSubtitle": "Diplômes Académiques et Professionnels",
     "skillsTitle": "Compétences Clés & Certifications",
     "skillsSubtitle": "Qualifications internationalement reconnues en sciences du sport et en coaching.",
+    "inProgressLabel": "En Cours",
     "items": [
+      {
+        "degree": "Licence — Sciences du Sport et de l'Activité Physique",
+        "institution": "UCAM Universidad Católica San Antonio de Murcia",
+        "year": "Oct 2021 — Juin 2025",
+        "description": "Formation complète en anatomie humaine, physiologie de l'exercice, nutrition sportive, méthodologie de l'entraînement, analyse de données, psychologie du sport et activité physique & santé."
+      },
       {
         "degree": "Master — Sport de Haute Performance : Force & Conditionnement",
         "institution": "UCAM Universidad Católica San Antonio de Murcia",
@@ -224,10 +232,16 @@
         "description": "Spécialisation en musculation, prévention des blessures, stratégies de récupération, gestion de la charge et développement global des performances pour les athlètes de haut niveau."
       },
       {
-        "degree": "Entraînement de la Force : de la Rééducation à la Performance",
-        "institution": "Barça Innovation Hub",
+        "degree": "Licence UEFA C d'Entraîneur de Football",
+        "institution": "Fédération Royale Espagnole de Football (RFEF)",
+        "year": "2025",
+        "description": "Qualification d'entraîneur de football de base couvrant la méthodologie d'entraînement des jeunes, la planification des séances, les fondamentaux techniques et tactiques, ainsi que les principes de développement du joueur."
+      },
+      {
+        "degree": "Diplôme FIFA en Médecine du Football",
+        "institution": "FIFA",
         "year": "2026",
-        "description": "Formation avancée couvrant le continuum de la rééducation des blessures à la performance athlétique d'élite, intégrant les principes d'entraînement de la force, la qualité du mouvement et la méthodologie fondée sur des preuves utilisée par le staff de performance du FC Barcelona."
+        "description": "Diplôme professionnel couvrant la médecine du sport appliquée au football, incluant la prévention des blessures, la gestion des urgences médicales sur le terrain, et les protocoles de santé et de bien-être des joueurs."
       },
       {
         "degree": "Diplôme Professionnel en Scouting Football et Analyse Tactique",
@@ -236,28 +250,22 @@
         "description": "Diplôme professionnel couvrant la méthodologie de scouting des joueurs, l'analyse tactique et les techniques d'observation des matchs utilisées par le staff de performance et de recrutement du FC Barcelona."
       },
       {
-        "degree": "NSCA CSCS® — Spécialiste Certifié en Force et Conditionnement",
-        "institution": "National Strength and Conditioning Association (NSCA)",
-        "year": "En Cours",
-        "description": "Certification internationalement reconnue en force et conditionnement, couvrant les sciences de l'exercice, la conception de programmes, l'évaluation et l'administration pour la performance athlétique."
+        "degree": "Entraînement de la Force : de la Rééducation à la Performance",
+        "institution": "Barça Innovation Hub",
+        "year": "2026",
+        "description": "Formation avancée couvrant le continuum de la rééducation des blessures à la performance athlétique d'élite, intégrant les principes d'entraînement de la force, la qualité du mouvement et la méthodologie fondée sur des preuves utilisée par le staff de performance du FC Barcelona."
       },
       {
-        "degree": "Entraîneur de Football — Licence UEFA B",
+        "degree": "Licence UEFA B d'Entraîneur de Football",
         "institution": "Fédération Royale Espagnole de Football (RFEF)",
-        "year": "2026",
+        "year": "En Cours",
         "description": "Qualification d'entraîneur de football reconnue internationalement couvrant la méthodologie UEFA, la planification des séances, le développement des jeunes joueurs, le développement à long terme de l'athlète et l'analyse du jeu."
       },
       {
-        "degree": "Licence — Sciences du Sport et de l'Activité Physique",
-        "institution": "UCAM Universidad Católica San Antonio de Murcia",
-        "year": "Oct 2021 — Juin 2025",
-        "description": "Formation complète en anatomie humaine, physiologie de l'exercice, nutrition sportive, méthodologie de l'entraînement, analyse de données, psychologie du sport et activité physique & santé."
-      },
-      {
-        "degree": "Baccalauréat — Mathématiques & Physique",
-        "institution": "Ahmed Al-Omran Secondary School",
-        "year": "Sep 2018 — Juin 2021",
-        "description": "Diplômé avec une mention de 95%, avec un fort accent sur les mathématiques, la physique et le raisonnement scientifique."
+        "degree": "Spécialiste Certifié en Force et Conditionnement (CSCS®) – Préparation à la Certification",
+        "institution": "National Strength and Conditioning Association (NSCA)",
+        "year": "En Cours",
+        "description": "Certification internationalement reconnue en force et conditionnement, couvrant les sciences de l'exercice, la conception de programmes, l'évaluation et l'administration pour la performance athlétique."
       }
     ]
   },

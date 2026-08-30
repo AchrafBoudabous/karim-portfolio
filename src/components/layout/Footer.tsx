@@ -32,7 +32,7 @@ export default function Footer() {
               },
               {
                 icon: Instagram,
-                href: "https://instagram.com/karim_boudabous",
+                href: "https://www.instagram.com/karimboudabous.coach/",
                 label: "Instagram",
               },
               {

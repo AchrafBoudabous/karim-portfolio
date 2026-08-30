@@ -47,9 +47,9 @@ export const metadata: Metadata = {
       "NSCA CSCS® certified strength and conditioning coach, Football Coach (UEFA B), and Personal Trainer based in Madrid, Spain.",
     images: [
       {
-        url: "/images/karim-hero.jpg",
-        width: 1200,
-        height: 630,
+        url: "/images/Wallpaper.jpeg",
+        width: 1536,
+        height: 2048,
         alt: "Karim Boudabous — Sports Science & Elite Performance",
       },
     ],
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     title: "Karim Boudabous | NSCA CSCS® · Football Coach (UEFA B) · MSc S&C",
     description:
       "NSCA CSCS® certified strength and conditioning coach, Football Coach (UEFA B), and Personal Trainer based in Madrid, Spain.",
-    images: ["/images/karim-hero.jpg"],
+    images: ["/images/Wallpaper.jpeg"],
   },
 };
 

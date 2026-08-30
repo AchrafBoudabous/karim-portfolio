@@ -10,30 +10,31 @@
   },
   "hero": {
     "title": "Karim Boudabous",
-    "subtitle": "Sports Science & Elite Performance",
+    "subtitle": "Strength & Conditioning Coach | UEFA Football Coach | Personal Trainer | Sports Scientist | Tactical Analyst",
     "tagline": "Training smarter. Performing better. Living stronger.",
     "cta": "Discover My Work",
     "watchWork": "Watch My Work",
     "badge": "NSCA CSCS® · Strength & Conditioning Coach · MSc S&C",
-    "statsExperienceLabel": "Year Experience",
+    "statsExperienceLabel": "Years of Experience",
     "statsCscsLabel": "In Progress",
     "statsUefaLabel": "Football Coach",
     "scroll": "Scroll Down"
   },
   "about": {
     "sectionTitle": "About Me",
-    "sectionSubtitle": "Scientist. Coach. Trainer.",
+    "sectionSubtitle": "Sports Scientist. UEFA Football Coach. Strength & Conditioning Coach.",
+    "intro": "I am a Strength & Conditioning Coach, UEFA B Football Coach, and Personal Trainer with experience in professional football, youth development, and high-performance environments. I currently coach and oversee physical preparation at CDE FUENLABRADA ATLANTIS in Madrid, alongside my work as a Personal Trainer at Funziona – BASIC-FIT.",
     "academic": {
       "title": "Academic Foundation",
-      "body": "I hold a Bachelor's degree in Sport Sciences & Physical Activity from UCAM (Universidad Católica San Antonio de Murcia) and have already completed a Master's degree in High Performance Sport: Strength & Conditioning at the same institution. My academic training spans exercise physiology, biomechanics, sports nutrition, psychology, data analysis, and training methodology."
+      "body": "I hold a Bachelor's degree in Sport Science and Physical Activity and a Master's degree in High Performance in Sport, specializing in Strength and Conditioning. My education allows me to apply scientific principles in strength development, load monitoring, injury prevention, return-to-play, performance analysis, and long-term athlete development."
     },
     "coaching": {
       "title": "Coaching Philosophy",
-      "body": "As a Football Coach (UEFA B), I believe elite performance is built on tactical intelligence, physical conditioning, and mental resilience. My methodology integrates sports science principles directly into training design — every drill has a purpose, every session has a measurable outcome. I apply long-term athlete development principles at every stage."
+      "body": "I believe every player needs an individualized approach to reach their full potential. I design each session with a clear purpose, combining tactical development, physical preparation, and mental resilience. My coaching is built on evidence-based methods, measurable progress, discipline, teamwork, and the long-term development of every athlete."
     },
     "vision": {
       "title": "Professional Vision",
-      "body": "My goal is to grow as a strength and conditioning coach, football coach, and personal trainer — applying evidence-based methods to help athletes and individuals reach their full potential. Currently pursuing the NSCA CSCS® certification and trained at Barça Innovation Hub, I am motivated to contribute to football clubs, performance centers, and fitness environments where long-term development and excellence go hand in hand."
+      "body": "My goal is to continue developing as a UEFA Football Coach and Strength & Conditioning professional in ambitious, high-performance environments. Building on my experience with youth academies in Spain and Tunisia, El Palmar CF's first team in the 3ª RFEF, and the Syrian U20 National Team, I want to help players improve their performance, reduce injury risk, and achieve their full potential."
     }
   },
   "services": {
@@ -44,17 +45,17 @@
     "items": [
       {
         "title": "Personal Training",
-        "description": "Individualized training programs designed to improve strength, conditioning, and overall health. Emphasis on safe exercise execution, progressive load management, and sustainable fitness habits for long-term results.",
+        "description": "I design individualized training programs to improve strength, fitness, health, and overall performance. I adapt every program to the client's goals and level, focusing on correct technique, progressive overload, and sustainable long-term results.",
         "icon": "dumbbell"
       },
       {
         "title": "Football Coaching",
-        "description": "Football Coach (UEFA B) methodology applied to youth and team development. Technical, tactical, and physical training fully integrated, with a strong focus on long-term athlete development and player-centered coaching.",
+        "description": "As a UEFA B Football Coach, I plan and deliver technical, tactical, and physical training for both individual players and teams. I use a player-centred approach to improve decision-making, game understanding, teamwork, and long-term development.",
         "icon": "trophy"
       },
       {
         "title": "Strength & Conditioning",
-        "description": "Evidence-based S&C programs focused on age-appropriate conditioning, injury prevention, load management, and athletic development — aligned with training and match demands. Currently pursuing NSCA CSCS® certification.",
+        "description": "I develop evidence-based strength and conditioning programs adapted to each athlete's age, level, position, and competition demands. My work focuses on strength and power development, load monitoring, injury prevention, return-to-play, and maximizing athletic performance.",
         "icon": "activity"
       }
     ]
@@ -216,7 +217,14 @@
     "sectionSubtitle": "Academic & Professional Credentials",
     "skillsTitle": "Key Skills & Certifications",
     "skillsSubtitle": "Internationally recognized qualifications in sport science and coaching.",
+    "inProgressLabel": "In Progress",
     "items": [
+      {
+        "degree": "Bachelor's Degree — Sport Sciences & Physical Activity",
+        "institution": "UCAM Universidad Católica San Antonio de Murcia",
+        "year": "Oct 2021 — Jun 2025",
+        "description": "Comprehensive foundation in human anatomy, exercise physiology, sports nutrition, training methodology, data analysis, psychology in sport, and physical activity & health."
+      },
       {
         "degree": "Master's Degree — High Performance Sport: Strength & Conditioning",
         "institution": "UCAM Universidad Católica San Antonio de Murcia",
@@ -224,10 +232,16 @@
         "description": "Specialization in strength training, injury prevention, recovery strategies, load management, and holistic performance development for elite athletes."
       },
       {
-        "degree": "Strength Training: From Rehabilitation to Performance",
-        "institution": "Barça Innovation Hub",
+        "degree": "UEFA C Football Coaching Licence",
+        "institution": "Royal Spanish Football Federation (RFEF)",
+        "year": "2025",
+        "description": "Foundational football coaching qualification covering grassroots and youth coaching methodology, session planning, technical and tactical fundamentals, and player development principles."
+      },
+      {
+        "degree": "FIFA Diploma in Football Medicine",
+        "institution": "FIFA",
         "year": "2026",
-      "description": "Advanced training course covering the continuum from injury rehabilitation to elite athletic performance, integrating strength training principles, movement quality, and evidence-based methodology used by FC Barcelona's performance staff."
+        "description": "Professional diploma covering sports medicine in football, including injury prevention, on-field emergency management, and player health and welfare protocols."
       },
       {
         "degree": "Professional Diploma in Football Scouting and Tactical Analysis",
@@ -236,28 +250,22 @@
         "description": "Professional diploma covering player scouting methodology, tactical analysis, and match observation techniques used by FC Barcelona's performance and recruitment staff."
       },
       {
-        "degree": "NSCA CSCS® — Certified Strength & Conditioning Specialist",
-        "institution": "National Strength and Conditioning Association (NSCA)",
-        "year": "In Progress",
-        "description": "Internationally recognized certification in strength and conditioning, covering exercise science, program design, testing and evaluation, and organization and administration for athletic performance."
+        "degree": "Strength Training: From Rehabilitation to Performance",
+        "institution": "Barça Innovation Hub",
+        "year": "2026",
+        "description": "Advanced training course covering the continuum from injury rehabilitation to elite athletic performance, integrating strength training principles, movement quality, and evidence-based methodology used by FC Barcelona's performance staff."
       },
       {
-        "degree": "Football Coach — UEFA B Licence",
+        "degree": "UEFA B Football Coaching Licence",
         "institution": "Royal Spanish Football Federation (RFEF)",
-        "year": "2026",
+        "year": "In Progress",
         "description": "Internationally recognized football coaching qualification covering UEFA methodology, session planning, youth player development, long-term athlete development, and match analysis."
       },
       {
-        "degree": "Bachelor's Degree — Sport Sciences & Physical Activity",
-        "institution": "UCAM Universidad Católica San Antonio de Murcia",
-        "year": "Oct 2021 — Jun 2025",
-        "description": "Comprehensive foundation in human anatomy, exercise physiology, sports nutrition, training methodology, data analysis, psychology in sport, and physical activity & health."
-      },
-      {
-        "degree": "High School Diploma — Mathematics & Physics",
-        "institution": "Ahmed Al-Omran Secondary School",
-        "year": "Sep 2018 — Jun 2021",
-        "description": "Graduated with a grade of 95%, with a strong focus on mathematics, physics, and scientific reasoning."
+        "degree": "Certified Strength and Conditioning Specialist (CSCS®) – Certification Preparation",
+        "institution": "National Strength and Conditioning Association (NSCA)",
+        "year": "In Progress",
+        "description": "Internationally recognized certification in strength and conditioning, covering exercise science, program design, testing and evaluation, and organization and administration for athletic performance."
       }
     ]
   },

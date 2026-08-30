@@ -79,6 +79,14 @@ const galleryItems: GalleryItem[] = [
     span: "normal",
   },
   {
+    id: 22,
+    type: "image",
+    category: "coaching",
+    src: "/images/gallery/Academy Head Coach & Strength and Conditioning Coach - CDE FUENLABRADA ATLANTIS.jpeg",
+    title: "Academy Head Coach & Strength and Conditioning Coach — CDE Fuenlabrada Atlantis",
+    span: "tall",
+  },
+  {
     id: 8,
     type: "image",
     category: "coaching",
