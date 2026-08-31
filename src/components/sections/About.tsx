@@ -98,9 +98,6 @@ export default function About() {
             <p className="font-oswald text-lg font-bold text-white tracking-wide">
               Karim Boudabous
             </p>
-            <p className="text-white/50 text-sm mt-0.5">
-              NSCA CSCS® · S&C Coach · MSc S&C · Personal Trainer · UCAM
-            </p>
           </div>
 
           <div className="flex items-center gap-6">
@@ -108,6 +105,7 @@ export default function About() {
               { label: "Madrid", sublabel: "Spain" },
               { label: "UCAM", sublabel: "Graduate" },
               { label: "CDE Atlantis", sublabel: "Head Coach" },
+              { label: "Funziona", sublabel: "Personal Trainer" },
             ].map((item, i) => (
               <div key={i} className="text-center">
                 <p className="font-oswald text-base font-bold text-green-400">

@@ -14,9 +14,9 @@
     "tagline": "Training smarter. Performing better. Living stronger.",
     "cta": "Discover My Work",
     "watchWork": "Watch My Work",
-    "badge": "NSCA CSCS® · Strength & Conditioning Coach · MSc S&C",
+    "badge": "Sports Scientist. UEFA Football Coach. Strength & Conditioning Coach.",
     "statsExperienceLabel": "Years of Experience",
-    "statsCscsLabel": "In Progress",
+    "statsMscLabel": "In Progress",
     "statsUefaLabel": "Football Coach",
     "scroll": "Scroll Down"
   },
@@ -202,8 +202,13 @@
     "sectionSubtitle": "Training, Coaching & Achievements",
     "filters": {
       "all": "All",
-      "training": "Training",
       "coaching": "Coaching",
+      "training": "Training",
+      "trainingPhotos": "Training Photos",
+      "trainingVideos": "Training Videos",
+      "syriaU20": "Syria U20",
+      "elPalmarCF": "El Palmar CF",
+      "fuenlabradaAtlantis": "Fuenlabrada Atlantis",
       "certificates": "Certificates"
     },
     "playVideo": "Play Video",
@@ -234,7 +239,7 @@
       {
         "degree": "UEFA C Football Coaching Licence",
         "institution": "Royal Spanish Football Federation (RFEF)",
-        "year": "2025",
+        "year": "2026",
         "description": "Foundational football coaching qualification covering grassroots and youth coaching methodology, session planning, technical and tactical fundamentals, and player development principles."
       },
       {
@@ -260,12 +265,6 @@
         "institution": "Royal Spanish Football Federation (RFEF)",
         "year": "In Progress",
         "description": "Internationally recognized football coaching qualification covering UEFA methodology, session planning, youth player development, long-term athlete development, and match analysis."
-      },
-      {
-        "degree": "Certified Strength and Conditioning Specialist (CSCS®) – Certification Preparation",
-        "institution": "National Strength and Conditioning Association (NSCA)",
-        "year": "In Progress",
-        "description": "Internationally recognized certification in strength and conditioning, covering exercise science, program design, testing and evaluation, and organization and administration for athletic performance."
       }
     ]
   },
@@ -287,7 +286,7 @@
     "sendAnother": "Send Another",
     "follow": "Follow Me",
     "availableTitle": "Available for new opportunities",
-    "availableText": "Open to S&C coaching roles, Football Coach (UEFA B) positions & personal training clients."
+    "availableText": "Open to S&C coaching roles, Football Coach positions & personal training clients."
   },
   "footer": {
     "rights": "All rights reserved.",

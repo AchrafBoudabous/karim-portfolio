@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
@@ -9,213 +9,394 @@ import SectionTitle from "@/components/ui/SectionTitle";
 import VideoCard from "@/components/ui/VideoCard";
 
 type MediaType = "image" | "video";
-type Category = "all" | "training" | "coaching" | "certificates";
+
+type SubCategory =
+  | "trainingPhotos"
+  | "trainingVideos"
+  | "syriaU20"
+  | "elPalmarCF"
+  | "fuenlabradaAtlantis"
+  | "certificates";
+
+type MainCategory = "all" | "coaching" | "training" | "certificates";
+
+type FilterKey =
+  | "filters.all"
+  | "filters.coaching"
+  | "filters.training"
+  | "filters.certificates"
+  | "filters.trainingPhotos"
+  | "filters.trainingVideos"
+  | "filters.syriaU20"
+  | "filters.elPalmarCF"
+  | "filters.fuenlabradaAtlantis";
+
+const mainCategoryOf: Record<SubCategory, Exclude<MainCategory, "all">> = {
+  trainingPhotos: "training",
+  trainingVideos: "training",
+  syriaU20: "coaching",
+  elPalmarCF: "coaching",
+  fuenlabradaAtlantis: "coaching",
+  certificates: "certificates",
+};
+
+const subTabsByMain: Partial<Record<MainCategory, SubCategory[]>> = {
+  coaching: ["syriaU20", "elPalmarCF", "fuenlabradaAtlantis"],
+  training: ["trainingPhotos", "trainingVideos"],
+};
 
 interface GalleryItem {
   id: number;
   type: MediaType;
-  category: Exclude<Category, "all">;
+  category: SubCategory;
   src: string;
   thumbnail?: string;
   title: string;
   span?: "normal" | "wide" | "tall";
 }
 
+const GYM_CAPTION = "Strength & Fitness Training";
+const SYRIA_CAPTION = "Syria U20 National Team";
+const EL_PALMAR_CAPTION = "El Palmar CF First Team | 3ª RFEF | 2025/26";
+const FUENLABRADA_CAPTION = "CDE Fuenlabrada Atlantis | 2026/27";
+
 const galleryItems: GalleryItem[] = [
+  // Training — gym photos
   {
     id: 1,
     type: "image",
-    category: "training",
-    src: "/images/gallery/training-1.jpg",
-    title: "Sandbag Training Session",
-    span: "wide",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.37.jpeg",
+    title: GYM_CAPTION,
+    span: "normal",
   },
   {
     id: 2,
     type: "image",
-    category: "training",
-    src: "/images/gallery/training-2.jpg",
-    title: "Dumbbell Coaching",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.48 (1).jpeg",
+    title: GYM_CAPTION,
     span: "normal",
   },
   {
     id: 3,
     type: "image",
-    category: "training",
-    src: "/images/gallery/training-3.jpg",
-    title: "Gym Floor Session",
-    span: "tall",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.48 (10).jpeg",
+    title: GYM_CAPTION,
+    span: "normal",
   },
   {
     id: 4,
     type: "image",
-    category: "training",
-    src: "/images/gallery/training-4.jpg",
-    title: "Bench Press Supervision",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.48 (11).jpeg",
+    title: GYM_CAPTION,
     span: "normal",
   },
   {
     id: 5,
     type: "image",
-    category: "certificates",
-    src: "/images/gallery/ucam-degree.jpg",
-    title: "Bachelor's Degree — UCAM Graduation",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.48 (2).jpeg",
+    title: GYM_CAPTION,
     span: "normal",
   },
   {
     id: 6,
-    type: "video",
-    category: "training",
-    src: "/videos/session-1.mp4",
-    title: "Training Session",
+    type: "image",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.48 (3).jpeg",
+    title: GYM_CAPTION,
     span: "normal",
   },
   {
     id: 7,
-    type: "video",
-    category: "training",
-    src: "/videos/session-2.mp4",
-    title: "Training Session",
-    span: "normal",
-  },
-  {
-    id: 22,
     type: "image",
-    category: "coaching",
-    src: "/images/gallery/Academy Head Coach & Strength and Conditioning Coach - CDE FUENLABRADA ATLANTIS.jpeg",
-    title: "Academy Head Coach & Strength and Conditioning Coach — CDE Fuenlabrada Atlantis",
-    span: "tall",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.48 (4).jpeg",
+    title: GYM_CAPTION,
+    span: "normal",
   },
   {
     id: 8,
     type: "image",
-    category: "coaching",
-    src: "/images/gallery/coaching-1.jpeg",
-    title: "Coaching Session",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.48 (5).jpeg",
+    title: GYM_CAPTION,
     span: "normal",
   },
   {
     id: 9,
     type: "image",
-    category: "coaching",
-    src: "/images/gallery/coaching-2.jpeg",
-    title: "Coaching Session",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.48 (6).jpeg",
+    title: GYM_CAPTION,
     span: "normal",
   },
   {
     id: 10,
     type: "image",
-    category: "coaching",
-    src: "/images/gallery/syria-u20-portrait.jpeg",
-    title: "Fitness Coach — Syria U20 National Team",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.48 (7).jpeg",
+    title: GYM_CAPTION,
     span: "normal",
   },
   {
     id: 11,
     type: "image",
-    category: "coaching",
-    src: "/images/gallery/syria-u20-team-photo.jpeg",
-    title: "Syria U20 Squad",
-    span: "wide",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.48 (8).jpeg",
+    title: GYM_CAPTION,
+    span: "normal",
   },
   {
     id: 12,
     type: "image",
-    category: "coaching",
-    src: "/images/gallery/syria-u20-team-talk-1.jpeg",
-    title: "Team Talk — Syria U20",
-    span: "wide",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.48 (9).jpeg",
+    title: GYM_CAPTION,
+    span: "normal",
   },
   {
     id: 13,
     type: "image",
-    category: "coaching",
-    src: "/images/gallery/syria-u20-team-talk-2.jpeg",
-    title: "Pre-Session Briefing — Syria U20",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.48.jpeg",
+    title: GYM_CAPTION,
     span: "normal",
   },
   {
     id: 14,
     type: "image",
-    category: "coaching",
-    src: "/images/gallery/syria-u20-huddle.jpeg",
-    title: "Training Huddle — Syria U20",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.49 (1).jpeg",
+    title: GYM_CAPTION,
     span: "normal",
   },
   {
     id: 15,
     type: "image",
-    category: "coaching",
-    src: "/images/gallery/syria-u20-training-drills.jpeg",
-    title: "Speed & Agility Drills — Syria U20",
-    span: "wide",
+    category: "trainingPhotos",
+    src: "/images/Training/Personal training pictures/WhatsApp Image 2026-08-30 at 15.10.49.jpeg",
+    title: GYM_CAPTION,
+    span: "normal",
   },
+  // Training — gym videos
   {
     id: 16,
-    type: "image",
-    category: "certificates",
-    src: "/images/gallery/master-degree-graduation.jpeg",
-    title: "Master's Degree Graduation — UCAM",
-    span: "tall",
+    type: "video",
+    category: "trainingVideos",
+    src: "/images/Training/Personal training videos/WhatsApp Video 2026-08-30 at 15.20.34.mp4",
+    title: GYM_CAPTION,
+    span: "normal",
   },
   {
     id: 17,
-    type: "image",
-    category: "certificates",
-    src: "/images/gallery/uefa-c-diploma.jpeg",
-    title: "UEFA C Coaching Diploma",
+    type: "video",
+    category: "trainingVideos",
+    src: "/images/Training/Personal training videos/WhatsApp Video 2026-08-30 at 15.20.35 (1).mp4",
+    title: GYM_CAPTION,
     span: "normal",
   },
   {
     id: 18,
-    type: "image",
-    category: "certificates",
-    src: "/images/gallery/barca-innovation-hub.jpeg",
-    title: "Strength Training in Return-to-Play — Barça Innovation Hub",
+    type: "video",
+    category: "trainingVideos",
+    src: "/images/Training/Personal training videos/WhatsApp Video 2026-08-30 at 15.20.35.mp4",
+    title: GYM_CAPTION,
     span: "normal",
   },
   {
     id: 19,
     type: "video",
-    category: "training",
-    src: "/videos/personal-training-session-1.mp4",
-    title: "Personal Training Session",
+    category: "trainingVideos",
+    src: "/images/Training/Personal training videos/WhatsApp Video 2026-08-30 at 15.20.36.mp4",
+    title: GYM_CAPTION,
     span: "normal",
   },
   {
     id: 20,
     type: "video",
-    category: "training",
-    src: "/videos/personal-training-session-2.mp4",
-    title: "Resistance Band Coaching",
+    category: "trainingVideos",
+    src: "/images/Training/Personal training videos/WhatsApp Video 2026-08-30 at 15.20.37.mp4",
+    title: GYM_CAPTION,
+    span: "normal",
+  },
+  // Coaching — Syria U20 National Team
+  {
+    id: 21,
+    type: "image",
+    category: "syriaU20",
+    src: "/images/Coaching/SYRIAN U20 NATIONAL TEAM/Syria U20 National Team  Strength & Conditioning Coach.jpeg",
+    title: SYRIA_CAPTION,
+    span: "tall",
+  },
+  {
+    id: 22,
+    type: "image",
+    category: "syriaU20",
+    src: "/images/Coaching/SYRIAN U20 NATIONAL TEAM/WhatsApp Image 2026-08-30 at 15.43.06 (1).jpeg",
+    title: SYRIA_CAPTION,
     span: "normal",
   },
   {
-    id: 21,
-    type: "video",
-    category: "training",
-    src: "/videos/personal-training-session-3.mp4",
-    title: "Gym Floor Coaching",
+    id: 23,
+    type: "image",
+    category: "syriaU20",
+    src: "/images/Coaching/SYRIAN U20 NATIONAL TEAM/WhatsApp Image 2026-08-30 at 15.43.06 (2).jpeg",
+    title: SYRIA_CAPTION,
+    span: "normal",
+  },
+  {
+    id: 24,
+    type: "image",
+    category: "syriaU20",
+    src: "/images/Coaching/SYRIAN U20 NATIONAL TEAM/WhatsApp Image 2026-08-30 at 15.43.06 (3).jpeg",
+    title: SYRIA_CAPTION,
+    span: "normal",
+  },
+  {
+    id: 25,
+    type: "image",
+    category: "syriaU20",
+    src: "/images/Coaching/SYRIAN U20 NATIONAL TEAM/WhatsApp Image 2026-08-30 at 15.43.06 (4).jpeg",
+    title: SYRIA_CAPTION,
+    span: "normal",
+  },
+  {
+    id: 26,
+    type: "image",
+    category: "syriaU20",
+    src: "/images/Coaching/SYRIAN U20 NATIONAL TEAM/WhatsApp Image 2026-08-30 at 15.43.06 (5).jpeg",
+    title: SYRIA_CAPTION,
+    span: "normal",
+  },
+  {
+    id: 27,
+    type: "image",
+    category: "syriaU20",
+    src: "/images/Coaching/SYRIAN U20 NATIONAL TEAM/WhatsApp Image 2026-08-30 at 15.43.06.jpeg",
+    title: SYRIA_CAPTION,
+    span: "normal",
+  },
+  // Coaching — El Palmar CF
+  {
+    id: 28,
+    type: "image",
+    category: "elPalmarCF",
+    src: "/images/Coaching/EL PALMAR CF/El Palmar CF First Team  Assistant Strength & Conditioning Coach  3ª RFEF  2025.jpeg",
+    title: EL_PALMAR_CAPTION,
+    span: "tall",
+  },
+  {
+    id: 29,
+    type: "image",
+    category: "elPalmarCF",
+    src: "/images/Coaching/EL PALMAR CF/WhatsApp Image 2026-08-30 at 15.39.23 (1).jpeg",
+    title: EL_PALMAR_CAPTION,
+    span: "normal",
+  },
+  {
+    id: 30,
+    type: "image",
+    category: "elPalmarCF",
+    src: "/images/Coaching/EL PALMAR CF/WhatsApp Image 2026-08-30 at 15.39.23 (2).jpeg",
+    title: EL_PALMAR_CAPTION,
+    span: "normal",
+  },
+  // Coaching — CDE Fuenlabrada Atlantis
+  {
+    id: 31,
+    type: "image",
+    category: "fuenlabradaAtlantis",
+    src: "/images/Coaching/CDE FUENLABRADA ATLANTIS/Academy Head Coach & Strength and Conditioning Coach.jpeg",
+    title: FUENLABRADA_CAPTION,
+    span: "tall",
+  },
+  // Certificates
+  {
+    id: 32,
+    type: "image",
+    category: "certificates",
+    src: "/images/Certificates/Bachelor degree.jpg",
+    title: "Bachelor's Degree — UCAM",
+    span: "tall",
+  },
+  {
+    id: 33,
+    type: "image",
+    category: "certificates",
+    src: "/images/Certificates/master-degree-graduation.jpeg",
+    title: "Master's Degree — UCAM",
+    span: "tall",
+  },
+  {
+    id: 34,
+    type: "image",
+    category: "certificates",
+    src: "/images/Certificates/uefa-c-diploma.jpeg",
+    title: "UEFA C Coaching Diploma",
+    span: "tall",
+  },
+  {
+    id: 35,
+    type: "image",
+    category: "certificates",
+    src: "/images/Certificates/FIFA DIPLOMA IN FOOTBALL MEDICINE - FIFA.jpeg",
+    title: "FIFA Diploma in Football Medicine",
+    span: "normal",
+  },
+  {
+    id: 36,
+    type: "image",
+    category: "certificates",
+    src: "/images/Certificates/barca-innovation-hub.jpeg",
+    title: "Strength Training — Barça Innovation Hub",
     span: "normal",
   },
 ];
 
-const filterKeys: Category[] = ["all", "training", "coaching", "certificates"];
+const RANDOM_ALL_COUNT = 6;
+
+function pickRandomItems(items: GalleryItem[], count: number): GalleryItem[] {
+  const shuffled = [...items].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+}
+
+const mainFilterKeys: MainCategory[] = ["all", "coaching", "training", "certificates"];
 
 export default function Gallery() {
   const t = useTranslations("gallery");
 
-  const [activeFilter, setActiveFilter] = useState<Category>("all");
+  const [activeMain, setActiveMain] = useState<MainCategory>("all");
+  const [activeSub, setActiveSub] = useState<SubCategory | null>(null);
+  const [randomAllItems, setRandomAllItems] = useState<GalleryItem[]>([]);
+  const [mounted, setMounted] = useState(false);
   const [lightbox, setLightbox] = useState<{
     open: boolean;
     item: GalleryItem | null;
     index: number;
   }>({ open: false, item: null, index: 0 });
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (activeMain === "all") {
+      setRandomAllItems(pickRandomItems(galleryItems, RANDOM_ALL_COUNT));
+    }
+  }, [activeMain]);
+
   const filtered =
-    activeFilter === "all"
-      ? galleryItems
-      : galleryItems.filter((i) => i.category === activeFilter);
+    activeMain === "all"
+      ? randomAllItems
+      : activeSub
+      ? galleryItems.filter((i) => i.category === activeSub)
+      : galleryItems.filter((i) => mainCategoryOf[i.category] === activeMain);
+
+  const subTabs = subTabsByMain[activeMain];
 
   const openLightbox = useCallback((item: GalleryItem, index: number) => {
     setLightbox({ open: true, item, index });
@@ -262,17 +443,23 @@ export default function Gallery() {
           transition={{ duration: 0.5 }}
           className="flex flex-wrap justify-center gap-2 mb-10"
         >
-          {filterKeys.map((key) => (
+          {mainFilterKeys.map((key) => (
             <button
               key={key}
-              onClick={() => setActiveFilter(key)}
+              onClick={() => {
+                if (key === "all") {
+                  setRandomAllItems(pickRandomItems(galleryItems, RANDOM_ALL_COUNT));
+                }
+                setActiveMain(key);
+                setActiveSub(null);
+              }}
               className={`relative px-5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                activeFilter === key
+                activeMain === key
                   ? "text-black"
                   : "text-white/50 border border-white/10 bg-white/3 hover:text-white hover:border-white/20"
               }`}
             >
-              {activeFilter === key && (
+              {activeMain === key && (
                 <motion.div
                   layoutId="activeFilter"
                   className="absolute inset-0 rounded-xl bg-linear-to-r from-green-500 to-emerald-600"
@@ -280,21 +467,47 @@ export default function Gallery() {
                 />
               )}
               <span className="relative z-10">
-                {t(
-                  `filters.${key}` as
-                    | "filters.all"
-                    | "filters.training"
-                    | "filters.coaching"
-                    | "filters.certificates"
-                )}
+                {t(`filters.${key}` as FilterKey)}
               </span>
             </button>
           ))}
         </motion.div>
 
+        {subTabs && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="flex flex-wrap justify-center gap-2 mb-10 -mt-4"
+          >
+            {subTabs.map((sub) => (
+              <button
+                key={sub}
+                onClick={() => setActiveSub(activeSub === sub ? null : sub)}
+                className={`relative px-4 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${
+                  activeSub === sub
+                    ? "text-black"
+                    : "text-white/40 border border-white/8 bg-white/3 hover:text-white hover:border-white/20"
+                }`}
+              >
+                {activeSub === sub && (
+                  <motion.div
+                    layoutId="activeSubFilter"
+                    className="absolute inset-0 rounded-lg bg-green-500/80"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                  />
+                )}
+                <span className="relative z-10">
+                  {t(`filters.${sub}` as FilterKey)}
+                </span>
+              </button>
+            ))}
+          </motion.div>
+        )}
+
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeFilter}
+            key={`${activeMain}-${activeSub ?? "all"}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -314,7 +527,7 @@ export default function Gallery() {
                     src={item.src}
                     thumbnail={item.thumbnail}
                     title={item.title}
-                    category={item.category}
+                    category={t(`filters.${item.category}` as FilterKey)}
                     onClick={() => openLightbox(item, i)}
                     index={i}
                     playLabel={t("playVideo")}
@@ -347,7 +560,7 @@ export default function Gallery() {
 
                     <div className="px-4 py-3 border-t border-white/5">
                       <span className="text-xs font-semibold text-green-400 uppercase tracking-wider">
-                        {item.category}
+                        {t(`filters.${item.category}` as FilterKey)}
                       </span>
                       <p className="text-white/80 text-sm font-medium mt-0.5">
                         {item.title}
@@ -360,7 +573,7 @@ export default function Gallery() {
           </motion.div>
         </AnimatePresence>
 
-        {filtered.length === 0 && (
+        {mounted && filtered.length === 0 && (
           <div className="text-center py-20 text-white/30">
             <p className="text-lg">{t("noItems")}</p>
           </div>
@@ -443,8 +656,8 @@ export default function Gallery() {
                   <p className="text-white font-semibold text-sm">
                     {lightbox.item.title}
                   </p>
-                  <p className="text-white/40 text-xs capitalize mt-0.5">
-                    {lightbox.item.category}
+                  <p className="text-white/40 text-xs mt-0.5">
+                    {t(`filters.${lightbox.item.category}` as FilterKey)}
                   </p>
                 </div>
                 <span className="text-white/30 text-xs">

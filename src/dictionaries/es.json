@@ -14,9 +14,9 @@
     "tagline": "Entrenar con inteligencia. Rendir mejor. Vivir más fuerte.",
     "cta": "Descubre Mi Trabajo",
     "watchWork": "Ver Mi Trabajo",
-    "badge": "NSCA CSCS® · Preparador Físico · MSc S&C",
+    "badge": "Científico del Deporte. Entrenador de Fútbol UEFA. Entrenador de Fuerza y Acondicionamiento.",
     "statsExperienceLabel": "Años de Experiencia",
-    "statsCscsLabel": "En Progreso",
+    "statsMscLabel": "En Progreso",
     "statsUefaLabel": "Entrenador Fútbol",
     "scroll": "Desplázate"
   },
@@ -202,8 +202,13 @@
     "sectionSubtitle": "Entrenamiento, Coaching y Logros",
     "filters": {
       "all": "Todo",
-      "training": "Entrenamiento",
       "coaching": "Coaching",
+      "training": "Entrenamiento",
+      "trainingPhotos": "Fotos de Entrenamiento",
+      "trainingVideos": "Videos de Entrenamiento",
+      "syriaU20": "Siria U20",
+      "elPalmarCF": "El Palmar CF",
+      "fuenlabradaAtlantis": "Fuenlabrada Atlantis",
       "certificates": "Certificados"
     },
     "playVideo": "Reproducir Video",
@@ -234,7 +239,7 @@
       {
         "degree": "Licencia UEFA C de Entrenador de Fútbol",
         "institution": "Real Federación Española de Fútbol (RFEF)",
-        "year": "2025",
+        "year": "2026",
         "description": "Cualificación introductoria de entrenador de fútbol que cubre la metodología de base y de fútbol juvenil, la planificación de sesiones, los fundamentos técnicos y tácticos, y los principios de desarrollo del jugador."
       },
       {
@@ -260,12 +265,6 @@
         "institution": "Real Federación Española de Fútbol (RFEF)",
         "year": "En Progreso",
         "description": "Titulación de entrenador de fútbol reconocida internacionalmente que cubre la metodología UEFA, planificación de sesiones, desarrollo de jugadores juveniles, desarrollo a largo plazo del deportista y análisis del juego."
-      },
-      {
-        "degree": "Especialista Certificado en Fuerza y Acondicionamiento (CSCS®) – Preparación de la Certificación",
-        "institution": "National Strength and Conditioning Association (NSCA)",
-        "year": "En Progreso",
-        "description": "Certificación internacionalmente reconocida en fuerza y acondicionamiento, que cubre ciencias del ejercicio, diseño de programas, evaluación y administración para el rendimiento atlético."
       }
     ]
   },
@@ -287,7 +286,7 @@
     "sendAnother": "Enviar Otro",
     "follow": "Sígueme",
     "availableTitle": "Disponible para nuevas oportunidades",
-    "availableText": "Abierto a roles de preparación física, puestos de Entrenador de Fútbol (UEFA B) y clientes de entrenamiento personal."
+    "availableText": "Abierto a roles de preparación física, puestos de Entrenador de Fútbol y clientes de entrenamiento personal."
   },
   "footer": {
     "rights": "Todos los derechos reservados.",

@@ -23,11 +23,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Karim Boudabous | NSCA CSCS® · Football Coach (UEFA B) · MSc S&C",
+  title: "Karim Boudabous | Football Coach (UEFA B) · Strength & Conditioning Coach",
   description:
-    "NSCA CSCS® certified strength and conditioning coach, Football Coach (UEFA B), and Personal Trainer based in Madrid, Spain. Specializing in high performance S&C, football coaching, and personal training.",
+    "Certified strength and conditioning coach, Football Coach (UEFA B), and Personal Trainer based in Madrid, Spain. Specializing in high performance S&C, football coaching, and personal training.",
   keywords: [
-    "NSCA CSCS",
     "strength and conditioning",
     "football coach",
     "UEFA B",
@@ -42,9 +41,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    title: "Karim Boudabous | NSCA CSCS® · Football Coach (UEFA B) · MSc S&C",
+    title: "Karim Boudabous | Football Coach (UEFA B) · Strength & Conditioning Coach",
     description:
-      "NSCA CSCS® certified strength and conditioning coach, Football Coach (UEFA B), and Personal Trainer based in Madrid, Spain.",
+      "Certified strength and conditioning coach, Football Coach (UEFA B), and Personal Trainer based in Madrid, Spain.",
     images: [
       {
         url: "/images/Wallpaper.jpeg",
@@ -56,9 +55,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Karim Boudabous | NSCA CSCS® · Football Coach (UEFA B) · MSc S&C",
+    title: "Karim Boudabous | Football Coach (UEFA B) · Strength & Conditioning Coach",
     description:
-      "NSCA CSCS® certified strength and conditioning coach, Football Coach (UEFA B), and Personal Trainer based in Madrid, Spain.",
+      "Certified strength and conditioning coach, Football Coach (UEFA B), and Personal Trainer based in Madrid, Spain.",
     images: ["/images/Wallpaper.jpeg"],
   },
 };

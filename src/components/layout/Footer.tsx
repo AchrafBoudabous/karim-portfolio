@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Instagram, Linkedin, Mail } from "lucide-react";
+import TikTokIcon from "@/components/ui/TikTokIcon";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -27,13 +28,18 @@ export default function Footer() {
             {[
               {
                 icon: Linkedin,
-                href: "https://linkedin.com/in/karim-boudabous-a389902b3/",
+                href: "https://www.linkedin.com/in/karim-boudabous-a389902b3",
                 label: "LinkedIn",
               },
               {
                 icon: Instagram,
                 href: "https://www.instagram.com/karimboudabous.coach/",
                 label: "Instagram",
+              },
+              {
+                icon: TikTokIcon,
+                href: "https://www.tiktok.com/@karimboudabous.coach",
+                label: "TikTok",
               },
               {
                 icon: Mail,
