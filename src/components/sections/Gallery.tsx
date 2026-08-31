@@ -57,8 +57,10 @@ interface GalleryItem {
 
 const GYM_CAPTION = "Strength & Fitness Training";
 const SYRIA_CAPTION = "Syria U20 National Team | Strength & Conditioning Coach";
+const SYRIA_CAPTION_SHORT = "Syria U20 National Team";
 const EL_PALMAR_CAPTION =
   "El Palmar CF First Team | Assistant Strength & Conditioning Coach | 3ª RFEF | 2025/26";
+const EL_PALMAR_CAPTION_SHORT = "El Palmar CF First Team";
 const FUENLABRADA_CAPTION = "Academy Head Coach & Strength and Conditioning Coach";
 
 const galleryItems: GalleryItem[] = [
@@ -238,7 +240,7 @@ const galleryItems: GalleryItem[] = [
     type: "image",
     category: "syriaU20",
     src: "/images/Coaching/SYRIAN U20 NATIONAL TEAM/WhatsApp Image 2026-08-30 at 15.43.06 (1).jpeg",
-    title: SYRIA_CAPTION,
+    title: SYRIA_CAPTION_SHORT,
     span: "normal",
   },
   {
@@ -246,7 +248,7 @@ const galleryItems: GalleryItem[] = [
     type: "image",
     category: "syriaU20",
     src: "/images/Coaching/SYRIAN U20 NATIONAL TEAM/WhatsApp Image 2026-08-30 at 15.43.06 (2).jpeg",
-    title: SYRIA_CAPTION,
+    title: SYRIA_CAPTION_SHORT,
     span: "normal",
   },
   {
@@ -254,7 +256,7 @@ const galleryItems: GalleryItem[] = [
     type: "image",
     category: "syriaU20",
     src: "/images/Coaching/SYRIAN U20 NATIONAL TEAM/WhatsApp Image 2026-08-30 at 15.43.06 (3).jpeg",
-    title: SYRIA_CAPTION,
+    title: SYRIA_CAPTION_SHORT,
     span: "normal",
   },
   {
@@ -262,7 +264,7 @@ const galleryItems: GalleryItem[] = [
     type: "image",
     category: "syriaU20",
     src: "/images/Coaching/SYRIAN U20 NATIONAL TEAM/WhatsApp Image 2026-08-30 at 15.43.06 (4).jpeg",
-    title: SYRIA_CAPTION,
+    title: SYRIA_CAPTION_SHORT,
     span: "normal",
   },
   {
@@ -270,7 +272,7 @@ const galleryItems: GalleryItem[] = [
     type: "image",
     category: "syriaU20",
     src: "/images/Coaching/SYRIAN U20 NATIONAL TEAM/WhatsApp Image 2026-08-30 at 15.43.06 (5).jpeg",
-    title: SYRIA_CAPTION,
+    title: SYRIA_CAPTION_SHORT,
     span: "normal",
   },
   {
@@ -278,7 +280,7 @@ const galleryItems: GalleryItem[] = [
     type: "image",
     category: "syriaU20",
     src: "/images/Coaching/SYRIAN U20 NATIONAL TEAM/WhatsApp Image 2026-08-30 at 15.43.06.jpeg",
-    title: SYRIA_CAPTION,
+    title: SYRIA_CAPTION_SHORT,
     span: "normal",
   },
   // Coaching — El Palmar CF
@@ -295,7 +297,7 @@ const galleryItems: GalleryItem[] = [
     type: "image",
     category: "elPalmarCF",
     src: "/images/Coaching/EL PALMAR CF/WhatsApp Image 2026-08-30 at 15.39.23 (1).jpeg",
-    title: EL_PALMAR_CAPTION,
+    title: EL_PALMAR_CAPTION_SHORT,
     span: "normal",
   },
   {
@@ -303,7 +305,7 @@ const galleryItems: GalleryItem[] = [
     type: "image",
     category: "elPalmarCF",
     src: "/images/Coaching/EL PALMAR CF/WhatsApp Image 2026-08-30 at 15.39.23 (2).jpeg",
-    title: EL_PALMAR_CAPTION,
+    title: EL_PALMAR_CAPTION_SHORT,
     span: "normal",
   },
   // Coaching — CDE Fuenlabrada Atlantis
