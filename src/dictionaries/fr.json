@@ -16,7 +16,7 @@
     "watchWork": "Voir Mon Travail",
     "badge": "Scientifique du Sport. Entraîneur de Football UEFA. Préparateur Physique.",
     "statsExperienceLabel": "Années d'Expérience",
-    "statsMscLabel": "En Cours",
+    "statsMscLabel": "Terminé",
     "statsUefaLabel": "Coach Football",
     "scroll": "Défiler"
   },
@@ -265,6 +265,12 @@
         "institution": "Fédération Royale Espagnole de Football (RFEF)",
         "year": "En Cours",
         "description": "Qualification d'entraîneur de football reconnue internationalement couvrant la méthodologie UEFA, la planification des séances, le développement des jeunes joueurs, le développement à long terme de l'athlète et l'analyse du jeu."
+      },
+      {
+        "degree": "Spécialiste Certifié en Force et Conditionnement (CSCS®) – Préparation à la Certification",
+        "institution": "National Strength and Conditioning Association (NSCA)",
+        "year": "En Cours",
+        "description": "Certification internationalement reconnue en force et conditionnement, couvrant les sciences de l'exercice, la conception de programmes, l'évaluation et l'administration pour la performance athlétique."
       }
     ]
   },

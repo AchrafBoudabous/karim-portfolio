@@ -16,7 +16,7 @@
     "watchWork": "Watch My Work",
     "badge": "Sports Scientist. UEFA Football Coach. Strength & Conditioning Coach.",
     "statsExperienceLabel": "Years of Experience",
-    "statsMscLabel": "In Progress",
+    "statsMscLabel": "Completed",
     "statsUefaLabel": "Football Coach",
     "scroll": "Scroll Down"
   },
@@ -265,6 +265,12 @@
         "institution": "Royal Spanish Football Federation (RFEF)",
         "year": "In Progress",
         "description": "Internationally recognized football coaching qualification covering UEFA methodology, session planning, youth player development, long-term athlete development, and match analysis."
+      },
+      {
+        "degree": "Certified Strength and Conditioning Specialist (CSCS®) – Certification Preparation",
+        "institution": "National Strength and Conditioning Association (NSCA)",
+        "year": "In Progress",
+        "description": "Internationally recognized certification in strength and conditioning, covering exercise science, program design, testing and evaluation, and organization and administration for athletic performance."
       }
     ]
   },

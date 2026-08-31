@@ -10,6 +10,7 @@ import {
   Star,
   Zap,
   Clock,
+  Dumbbell,
 } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
 
@@ -20,7 +21,7 @@ interface EducationItem {
   description: string;
 }
 
-const icons = [GraduationCap, Award, Star, BookOpen, School, Zap, Clock];
+const icons = [GraduationCap, Award, Star, BookOpen, School, Zap, Clock, Dumbbell];
 
 const cardStyles = [
   {
@@ -71,6 +72,13 @@ const cardStyles = [
     icon: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
     badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
     accent: "from-cyan-500/0 via-cyan-500/50 to-cyan-500/0",
+  },
+  {
+    border: "border-pink-500/20 hover:border-pink-500/40",
+    glow: "bg-pink-500/3",
+    icon: "text-pink-400 bg-pink-500/10 border-pink-500/20",
+    badge: "bg-pink-500/10 text-pink-400 border-pink-500/20",
+    accent: "from-pink-500/0 via-pink-500/50 to-pink-500/0",
   },
 ];
 
@@ -164,7 +172,7 @@ export default function Education() {
           ))}
         </div>
 
-        {/* In Progress heading + row — UEFA B */}
+        {/* In Progress heading + row — UEFA B + NSCA CSCS® */}
         <div className="mt-10 mb-6 flex items-center gap-4">
           <span className="shrink-0 text-xs font-semibold tracking-[0.25em] uppercase text-yellow-400 px-3 py-1 rounded-full border border-yellow-500/20 bg-yellow-500/5">
             {t("inProgressLabel")}

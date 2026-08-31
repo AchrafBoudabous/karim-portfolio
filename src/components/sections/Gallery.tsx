@@ -56,9 +56,10 @@ interface GalleryItem {
 }
 
 const GYM_CAPTION = "Strength & Fitness Training";
-const SYRIA_CAPTION = "Syria U20 National Team";
-const EL_PALMAR_CAPTION = "El Palmar CF First Team | 3ª RFEF | 2025/26";
-const FUENLABRADA_CAPTION = "CDE Fuenlabrada Atlantis | 2026/27";
+const SYRIA_CAPTION = "Syria U20 National Team | Strength & Conditioning Coach";
+const EL_PALMAR_CAPTION =
+  "El Palmar CF First Team | Assistant Strength & Conditioning Coach | 3ª RFEF | 2025/26";
+const FUENLABRADA_CAPTION = "Academy Head Coach & Strength and Conditioning Coach";
 
 const galleryItems: GalleryItem[] = [
   // Training — gym photos
@@ -320,7 +321,7 @@ const galleryItems: GalleryItem[] = [
     type: "image",
     category: "certificates",
     src: "/images/Certificates/Bachelor degree.jpg",
-    title: "Bachelor's Degree — UCAM",
+    title: "Diploma",
     span: "tall",
   },
   {
@@ -328,7 +329,7 @@ const galleryItems: GalleryItem[] = [
     type: "image",
     category: "certificates",
     src: "/images/Certificates/master-degree-graduation.jpeg",
-    title: "Master's Degree — UCAM",
+    title: "Diploma",
     span: "tall",
   },
   {

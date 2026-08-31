@@ -16,7 +16,7 @@
     "watchWork": "Ver Mi Trabajo",
     "badge": "Científico del Deporte. Entrenador de Fútbol UEFA. Entrenador de Fuerza y Acondicionamiento.",
     "statsExperienceLabel": "Años de Experiencia",
-    "statsMscLabel": "En Progreso",
+    "statsMscLabel": "Completado",
     "statsUefaLabel": "Entrenador Fútbol",
     "scroll": "Desplázate"
   },
@@ -265,6 +265,12 @@
         "institution": "Real Federación Española de Fútbol (RFEF)",
         "year": "En Progreso",
         "description": "Titulación de entrenador de fútbol reconocida internacionalmente que cubre la metodología UEFA, planificación de sesiones, desarrollo de jugadores juveniles, desarrollo a largo plazo del deportista y análisis del juego."
+      },
+      {
+        "degree": "Especialista Certificado en Fuerza y Acondicionamiento (CSCS®) – Preparación de la Certificación",
+        "institution": "National Strength and Conditioning Association (NSCA)",
+        "year": "En Progreso",
+        "description": "Certificación internacionalmente reconocida en fuerza y acondicionamiento, que cubre ciencias del ejercicio, diseño de programas, evaluación y administración para el rendimiento atlético."
       }
     ]
   },
