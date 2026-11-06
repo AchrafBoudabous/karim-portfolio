@@ -3,14 +3,37 @@
 import { motion } from "framer-motion";
 import { MapPin, Calendar } from "lucide-react";
 
-interface TimelineItemProps {
+export interface TimelineRole {
   role: string;
+  period: string;
+  location?: string;
+  description: string[];
+}
+
+interface TimelineItemProps {
+  role?: string;
   company: string;
   period: string;
-  location: string;
-  description: string[];
+  location?: string;
+  description?: string[];
+  roles?: TimelineRole[];
   index: number;
   isLast: boolean;
+}
+
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-1.5">
+      {items.map((line, i) => (
+        <li
+          key={i}
+          className="text-white/65 text-sm leading-relaxed pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-green-500/60"
+        >
+          {line}
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 export default function TimelineItem({
@@ -18,10 +41,13 @@ export default function TimelineItem({
   company,
   period,
   location,
-  description,
+  description = [],
+  roles,
   index,
   isLast,
 }: TimelineItemProps) {
+  const isGroup = !!roles && roles.length > 0;
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -40 }}
@@ -55,36 +81,68 @@ export default function TimelineItem({
 
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
           <div>
-            <h3 className="font-oswald text-xl font-bold text-white tracking-wide group-hover:text-green-400 transition-colors duration-300">
-              {role}
-            </h3>
-            <p className="text-green-400/80 font-semibold text-sm mt-0.5">
-              {company}
-            </p>
+            {isGroup ? (
+              <h3 className="font-oswald text-xl font-bold text-white tracking-wide group-hover:text-green-400 transition-colors duration-300">
+                {company}
+              </h3>
+            ) : (
+              <>
+                <h3 className="font-oswald text-xl font-bold text-white tracking-wide group-hover:text-green-400 transition-colors duration-300">
+                  {role}
+                </h3>
+                <p className="text-green-400/80 font-semibold text-sm mt-0.5">
+                  {company}
+                </p>
+              </>
+            )}
           </div>
 
           <div className="flex flex-col sm:items-end gap-1.5 shrink-0">
-            <div className="flex items-center gap-1.5 text-white/40 text-xs">
+            <div className="flex items-center gap-1.5 text-white/55 text-xs">
               <Calendar size={11} />
               <span>{period}</span>
             </div>
-            <div className="flex items-center gap-1.5 text-white/40 text-xs">
-              <MapPin size={11} />
-              <span>{location}</span>
-            </div>
+            {location && (
+              <div className="flex items-center gap-1.5 text-white/55 text-xs">
+                <MapPin size={11} />
+                <span>{location}</span>
+              </div>
+            )}
           </div>
         </div>
 
-        <ul className="space-y-1.5">
-          {description.map((line, i) => (
-            <li
-              key={i}
-              className="text-white/55 text-sm leading-relaxed pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-green-500/60"
-            >
-              {line}
-            </li>
-          ))}
-        </ul>
+        {isGroup ? (
+          <div className="mt-5 space-y-6">
+            {roles!.map((r, i) => (
+              <div
+                key={i}
+                className="relative pl-5 border-l border-green-500/20"
+              >
+                <span className="absolute -left-1.25 top-1.5 w-2.5 h-2.5 rounded-full bg-green-500/70" />
+                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
+                  <h4 className="text-green-400/90 font-semibold text-base">
+                    {r.role}
+                  </h4>
+                  <div className="flex flex-col sm:items-end gap-1 shrink-0">
+                    <div className="flex items-center gap-1.5 text-white/55 text-xs">
+                      <Calendar size={11} />
+                      <span>{r.period}</span>
+                    </div>
+                    {r.location && (
+                      <div className="flex items-center gap-1.5 text-white/55 text-xs">
+                        <MapPin size={11} />
+                        <span>{r.location}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <BulletList items={r.description} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <BulletList items={description} />
+        )}
       </motion.div>
     </motion.div>
   );

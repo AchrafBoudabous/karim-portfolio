@@ -17,13 +17,13 @@
     "badge": "Sports Scientist. UEFA Football Coach. Strength & Conditioning Coach.",
     "statsExperienceLabel": "Years of Experience",
     "statsMscLabel": "Completed",
-    "statsUefaLabel": "Football Coach",
+    "statsUefaLabel": "Football Licence",
     "scroll": "Scroll Down"
   },
   "about": {
     "sectionTitle": "About Me",
     "sectionSubtitle": "Sports Scientist. UEFA Football Coach. Strength & Conditioning Coach.",
-    "intro": "I am a Strength & Conditioning Coach, UEFA B Football Coach, and Personal Trainer with experience in professional football, youth development, and high-performance environments. I currently coach and oversee physical preparation at CDE FUENLABRADA ATLANTIS in Madrid, alongside my work as a Personal Trainer at Funziona – BASIC-FIT.",
+    "intro": "I am a Strength & Conditioning Coach, UEFA C Football Coach (UEFA B in progress), and Personal Trainer with experience in professional football, youth development, and high-performance environments. I currently coach and oversee physical preparation at CDE FUENLABRADA ATLANTIS in Madrid, alongside my work as a Personal Trainer at Funziona – BASIC-FIT.",
     "academic": {
       "title": "Academic Foundation",
       "body": "I hold a Bachelor's degree in Sport Science and Physical Activity and a Master's degree in High Performance in Sport, specializing in Strength and Conditioning. My education allows me to apply scientific principles in strength development, load monitoring, injury prevention, return-to-play, performance analysis, and long-term athlete development."
@@ -35,7 +35,25 @@
     "vision": {
       "title": "Professional Vision",
       "body": "My goal is to continue developing as a UEFA Football Coach and Strength & Conditioning professional in ambitious, high-performance environments. Building on my experience with youth academies in Spain and Tunisia, El Palmar CF's first team in the 3ª RFEF, and the Syrian U20 National Team, I want to help players improve their performance, reduce injury risk, and achieve their full potential."
-    }
+    },
+    "highlights": [
+      {
+        "label": "Madrid",
+        "sublabel": "Spain"
+      },
+      {
+        "label": "UCAM",
+        "sublabel": "Graduate"
+      },
+      {
+        "label": "CDE Atlantis",
+        "sublabel": "Head Coach"
+      },
+      {
+        "label": "Funziona",
+        "sublabel": "Personal Trainer"
+      }
+    ]
   },
   "services": {
     "sectionTitle": "Services",
@@ -50,7 +68,7 @@
       },
       {
         "title": "Football Coaching",
-        "description": "As a UEFA B Football Coach, I plan and deliver technical, tactical, and physical training for both individual players and teams. I use a player-centred approach to improve decision-making, game understanding, teamwork, and long-term development.",
+        "description": "As a UEFA C licensed Football Coach, I plan and deliver technical, tactical, and physical training for both individual players and teams. I use a player-centred approach to improve decision-making, game understanding, teamwork, and long-term development.",
         "icon": "trophy"
       },
       {
@@ -58,7 +76,8 @@
         "description": "I develop evidence-based strength and conditioning programs adapted to each athlete's age, level, position, and competition demands. My work focuses on strength and power development, load monitoring, injury prevention, return-to-play, and maximizing athletic performance.",
         "icon": "activity"
       }
-    ]
+    ],
+    "bookSession": "Book a Session"
   },
   "experience": {
     "sectionTitle": "Experience",
@@ -67,41 +86,92 @@
     "careerPathSubtitle": "From Tunisia to Spain — building expertise across elite sport environments.",
     "items": [
       {
-        "role": "Personal Trainer",
-        "company": "Funziona Entrenamiento Personal",
-        "period": "Sep 2026 — Present",
-        "location": "Madrid, Spain · On-site",
-        "description": [
-          "Design individualized training programs based on clients' goals.",
-          "Deliver strength, conditioning, and fitness coaching sessions.",
-          "Monitor client progress and adjust training plans accordingly.",
-          "Provide exercise instruction, motivation, and lifestyle guidance.",
-          "Help clients improve performance, health, and long-term fitness habits."
-        ]
-      },
-      {
-        "role": "Academy Head Coach & Strength and Conditioning Coach",
-        "company": "CDE Fuenlabrada Atlantis",
-        "period": "Aug 2026 — Present · 1 mo",
+        "company": "CDE Fuenlabrada Atlantis · Contract",
+        "period": "Aug 2026 — Present · 4 mos",
         "location": "Fuenlabrada, Community of Madrid, Spain · On-site",
-        "description": [
-          "Head Coach of the Alevín D (U12) Football 11 team.",
-          "Strength & Conditioning Coach for academy teams, leading physical development and injury prevention programs.",
-          "Assistant Coach and Strength & Conditioning Coach for Juvenil D.",
-          "Collaborate with coaching staff to support player development and performance."
+        "roles": [
+          {
+            "role": "Head Football Coach – U15",
+            "period": "Oct 2026 — Present · 2 mos",
+            "description": [
+              "Lead the U15 team training sessions, focusing on technical, tactical and physical development.",
+              "Plan match preparation and make tactical decisions during games.",
+              "Help players improve their understanding of the game, teamwork and discipline.",
+              "Track player progress and support the team's development throughout the season."
+            ]
+          },
+          {
+            "role": "Strength & Conditioning and Return-to-Play Coach – U19",
+            "period": "Aug 2026 — Present · 4 mos",
+            "description": [
+              "Plan and deliver football-specific strength and conditioning sessions for U19 players.",
+              "Design injury-prevention, speed, power, agility and conditioning exercises.",
+              "Support injured players through individualized rehabilitation and return-to-play programs.",
+              "Collaborate with the coaching staff to manage player workload, fitness and physical readiness."
+            ]
+          },
+          {
+            "role": "Head Football Coach – U12 (F11)",
+            "period": "Aug 2026 — Present · 4 mos",
+            "description": [
+              "Plan and lead technical, tactical and physical football sessions for the U12 team.",
+              "Prepare the team for matches and manage match-day coaching and tactical decisions.",
+              "Support players' technical development, teamwork, discipline and understanding of the game.",
+              "Monitor individual and team progress throughout the season."
+            ]
+          },
+          {
+            "role": "Youth Physical Performance Coach",
+            "period": "Aug 2026 — Present · 4 mos",
+            "description": [
+              "Lead gym-based physical-performance sessions for different academy age categories.",
+              "Design and deliver programs focused on strength, power, mobility, coordination and injury prevention.",
+              "Adapt exercises and training loads according to each team's age and stage of athletic development.",
+              "Monitor exercise technique and support the players' safe, progressive and long-term physical development."
+            ]
+          }
         ]
       },
       {
-        "role": "Personal Trainer",
-        "company": "Freelance | Self-Employed",
-        "period": "May 2026 — Present · 4 mos",
-        "location": "Remote",
-        "description": [
-          "Design individualized online training and nutrition programs.",
-          "Monitor client progress and adjust training plans based on performance.",
-          "Provide ongoing coaching, motivation, and accountability.",
-          "Help clients improve strength, fitness, body composition, and overall health.",
-          "Deliver remote support through regular follow-ups and performance tracking."
+        "company": "Funziona Entrenamiento Personal",
+        "period": "Sep 2025 — Present · 1 yr 3 mos",
+        "roles": [
+          {
+            "role": "Personal Trainer",
+            "period": "Sep 2026 — Present · 3 mos",
+            "location": "Greater Madrid Metropolitan Area · On-site",
+            "description": [
+              "Design individualized training programs based on clients' goals.",
+              "Deliver strength, conditioning, and fitness coaching sessions.",
+              "Monitor client progress and adjust training plans accordingly.",
+              "Provide exercise instruction, motivation, and lifestyle guidance.",
+              "Help clients improve performance, health, and long-term fitness habits."
+            ]
+          },
+          {
+            "role": "Online Personal Trainer",
+            "period": "May 2026 — Present · 7 mos",
+            "location": "Remote",
+            "description": [
+              "Design individualized online training and nutrition programs.",
+              "Monitor client progress and adjust training plans based on performance.",
+              "Provide ongoing coaching, motivation, and accountability.",
+              "Help clients improve strength, fitness, body composition, and overall health.",
+              "Deliver remote support through regular follow-ups and performance tracking."
+            ]
+          },
+          {
+            "role": "Personal Trainer · Part-time",
+            "period": "Sep 2025 — Apr 2026 · 8 mos",
+            "location": "Murcia, Región de Murcia, Spain · On-site",
+            "description": [
+              "Designed individualized training programs based on clients' goals.",
+              "Delivered strength, conditioning, and fitness coaching sessions.",
+              "Monitored client progress and adjusted training plans accordingly.",
+              "Provided exercise instruction, motivation, and lifestyle guidance.",
+              "Helped clients improve performance, health, and long-term fitness habits."
+            ]
+          }
         ]
       },
       {
@@ -118,55 +188,48 @@
         ]
       },
       {
-        "role": "Strength & Conditioning Coach",
-        "company": "El Palmar CF",
-        "period": "Apr 2026 — May 2026 · 2 mos",
-        "location": "Murcia, Spain · On-site",
+        "role": "Assistant Strength & Conditioning Coach",
+        "company": "El Palmar CF · Internship",
+        "period": "Mar 2026 — May 2026 · 3 mos",
+        "location": "El Palmar, Región de Murcia, Spain · On-site",
         "description": [
-          "Supported the first team's physical preparation in the 3ª RFEF.",
-          "Assisted with warm-ups, strength & conditioning, and recovery sessions.",
-          "Monitored player workload and match readiness.",
-          "Contributed to injury prevention and performance optimization.",
-          "Collaborated with the coaching staff in a competitive football environment."
+          "Completed my master's internship with the first team competing in the 3ª RFEF.",
+          "Assisted the Strength & Conditioning Coach with warm-ups, strength, speed, agility and conditioning sessions.",
+          "Supported injury-prevention, recovery and return-to-play work.",
+          "Helped manage training loads and assess players' match readiness.",
+          "Prepared equipment and supported match-day warm-ups and non-starters' sessions.",
+          "Collaborated with the technical and medical staff to support player health and performance."
         ]
       },
       {
-        "role": "Personal Trainer",
-        "company": "Funziona Entrenamiento Personal",
-        "period": "Sep 2025 — Apr 2026 · 8 mos",
+        "company": "Asociación Deportiva Vistalegre · Internship",
+        "period": "Feb 2025 — Mar 2026 · 1 yr 2 mos",
         "location": "Murcia, Región de Murcia, Spain · On-site",
-        "description": [
-          "Designed individualized training programs based on clients' goals.",
-          "Delivered strength, conditioning, and fitness coaching sessions.",
-          "Monitored client progress and adjusted training plans accordingly.",
-          "Provided exercise instruction, motivation, and lifestyle guidance.",
-          "Helped clients improve performance, health, and long-term fitness habits."
-        ]
-      },
-      {
-        "role": "Assistant Football Coach",
-        "company": "Asociación Deportiva Vistalegre",
-        "period": "Sep 2025 — Mar 2026 · 7 mos",
-        "location": "Murcia, Región de Murcia, Spain · On-site",
-        "description": [
-          "Assisted in planning and delivering youth football training sessions.",
-          "Supported match preparation and on-field coaching.",
-          "Contributed to technical and tactical player development.",
-          "Worked closely with UEFA-licensed coaches in a competitive academy environment.",
-          "Gained practical coaching experience during the UEFA C Coaching Licence internship."
-        ]
-      },
-      {
-        "role": "Strength & Conditioning Coach",
-        "company": "Asociación Deportiva Vistalegre",
-        "period": "Feb 2025 — Jun 2025 · 5 mos",
-        "location": "Murcia, Región de Murcia, Spain · On-site",
-        "description": [
-          "Designed and delivered age-appropriate strength and conditioning sessions.",
-          "Monitored player development and training load.",
-          "Supported injury prevention and long-term athletic development.",
-          "Collaborated with technical staff to integrate physical preparation into training.",
-          "Applied sports science principles in a youth football environment."
+        "roles": [
+          {
+            "role": "Assistant Football Coach",
+            "period": "Aug 2025 — Mar 2026 · 8 mos",
+            "description": [
+              "Completed the practical internship required for the UEFA C Coaching Licence.",
+              "Assisted with planning and delivering youth football training sessions.",
+              "Supported match preparation and on-field coaching.",
+              "Contributed to players' technical, tactical and physical development.",
+              "Assisted with exercise demonstrations, organization and feedback.",
+              "Collaborated with the coaching staff in a competitive academy environment."
+            ]
+          },
+          {
+            "role": "Strength & Conditioning Coach",
+            "period": "Feb 2025 — Jul 2025 · 6 mos",
+            "description": [
+              "Completed my bachelor's degree internship with the club's youth academy.",
+              "Assisted in designing and delivering age-appropriate strength and conditioning sessions.",
+              "Supported warm-ups, injury-prevention work and physical development.",
+              "Helped monitor players' progress and training loads.",
+              "Collaborated with the coaching staff to integrate physical preparation into football sessions.",
+              "Applied sports science principles in a youth academy environment."
+            ]
+          }
         ]
       },
       {
@@ -215,7 +278,38 @@
     "noItems": "No items found.",
     "closeLabel": "Close lightbox",
     "prevLabel": "Previous image",
-    "nextLabel": "Next image"
+    "nextLabel": "Next image",
+    "dialogLabel": "Media viewer",
+    "captions": {
+      "gym": "Strength & Fitness Training",
+      "syria": "Syria U20 National Team | Strength & Conditioning Coach",
+      "syriaShort": "Syria U20 National Team",
+      "elPalmar": "El Palmar CF First Team | Assistant Strength & Conditioning Coach | 3ª RFEF | 2025/26",
+      "elPalmarShort": "El Palmar CF First Team",
+      "fuenlabrada": "Academy Head Coach & Strength and Conditioning Coach",
+      "u15Role": "U15 Head Coach",
+      "u19Role": "U19 S&C & Return-to-Play Coach",
+      "u12Role": "U12 (F11) Head Coach",
+      "u15Win": "Celebrating a win with the team",
+      "u15Instructions": "Giving tactical instructions from the touchline",
+      "u15TechnicalArea": "Following the game from the technical area",
+      "u15TeamTalk": "Half-time team talk",
+      "u19Celebration": "Post-match celebration with the U19 squad",
+      "u19Coaching": "Coaching players during a session",
+      "u19Feedback": "One-on-one feedback with a player",
+      "u19Staff": "Analysing the game with the coaching staff",
+      "u19Focus": "Match-day focus",
+      "u12Encourage": "Encouraging a player on match day",
+      "u12Lineup": "Pre-match line-up",
+      "u12Training": "Leading a training session",
+      "u12MatchDay": "Match day with the team",
+      "u12Drill": "Timing a conditioning drill",
+      "bachelor": "Bachelor's Degree in Sport Sciences",
+      "master": "Master's Degree Graduation — High Performance Sport",
+      "uefaC": "UEFA C Coaching Diploma",
+      "fifa": "FIFA Diploma in Football Medicine",
+      "barcaStrength": "Strength Training — Barça Innovation Hub"
+    }
   },
   "education": {
     "sectionTitle": "Education",
@@ -264,14 +358,24 @@
         "degree": "UEFA B Football Coaching Licence",
         "institution": "Royal Spanish Football Federation (RFEF)",
         "year": "In Progress",
-        "description": "Internationally recognized football coaching qualification covering UEFA methodology, session planning, youth player development, long-term athlete development, and match analysis."
+        "description": "Internationally recognized football coaching qualification covering UEFA methodology, session planning, youth player development, long-term athlete development, and match analysis.",
+        "inProgress": true
       },
       {
         "degree": "Certified Strength and Conditioning Specialist (CSCS®) – Certification Preparation",
         "institution": "National Strength and Conditioning Association (NSCA)",
         "year": "In Progress",
-        "description": "Internationally recognized certification in strength and conditioning, covering exercise science, program design, testing and evaluation, and organization and administration for athletic performance."
+        "description": "Internationally recognized certification in strength and conditioning, covering exercise science, program design, testing and evaluation, and organization and administration for athletic performance.",
+        "inProgress": true
       }
+    ],
+    "skills": [
+      "UEFA C Licence",
+      "MSc S&C",
+      "BSc Sport Science",
+      "Barça Innovation Hub",
+      "FIFA Football Medicine",
+      "CPR Certified"
     ]
   },
   "contact": {
@@ -292,11 +396,18 @@
     "sendAnother": "Send Another",
     "follow": "Follow Me",
     "availableTitle": "Available for new opportunities",
-    "availableText": "Open to S&C coaching roles, Football Coach positions & personal training clients."
+    "availableText": "Open to S&C coaching roles, Football Coach positions & personal training clients.",
+    "nameLabel": "Name",
+    "emailLabel2": "Email",
+    "messageLabel": "Message",
+    "rateLimited": "Too many messages. Please wait a few minutes and try again.",
+    "unavailable": "The form is temporarily unavailable. Please email me directly."
   },
   "footer": {
     "rights": "All rights reserved.",
-    "madeWith": "Crafted with passion for sport & science."
+    "madeWith": "Crafted with passion for sport & science.",
+    "navTitle": "Navigate",
+    "socialTitle": "Follow"
   },
   "booking": {
     "title": "Book a Session",
@@ -332,6 +443,70 @@
       "football": "Football Coaching",
       "sc": "Strength & Conditioning",
       "discovery": "Free Discovery Call"
+    },
+    "closeLabel": "Close booking form",
+    "nameLabel": "Full name",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone (optional)",
+    "dateLabel": "Preferred date",
+    "timeLabel": "Preferred time",
+    "messageLabel": "Goals or additional info (optional)",
+    "rateLimited": "Too many requests. Please wait a few minutes and try again.",
+    "unavailable": "Booking is temporarily unavailable. Please contact me directly.",
+    "serviceRequired": "Please choose a service first."
+  },
+  "meta": {
+    "title": "Karim Boudabous | Football Coach (UEFA C) · Strength & Conditioning Coach",
+    "description": "Strength & Conditioning Coach, UEFA C Football Coach and Personal Trainer based in Madrid, Spain. High-performance S&C, football coaching and personal training."
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "backToTop": "Back to top",
+    "switchLanguage": "Switch language",
+    "mainNav": "Main navigation"
+  },
+  "partners": {
+    "title": "Clubs & institutions I have worked with"
+  },
+  "validation": {
+    "name": {
+      "required": "Name is required",
+      "tooShort": "Name must be at least 2 characters",
+      "tooLong": "Name must be less than 100 characters",
+      "invalid": "Name can only contain letters, spaces, hyphens and apostrophes"
+    },
+    "email": {
+      "required": "Email is required",
+      "tooLong": "Email address is too long",
+      "invalid": "Please enter a valid email address"
+    },
+    "phone": {
+      "tooShort": "Phone number is too short",
+      "tooLong": "Phone number is too long",
+      "invalid": "Phone number contains invalid characters"
+    },
+    "message": {
+      "required": "Message is required",
+      "tooShort": "Message must be at least 10 characters",
+      "tooLong": "Message is too long"
+    },
+    "preferredDate": {
+      "invalid": "Please enter a valid date",
+      "past": "Date cannot be in the past",
+      "tooFar": "Please choose a date within the next 12 months"
+    },
+    "preferredTime": {
+      "invalid": "Please enter a valid time"
+    },
+    "service": {
+      "required": "Please select a service",
+      "invalid": "Invalid service"
+    },
+    "sessionType": {
+      "required": "Please select a session type",
+      "invalid": "Invalid session type"
     }
   }
 }

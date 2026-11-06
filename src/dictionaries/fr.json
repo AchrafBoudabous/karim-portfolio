@@ -17,13 +17,13 @@
     "badge": "Scientifique du Sport. Entraîneur de Football UEFA. Préparateur Physique.",
     "statsExperienceLabel": "Années d'Expérience",
     "statsMscLabel": "Terminé",
-    "statsUefaLabel": "Coach Football",
+    "statsUefaLabel": "Licence de Football",
     "scroll": "Défiler"
   },
   "about": {
     "sectionTitle": "À Propos",
     "sectionSubtitle": "Scientifique du Sport. Entraîneur de Football UEFA. Préparateur Physique.",
-    "intro": "Je suis Préparateur Physique, Entraîneur de Football UEFA B et Coach Personnel, avec une expérience dans le football professionnel, le développement des jeunes et les environnements de haute performance. J'entraîne actuellement et supervise la préparation physique au CDE FUENLABRADA ATLANTIS à Madrid, en parallèle de mon activité de Coach Personnel chez Funziona – BASIC-FIT.",
+    "intro": "Je suis Préparateur Physique, Entraîneur de Football UEFA C (UEFA B en cours) et Coach Personnel, avec une expérience dans le football professionnel, le développement des jeunes et les environnements de haute performance. J'entraîne actuellement et supervise la préparation physique au CDE FUENLABRADA ATLANTIS à Madrid, en parallèle de mon activité de Coach Personnel chez Funziona – BASIC-FIT.",
     "academic": {
       "title": "Socle Académique",
       "body": "Je suis titulaire d'une Licence en Sciences du Sport et de l'Activité Physique et d'un Master en Sport de Haute Performance, spécialisé en Force et Conditionnement. Ma formation me permet d'appliquer des principes scientifiques dans le développement de la force, le suivi de la charge d'entraînement, la prévention des blessures, le retour au jeu, l'analyse de la performance et le développement à long terme de l'athlète."
@@ -35,7 +35,25 @@
     "vision": {
       "title": "Vision Professionnelle",
       "body": "Mon objectif est de continuer à évoluer en tant qu'Entraîneur de Football UEFA et professionnel de la Force et du Conditionnement dans des environnements ambitieux et de haute performance. Fort de mon expérience dans les académies de jeunes en Espagne et en Tunisie, avec la première équipe d'El Palmar CF en 3ª RFEF, et avec l'équipe nationale syrienne U20, je souhaite aider les joueurs à améliorer leurs performances, réduire le risque de blessure et atteindre leur plein potentiel."
-    }
+    },
+    "highlights": [
+      {
+        "label": "Madrid",
+        "sublabel": "Espagne"
+      },
+      {
+        "label": "UCAM",
+        "sublabel": "Diplômé"
+      },
+      {
+        "label": "CDE Atlantis",
+        "sublabel": "Entraîneur Principal"
+      },
+      {
+        "label": "Funziona",
+        "sublabel": "Coach Personnel"
+      }
+    ]
   },
   "services": {
     "sectionTitle": "Services",
@@ -50,7 +68,7 @@
       },
       {
         "title": "Entraînement Football",
-        "description": "En tant qu'Entraîneur de Football UEFA B, je planifie et dispense un entraînement technique, tactique et physique aussi bien pour les joueurs individuels que pour les équipes. J'utilise une approche centrée sur le joueur afin d'améliorer la prise de décision, la compréhension du jeu, l'esprit d'équipe et le développement à long terme.",
+        "description": "En tant qu'Entraîneur de Football titulaire de la Licence UEFA C, je planifie et dispense un entraînement technique, tactique et physique aussi bien pour les joueurs individuels que pour les équipes. J'utilise une approche centrée sur le joueur afin d'améliorer la prise de décision, la compréhension du jeu, l'esprit d'équipe et le développement à long terme.",
         "icon": "trophy"
       },
       {
@@ -58,7 +76,8 @@
         "description": "Je développe des programmes de force et de conditionnement fondés sur des preuves, adaptés à l'âge, au niveau, au poste et aux exigences de la compétition de chaque athlète. Mon travail porte sur le développement de la force et de la puissance, le suivi de la charge, la prévention des blessures, le retour au jeu et l'optimisation de la performance athlétique.",
         "icon": "activity"
       }
-    ]
+    ],
+    "bookSession": "Réserver une Séance"
   },
   "experience": {
     "sectionTitle": "Expérience",
@@ -67,41 +86,92 @@
     "careerPathSubtitle": "De la Tunisie à l'Espagne — construire une expertise dans les milieux sportifs d'élite.",
     "items": [
       {
-        "role": "Coach Personnel",
-        "company": "Funziona Entrenamiento Personal",
-        "period": "Sep 2026 — Présent",
-        "location": "Madrid, Espagne · Présentiel",
-        "description": [
-          "Conçoit des programmes d'entraînement individualisés selon les objectifs des clients.",
-          "Anime des séances de force, de conditionnement et de remise en forme.",
-          "Suit la progression des clients et ajuste les plans d'entraînement en conséquence.",
-          "Fournit des instructions sur l'exécution des exercices, de la motivation et des conseils sur le mode de vie.",
-          "Aide les clients à améliorer leurs performances, leur santé et leurs habitudes fitness à long terme."
-        ]
-      },
-      {
-        "role": "Entraîneur Principal d'Académie & Préparateur Physique",
-        "company": "CDE Fuenlabrada Atlantis",
-        "period": "Août 2026 — Présent · 1 mois",
+        "company": "CDE Fuenlabrada Atlantis · Contrat",
+        "period": "Août 2026 — Présent · 4 mois",
         "location": "Fuenlabrada, Communauté de Madrid, Espagne · Présentiel",
-        "description": [
-          "Entraîneur principal de l'équipe Alevín D (U12) de Football à 11.",
-          "Préparateur physique des équipes de l'académie, pilotant le développement physique et les programmes de prévention des blessures.",
-          "Entraîneur adjoint et préparateur physique de l'équipe Juvenil D.",
-          "Collaboration avec le staff technique pour soutenir le développement et la performance des joueurs."
+        "roles": [
+          {
+            "role": "Entraîneur Principal – U15",
+            "period": "Oct 2026 — Présent · 2 mois",
+            "description": [
+              "Direction des séances d'entraînement de l'équipe U15, axées sur le développement technique, tactique et physique.",
+              "Planification de la préparation des matchs et prise de décisions tactiques pendant les rencontres.",
+              "Aide aux joueurs pour améliorer leur compréhension du jeu, l'esprit d'équipe et la discipline.",
+              "Suivi de la progression des joueurs et accompagnement du développement de l'équipe tout au long de la saison."
+            ]
+          },
+          {
+            "role": "Préparateur Physique & Réathlétisation – U19",
+            "period": "Août 2026 — Présent · 4 mois",
+            "description": [
+              "Planification et animation de séances de force et de conditionnement spécifiques au football pour les joueurs U19.",
+              "Conception d'exercices de prévention des blessures, de vitesse, de puissance, d'agilité et de conditionnement.",
+              "Accompagnement des joueurs blessés grâce à des programmes individualisés de rééducation et de retour au jeu.",
+              "Collaboration avec le staff technique pour gérer la charge de travail, la condition physique et la disponibilité des joueurs."
+            ]
+          },
+          {
+            "role": "Entraîneur Principal – U12 (Football à 11)",
+            "period": "Août 2026 — Présent · 4 mois",
+            "description": [
+              "Planification et direction de séances techniques, tactiques et physiques pour l'équipe U12.",
+              "Préparation de l'équipe aux matchs et gestion du coaching et des décisions tactiques le jour du match.",
+              "Soutien au développement technique, à l'esprit d'équipe, à la discipline et à la compréhension du jeu des joueurs.",
+              "Suivi de la progression individuelle et collective tout au long de la saison."
+            ]
+          },
+          {
+            "role": "Préparateur Physique des Jeunes",
+            "period": "Août 2026 — Présent · 4 mois",
+            "description": [
+              "Direction de séances de performance physique en salle pour les différentes catégories d'âge de l'académie.",
+              "Conception et animation de programmes axés sur la force, la puissance, la mobilité, la coordination et la prévention des blessures.",
+              "Adaptation des exercices et des charges d'entraînement à l'âge et au stade de développement athlétique de chaque équipe.",
+              "Contrôle de la technique d'exécution et accompagnement d'un développement physique sûr, progressif et à long terme des joueurs."
+            ]
+          }
         ]
       },
       {
-        "role": "Coach Personnel",
-        "company": "Freelance | Indépendant",
-        "period": "Mai 2026 — Présent · 4 mois",
-        "location": "À distance",
-        "description": [
-          "Conception de programmes d'entraînement et de nutrition individualisés en ligne.",
-          "Suivi de la progression des clients et ajustement des plans d'entraînement selon les performances.",
-          "Accompagnement, motivation et responsabilisation continus.",
-          "Aide les clients à améliorer la force, la condition physique, la composition corporelle et la santé globale.",
-          "Suivi à distance grâce à des points réguliers et un contrôle des performances."
+        "company": "Funziona Entrenamiento Personal",
+        "period": "Sep 2025 — Présent · 1 an et 3 mois",
+        "roles": [
+          {
+            "role": "Coach Personnel",
+            "period": "Sep 2026 — Présent · 3 mois",
+            "location": "Région métropolitaine de Madrid · Présentiel",
+            "description": [
+              "Conception de programmes d'entraînement individualisés selon les objectifs des clients.",
+              "Animation de séances de force, de conditionnement et de remise en forme.",
+              "Suivi de la progression des clients et ajustement des plans d'entraînement en conséquence.",
+              "Instruction sur l'exécution des exercices, motivation et conseils sur le mode de vie.",
+              "Aide les clients à améliorer leurs performances, leur santé et leurs habitudes fitness à long terme."
+            ]
+          },
+          {
+            "role": "Coach Personnel en Ligne",
+            "period": "Mai 2026 — Présent · 7 mois",
+            "location": "À distance",
+            "description": [
+              "Conception de programmes d'entraînement et de nutrition individualisés en ligne.",
+              "Suivi de la progression des clients et ajustement des plans d'entraînement selon les performances.",
+              "Accompagnement, motivation et responsabilisation continus.",
+              "Aide les clients à améliorer la force, la condition physique, la composition corporelle et la santé globale.",
+              "Suivi à distance grâce à des points réguliers et un contrôle des performances."
+            ]
+          },
+          {
+            "role": "Coach Personnel · Temps partiel",
+            "period": "Sep 2025 — Avr 2026 · 8 mois",
+            "location": "Murcie, Région de Murcie, Espagne · Présentiel",
+            "description": [
+              "Conception de programmes d'entraînement individualisés selon les objectifs des clients.",
+              "Animation de séances de force, de conditionnement et de remise en forme.",
+              "Suivi de la progression des clients et ajustement des plans d'entraînement en conséquence.",
+              "Instruction sur l'exécution des exercices, motivation et conseils sur le mode de vie.",
+              "Aide les clients à améliorer leurs performances, leur santé et leurs habitudes fitness à long terme."
+            ]
+          }
         ]
       },
       {
@@ -118,55 +188,48 @@
         ]
       },
       {
-        "role": "Préparateur Physique",
-        "company": "El Palmar CF",
-        "period": "Avr 2026 — Mai 2026 · 2 mois",
-        "location": "Murcie, Espagne · Présentiel",
+        "role": "Préparateur Physique Adjoint",
+        "company": "El Palmar CF · Stage",
+        "period": "Mars 2026 — Mai 2026 · 3 mois",
+        "location": "El Palmar, Région de Murcie, Espagne · Présentiel",
         "description": [
-          "Soutien à la préparation physique de l'équipe première en 3ª RFEF.",
-          "Aide lors des échauffements, des séances de force et conditionnement et de récupération.",
-          "Suivi de la charge de travail et de la disponibilité des joueurs pour la compétition.",
-          "Contribution à la prévention des blessures et à l'optimisation de la performance.",
-          "Collaboration avec le staff technique dans un environnement de football compétitif."
+          "Stage de master réalisé avec l'équipe première évoluant en 3ª RFEF.",
+          "Assistance au préparateur physique lors des échauffements et des séances de force, de vitesse, d'agilité et de conditionnement.",
+          "Soutien au travail de prévention des blessures, de récupération et de retour au jeu.",
+          "Aide à la gestion des charges d'entraînement et à l'évaluation de la disponibilité des joueurs pour les matchs.",
+          "Préparation du matériel et soutien lors des échauffements d'avant-match et des séances des non-titulaires.",
+          "Collaboration avec le staff technique et médical pour préserver la santé et la performance des joueurs."
         ]
       },
       {
-        "role": "Coach Personnel",
-        "company": "Funziona Entrenamiento Personal",
-        "period": "Sep 2025 — Avr 2026 · 8 mois",
+        "company": "Asociación Deportiva Vistalegre · Stage",
+        "period": "Fév 2025 — Mars 2026 · 1 an et 2 mois",
         "location": "Murcie, Région de Murcie, Espagne · Présentiel",
-        "description": [
-          "Conception de programmes d'entraînement individualisés selon les objectifs des clients.",
-          "Animation de séances de force, de conditionnement et de remise en forme.",
-          "Suivi de la progression des clients et ajustement des plans d'entraînement en conséquence.",
-          "Instruction sur l'exécution des exercices, motivation et conseils sur le mode de vie.",
-          "Aide les clients à améliorer leurs performances, leur santé et leurs habitudes fitness à long terme."
-        ]
-      },
-      {
-        "role": "Entraîneur Adjoint de Football",
-        "company": "Asociación Deportiva Vistalegre",
-        "period": "Sep 2025 — Mar 2026 · 7 mois",
-        "location": "Murcie, Région de Murcie, Espagne · Présentiel",
-        "description": [
-          "Participation à la planification et à l'animation des séances d'entraînement de football des jeunes.",
-          "Soutien à la préparation des matchs et à l'encadrement technique sur le terrain.",
-          "Contribution au développement technique et tactique des joueurs.",
-          "Travail étroit avec des entraîneurs licenciés UEFA dans un environnement d'académie compétitif.",
-          "Expérience pratique d'entraînement acquise durant le stage de la Licence d'Entraîneur UEFA C."
-        ]
-      },
-      {
-        "role": "Préparateur Physique",
-        "company": "Asociación Deportiva Vistalegre",
-        "period": "Fév 2025 — Juin 2025 · 5 mois",
-        "location": "Murcie, Région de Murcie, Espagne · Présentiel",
-        "description": [
-          "Conception et animation de séances de force et de conditionnement adaptées à l'âge.",
-          "Suivi du développement des joueurs et de la charge d'entraînement.",
-          "Soutien à la prévention des blessures et au développement athlétique à long terme.",
-          "Collaboration avec le staff technique pour intégrer la préparation physique dans les entraînements.",
-          "Application des principes des sciences du sport dans un environnement de football des jeunes."
+        "roles": [
+          {
+            "role": "Entraîneur Adjoint de Football",
+            "period": "Août 2025 — Mars 2026 · 8 mois",
+            "description": [
+              "Stage pratique obligatoire pour l'obtention de la Licence d'Entraîneur UEFA C.",
+              "Participation à la planification et à l'animation des séances d'entraînement de football des jeunes.",
+              "Soutien à la préparation des matchs et à l'encadrement technique sur le terrain.",
+              "Contribution au développement technique, tactique et physique des joueurs.",
+              "Aide à la démonstration des exercices, à l'organisation et aux retours aux joueurs.",
+              "Collaboration avec le staff technique dans un environnement d'académie compétitif."
+            ]
+          },
+          {
+            "role": "Préparateur Physique",
+            "period": "Fév 2025 — Juil 2025 · 6 mois",
+            "description": [
+              "Stage de licence réalisé au sein de l'académie des jeunes du club.",
+              "Participation à la conception et à l'animation de séances de force et de conditionnement adaptées à l'âge.",
+              "Soutien lors des échauffements, du travail de prévention des blessures et du développement physique.",
+              "Aide au suivi de la progression des joueurs et des charges d'entraînement.",
+              "Collaboration avec le staff technique pour intégrer la préparation physique dans les séances de football.",
+              "Application des principes des sciences du sport dans un environnement d'académie de jeunes."
+            ]
+          }
         ]
       },
       {
@@ -215,7 +278,38 @@
     "noItems": "Aucun élément trouvé.",
     "closeLabel": "Fermer la visionneuse",
     "prevLabel": "Image précédente",
-    "nextLabel": "Image suivante"
+    "nextLabel": "Image suivante",
+    "dialogLabel": "Visionneuse",
+    "captions": {
+      "gym": "Entraînement Force & Fitness",
+      "syria": "Équipe Nationale de Syrie U20 | Préparateur Physique",
+      "syriaShort": "Équipe Nationale de Syrie U20",
+      "elPalmar": "Équipe Première d'El Palmar CF | Préparateur Physique Adjoint | 3ª RFEF | 2025/26",
+      "elPalmarShort": "Équipe Première d'El Palmar CF",
+      "fuenlabrada": "Entraîneur Principal d'Académie & Préparateur Physique",
+      "u15Role": "Entraîneur Principal U15",
+      "u19Role": "Préparateur Physique & Réathlétisation U19",
+      "u12Role": "Entraîneur Principal U12 (Foot à 11)",
+      "u15Win": "Célébration d'une victoire avec l'équipe",
+      "u15Instructions": "Consignes tactiques depuis le bord du terrain",
+      "u15TechnicalArea": "Suivi du match depuis la zone technique",
+      "u15TeamTalk": "Causerie de la mi-temps",
+      "u19Celebration": "Célébration d'après-match avec l'effectif U19",
+      "u19Coaching": "Coaching des joueurs pendant une séance",
+      "u19Feedback": "Retour individuel avec un joueur",
+      "u19Staff": "Analyse du match avec le staff technique",
+      "u19Focus": "Concentration le jour du match",
+      "u12Encourage": "Encouragement d'un joueur le jour du match",
+      "u12Lineup": "Alignement d'avant-match",
+      "u12Training": "Direction d'une séance d'entraînement",
+      "u12MatchDay": "Jour de match avec l'équipe",
+      "u12Drill": "Chronométrage d'un exercice de conditionnement",
+      "bachelor": "Licence en Sciences du Sport",
+      "master": "Remise du Master — Sport de Haute Performance",
+      "uefaC": "Diplôme d'Entraîneur UEFA C",
+      "fifa": "Diplôme FIFA en Médecine du Football",
+      "barcaStrength": "Entraînement de Force — Barça Innovation Hub"
+    }
   },
   "education": {
     "sectionTitle": "Formation",
@@ -264,14 +358,24 @@
         "degree": "Licence UEFA B d'Entraîneur de Football",
         "institution": "Fédération Royale Espagnole de Football (RFEF)",
         "year": "En Cours",
-        "description": "Qualification d'entraîneur de football reconnue internationalement couvrant la méthodologie UEFA, la planification des séances, le développement des jeunes joueurs, le développement à long terme de l'athlète et l'analyse du jeu."
+        "description": "Qualification d'entraîneur de football reconnue internationalement couvrant la méthodologie UEFA, la planification des séances, le développement des jeunes joueurs, le développement à long terme de l'athlète et l'analyse du jeu.",
+        "inProgress": true
       },
       {
         "degree": "Spécialiste Certifié en Force et Conditionnement (CSCS®) – Préparation à la Certification",
         "institution": "National Strength and Conditioning Association (NSCA)",
         "year": "En Cours",
-        "description": "Certification internationalement reconnue en force et conditionnement, couvrant les sciences de l'exercice, la conception de programmes, l'évaluation et l'administration pour la performance athlétique."
+        "description": "Certification internationalement reconnue en force et conditionnement, couvrant les sciences de l'exercice, la conception de programmes, l'évaluation et l'administration pour la performance athlétique.",
+        "inProgress": true
       }
+    ],
+    "skills": [
+      "Licence UEFA C",
+      "MSc Prépa. Physique",
+      "Licence STAPS",
+      "Barça Innovation Hub",
+      "FIFA Médecine du Football",
+      "Certifié RCP"
     ]
   },
   "contact": {
@@ -292,11 +396,18 @@
     "sendAnother": "Envoyer un Autre",
     "follow": "Suivez-Moi",
     "availableTitle": "Disponible pour de nouvelles opportunités",
-    "availableText": "Ouvert aux postes de préparateur physique, d'Entraîneur de Football et aux clients en coaching personnel."
+    "availableText": "Ouvert aux postes de préparateur physique, d'Entraîneur de Football et aux clients en coaching personnel.",
+    "nameLabel": "Nom",
+    "emailLabel2": "Email",
+    "messageLabel": "Message",
+    "rateLimited": "Trop de messages. Veuillez patienter quelques minutes et réessayer.",
+    "unavailable": "Le formulaire est temporairement indisponible. Écrivez-moi directement par email."
   },
   "footer": {
     "rights": "Tous droits réservés.",
-    "madeWith": "Créé avec passion pour le sport et la science."
+    "madeWith": "Créé avec passion pour le sport et la science.",
+    "navTitle": "Navigation",
+    "socialTitle": "Suivez-moi"
   },
   "booking": {
     "title": "Réserver une Séance",
@@ -332,6 +443,70 @@
       "football": "Entraînement Football",
       "sc": "Préparation Physique",
       "discovery": "Appel Découverte Gratuit"
+    },
+    "closeLabel": "Fermer le formulaire de réservation",
+    "nameLabel": "Nom complet",
+    "emailLabel": "Email",
+    "phoneLabel": "Téléphone (facultatif)",
+    "dateLabel": "Date souhaitée",
+    "timeLabel": "Heure souhaitée",
+    "messageLabel": "Objectifs ou informations complémentaires (facultatif)",
+    "rateLimited": "Trop de demandes. Veuillez patienter quelques minutes et réessayer.",
+    "unavailable": "La réservation est temporairement indisponible. Contactez-moi directement.",
+    "serviceRequired": "Veuillez d'abord choisir un service."
+  },
+  "meta": {
+    "title": "Karim Boudabous | Entraîneur de Football (UEFA C) · Préparateur Physique",
+    "description": "Préparateur physique, entraîneur de football UEFA C et coach personnel basé à Madrid, Espagne. Préparation physique de haute performance, entraînement de football et coaching personnel."
+  },
+  "a11y": {
+    "skipToContent": "Aller au contenu",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "backToTop": "Retour en haut",
+    "switchLanguage": "Changer de langue",
+    "mainNav": "Navigation principale"
+  },
+  "partners": {
+    "title": "Clubs et institutions avec lesquels j'ai travaillé"
+  },
+  "validation": {
+    "name": {
+      "required": "Le nom est obligatoire",
+      "tooShort": "Le nom doit contenir au moins 2 caractères",
+      "tooLong": "Le nom doit contenir moins de 100 caractères",
+      "invalid": "Le nom ne peut contenir que des lettres, espaces, tirets et apostrophes"
+    },
+    "email": {
+      "required": "L'email est obligatoire",
+      "tooLong": "L'adresse email est trop longue",
+      "invalid": "Veuillez saisir une adresse email valide"
+    },
+    "phone": {
+      "tooShort": "Le numéro est trop court",
+      "tooLong": "Le numéro est trop long",
+      "invalid": "Le numéro contient des caractères invalides"
+    },
+    "message": {
+      "required": "Le message est obligatoire",
+      "tooShort": "Le message doit contenir au moins 10 caractères",
+      "tooLong": "Le message est trop long"
+    },
+    "preferredDate": {
+      "invalid": "Veuillez saisir une date valide",
+      "past": "La date ne peut pas être dans le passé",
+      "tooFar": "Veuillez choisir une date dans les 12 prochains mois"
+    },
+    "preferredTime": {
+      "invalid": "Veuillez saisir une heure valide"
+    },
+    "service": {
+      "required": "Veuillez choisir un service",
+      "invalid": "Service invalide"
+    },
+    "sessionType": {
+      "required": "Veuillez choisir un type de séance",
+      "invalid": "Type de séance invalide"
     }
   }
 }

@@ -1,31 +1,21 @@
 # Karim Boudabous — Sports Science & Elite Performance Portfolio
 
-A professional multilingual portfolio for **Karim Boudabous**, Sports Scientist, Personal Trainer, and UEFA C Football Coach Candidate.
+A multilingual portfolio for **Karim Boudabous**: Strength & Conditioning Coach, UEFA C Football Coach and Personal Trainer.
 
-Built with **Next.js 16**, **Tailwind CSS v4**, **Framer Motion**, and **next-intl**.
+Built with **Next.js 16**, **Tailwind CSS v4**, **Framer Motion**, **Radix UI** and **next-intl**.
 
 ---
 
 ## Tech Stack
 
-- **Framework**: Next.js 16 (App Router, Turbopack)
-- **Styling**: Tailwind CSS v4
-- **Animations**: Framer Motion
+- **Framework**: Next.js 16 (App Router, Turbopack, statically generated per locale)
+- **Styling**: Tailwind CSS v4 (theme tokens live in `src/app/[locale]/globals.css`)
+- **Animations**: Framer Motion (respects the OS "reduce motion" setting)
+- **Accessible primitives**: Radix UI Dialog (booking form, gallery lightbox)
+- **UI patterns**: Magic UI / Aceternity-style spotlight cards, marquee, number ticker, scroll progress, shine buttons (`src/components/ui/`)
 - **i18n**: next-intl (EN / ES / FR)
-- **Icons**: Lucide React
+- **Email**: Nodemailer (Gmail)
 - **Language**: TypeScript
-
----
-
-## Features
-
-- Full multilingual support (English, Spanish, French)
-- Animated Hero section with real background photo
-- About, Services, Experience Timeline, Education sections
-- Filterable Masonry Gallery with lightbox
-- Contact form with real-time validation
-- Fully responsive, mobile-first design
-- Custom scrollbar and smooth scroll behavior
 
 ---
 
@@ -33,13 +23,14 @@ Built with **Next.js 16**, **Tailwind CSS v4**, **Framer Motion**, and **next-in
 
 | Section | Description |
 |---------|-------------|
-| Hero | Full-screen intro with background photo |
-| About | Academic, coaching philosophy & vision |
+| Hero | Split intro with portrait, roles and key stats |
+| Partners | Marquee of clubs and institutions |
+| About | Academic foundation, coaching philosophy & vision |
 | Services | Personal Training, Football Coaching, S&C |
-| Experience | Vertical timeline of 4 professional roles |
-| Gallery | Filterable masonry grid with lightbox |
-| Education | 4 academic & professional credentials |
-| Contact | Form with validation + social links |
+| Experience | Timeline, roles grouped by company |
+| Gallery | Filterable masonry grid with keyboard-friendly lightbox |
+| Education | Degrees, certificates and in-progress credentials |
+| Contact | Validated form + contact details and socials |
 
 ---
 
@@ -54,10 +45,19 @@ Built with **Next.js 16**, **Tailwind CSS v4**, **Framer Motion**, and **next-in
 git clone https://github.com/AchrafBoudabous/karim-portfolio.git
 cd karim-portfolio
 npm install
+cp .env.example .env.local   # then fill in the values
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000).
+
+### Environment variables
+
+| Variable | Purpose |
+|----------|---------|
+| `EMAIL_USER` | Gmail address that sends and receives form notifications |
+| `EMAIL_PASS` | Gmail **App password** for that account |
+| `NEXT_PUBLIC_SITE_URL` | Public site URL (canonical/OG links, `robots.txt`, `sitemap.xml`) |
 
 ### Build for Production
 ```bash
@@ -67,17 +67,32 @@ npm start
 
 ---
 
-## i18n
+## Editing content
 
-The site supports three languages accessible via the URL prefix:
+| What | Where |
+|------|-------|
+| All page text (3 languages) | `src/dictionaries/{en,es,fr}.json` — keep the same keys in every file |
+| Gallery photos/videos | `src/data/gallery.ts` (captions are keys in `gallery.captions`) |
+| Email, phone, social links | `src/lib/site.ts` |
 
-| Language | URL |
-|----------|-----|
-| English | `/en` |
-| Spanish | `/es` |
-| French | `/fr` |
+Experience entries can be a single role or a company with several `roles` — see the
+`CDE Fuenlabrada Atlantis` entry in the dictionaries.
 
-Translations are stored in `src/dictionaries/`.
+Avoid double spaces in media file names: Next.js' image optimizer cannot load them.
+
+---
+
+## Security
+
+- Form endpoints (`/api/contact`, `/api/booking`) enforce same-origin requests, JSON only,
+  a 16 KB body limit, per-IP and global rate limits, a honeypot field, and shared server-side
+  validation (`src/lib/validation.ts`).
+- Auto-reply emails never echo visitor-supplied text, so the forms cannot be used to send
+  arbitrary content from the Gmail account; each address receives at most 2 auto-replies/hour.
+- Strict security headers (CSP without `unsafe-eval` in production, HSTS, frame denial,
+  COOP, Permissions-Policy) are set in `next.config.ts`.
+- Rate limiting is in-memory per server instance. For a hard global quota on serverless
+  hosting, back it with a shared store (e.g. Upstash Redis).
 
 ---
 

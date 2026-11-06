@@ -1,157 +1,58 @@
-import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
-import { checkRateLimit } from "@/lib/rateLimit";
+import { NextRequest } from "next/server";
+import { allowAutoReply, guardFormRequest, respond } from "@/lib/apiGuard";
+import { isEmailConfigured, sendAutoReply, sendOwnerNotification } from "@/lib/email";
+import { validateContact } from "@/lib/validation";
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
-
-function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#x27;");
-}
-
-function validateContact(data: {
-  name: string;
-  email: string;
-  message: string;
-}) {
-  const errors: Record<string, string> = {};
-
-  if (!data.name?.trim()) {
-    errors.name = "Name is required";
-  } else if (data.name.trim().length < 2) {
-    errors.name = "Name must be at least 2 characters";
-  } else if (data.name.trim().length > 100) {
-    errors.name = "Name must be less than 100 characters";
-  } else if (!/^[a-zA-ZÀ-ÿ\s'-]+$/.test(data.name.trim())) {
-    errors.name = "Name contains invalid characters";
-  }
-
-  if (!data.email?.trim()) {
-    errors.email = "Email is required";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) {
-    errors.email = "Please enter a valid email address";
-  } else if (data.email.trim().length > 254) {
-    errors.email = "Email address is too long";
-  }
-
-  if (!data.message?.trim()) {
-    errors.message = "Message is required";
-  } else if (data.message.trim().length < 10) {
-    errors.message = "Message must be at least 10 characters";
-  } else if (data.message.trim().length > 2000) {
-    errors.message = "Message must be less than 2000 characters";
-  }
-
-  return errors;
-}
+export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+  const guard = await guardFormRequest(req, "contact");
+  if (!guard.ok) return guard.response;
+  const { body } = guard;
 
-  if (!checkRateLimit(ip, 5, 60_000).allowed) {
-    return NextResponse.json(
-      { error: "Too many requests. Please wait a moment." },
-      { status: 429 }
-    );
+  // Honeypot: real users never see or fill this field. Pretend success so
+  // bots get no signal.
+  if (typeof body.website === "string" && body.website.trim() !== "") {
+    return respond.ok();
   }
 
-  try {
-    const body = await req.json();
-    const { name, email, message } = body;
+  const errors = validateContact(body);
+  if (Object.keys(errors).length > 0) return respond.invalid(errors);
 
-    const errors = validateContact({ name, email, message });
-    if (Object.keys(errors).length > 0) {
-      return NextResponse.json({ errors }, { status: 422 });
+  if (!isEmailConfigured()) {
+    console.error("[contact] EMAIL_USER / EMAIL_PASS are not configured");
+    return respond.unavailable();
+  }
+
+  const name = String(body.name).trim();
+  const email = String(body.email).trim().toLowerCase();
+  const message = String(body.message).trim();
+
+  try {
+    await sendOwnerNotification({
+      subject: `New contact message from ${name}`,
+      title: "New Contact Message",
+      replyTo: email,
+      rows: [
+        ["Name", name],
+        ["Email", email],
+        ["Message", message],
+      ],
+    });
+
+    if (allowAutoReply(email)) {
+      await sendAutoReply({
+        to: email,
+        name,
+        subject: "Message received — Karim Boudabous",
+        title: "Message Received",
+        body: "Thank you for getting in touch! I have received your message and will get back to you as soon as possible, usually within <strong style=\"color:#fff;\">24 hours</strong>.",
+      }).catch((err) => console.error("[contact] auto-reply failed:", err));
     }
 
-    const sanitizedName = escapeHtml(name.trim());
-    const sanitizedEmail = email.trim().toLowerCase();
-    const sanitizedMessage = escapeHtml(message.trim());
-
-    await transporter.sendMail({
-      from: `"Karim Portfolio" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
-      subject: `New Contact Message from ${name.trim().replace(/[\r\n]/g, "")}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #ffffff; border-radius: 12px; overflow: hidden;">
-          <div style="background: linear-gradient(135deg, #22c55e, #059669); padding: 32px; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px; color: #000;">New Contact Message</h1>
-            <p style="margin: 8px 0 0; color: #000; opacity: 0.8;">From your portfolio website</p>
-          </div>
-          <div style="padding: 32px;">
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #9ca3af; width: 40%;">Name</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff; font-weight: bold;">${sanitizedName}</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #9ca3af;">Email</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #22c55e;">${sanitizedEmail}</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px 0; color: #9ca3af; vertical-align: top;">Message</td>
-                <td style="padding: 12px 0; color: #ffffff;">${sanitizedMessage}</td>
-              </tr>
-            </table>
-          </div>
-          <div style="background: #111; padding: 16px; text-align: center;">
-            <p style="margin: 0; color: #4b5563; font-size: 12px;">Karim Boudabous Portfolio — Contact Form</p>
-          </div>
-        </div>
-      `,
-    });
-
-    await transporter.sendMail({
-      from: `"Karim Boudabous" <${process.env.EMAIL_USER}>`,
-      to: sanitizedEmail,
-      subject: "Message Received — Karim Boudabous",
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #ffffff; border-radius: 12px; overflow: hidden;">
-          <div style="background: linear-gradient(135deg, #22c55e, #059669); padding: 32px; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px; color: #000;">Message Received!</h1>
-          </div>
-          <div style="padding: 32px;">
-            <p style="color: #d1d5db; line-height: 1.6;">Hi <strong style="color: #fff;">${sanitizedName}</strong>,</p>
-            <p style="color: #d1d5db; line-height: 1.6;">
-              Thank you for getting in touch! I have received your message and will get back to you as soon as possible, usually within <strong style="color: #fff;">24 hours</strong>.
-            </p>
-            <div style="background: #111; border: 1px solid #1a1a1a; border-radius: 8px; padding: 20px; margin: 24px 0;">
-              <h3 style="margin: 0 0 12px; color: #22c55e; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Your Message</h3>
-              <p style="margin: 0; color: #9ca3af; line-height: 1.6;">${sanitizedMessage}</p>
-            </div>
-            <p style="color: #d1d5db; line-height: 1.6;">
-              Best regards,<br/>
-              <strong style="color: #fff;">Karim Boudabous</strong><br/>
-              <span style="color: #22c55e; font-size: 13px;">Football Coach (UEFA C) · Strength & Conditioning Coach · Personal Trainer</span>
-            </p>
-          </div>
-          <div style="background: #111; padding: 16px; text-align: center;">
-            <p style="margin: 0; color: #4b5563; font-size: 12px;">© ${new Date().getFullYear()} Karim Boudabous. All rights reserved.</p>
-          </div>
-        </div>
-      `,
-    });
-
-    return NextResponse.json(
-      { message: "Message sent successfully" },
-      { status: 200 }
-    );
+    return respond.ok();
   } catch (error) {
-    console.error("Contact email error:", error);
-    return NextResponse.json(
-      { error: "Failed to send message" },
-      { status: 500 }
-    );
+    console.error("[contact] send failed:", error);
+    return respond.error();
   }
 }

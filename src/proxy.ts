@@ -1,13 +1,10 @@
 import createMiddleware from "next-intl/middleware";
+import { routing } from "@/i18n/routing";
 
-export default createMiddleware({
-  locales: ["en", "es", "fr"],
-  defaultLocale: "en",
-  localePrefix: "always",
-});
+export default createMiddleware(routing);
 
 export const config = {
-  matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|images|videos).*)",
-  ],
+  // Skip API routes, Next internals, static media and any file with an
+  // extension (robots.txt, sitemap.xml, favicon.ico, …).
+  matcher: ["/((?!api|_next|_vercel|images|videos|.*\\..*).*)"],
 };

@@ -1,277 +1,81 @@
-import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
-import { checkRateLimit } from "@/lib/rateLimit";
+import { NextRequest } from "next/server";
+import { allowAutoReply, guardFormRequest, respond } from "@/lib/apiGuard";
+import { escapeHtml, isEmailConfigured, sendAutoReply, sendOwnerNotification } from "@/lib/email";
+import { validateBooking, type ServiceKey, type SessionTypeKey } from "@/lib/validation";
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+export const runtime = "nodejs";
 
-// All translated variants of service and session type values
-const ALLOWED_SERVICES = new Set([
-  "Personal Training",
-  "Football Coaching",
-  "Strength & Conditioning",
-  "Free Discovery Call",
-  "Entraînement Personnel",
-  "Entraînement Football",
-  "Préparation Physique",
-  "Appel Découverte Gratuit",
-  "Entrenamiento Personal",
-  "Entrenamiento de Fútbol",
-  "Preparación Física",
-  "Llamada de Descubrimiento Gratuita",
-]);
+// Labels are resolved on the server from stable keys, so the client can
+// never inject its own text into the email subject.
+const SERVICE_LABELS: Record<ServiceKey, string> = {
+  pt: "Personal Training",
+  football: "Football Coaching",
+  sc: "Strength & Conditioning",
+  discovery: "Free Discovery Call",
+};
 
-const ALLOWED_SESSION_TYPES = new Set([
-  "In-Person",
-  "Online",
-  "Présentiel",
-  "En Ligne",
-  "Presencial",
-]);
-
-function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#x27;");
-}
-
-function stripNewlines(str: string): string {
-  return str.replace(/[\r\n]/g, "");
-}
-
-function validateBooking(data: {
-  name: string;
-  email: string;
-  phone?: string;
-  service: string;
-  sessionType: string;
-  preferredDate?: string;
-  preferredTime?: string;
-  message?: string;
-}) {
-  const errors: Record<string, string> = {};
-
-  if (!data.name?.trim()) {
-    errors.name = "Name is required";
-  } else if (data.name.trim().length < 2) {
-    errors.name = "Name must be at least 2 characters";
-  } else if (data.name.trim().length > 100) {
-    errors.name = "Name must be less than 100 characters";
-  } else if (!/^[a-zA-ZÀ-ÿ\s'-]+$/.test(data.name.trim())) {
-    errors.name = "Name contains invalid characters";
-  }
-
-  if (!data.email?.trim()) {
-    errors.email = "Email is required";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) {
-    errors.email = "Please enter a valid email address";
-  } else if (data.email.trim().length > 254) {
-    errors.email = "Email address is too long";
-  }
-
-  if (data.phone?.trim()) {
-    const phoneDigits = data.phone.replace(/[\s\-\+\(\)]/g, "");
-    if (!/^\d+$/.test(phoneDigits)) {
-      errors.phone = "Phone number contains invalid characters";
-    } else if (phoneDigits.length < 7) {
-      errors.phone = "Phone number is too short";
-    } else if (phoneDigits.length > 15) {
-      errors.phone = "Phone number is too long";
-    }
-  }
-
-  if (!data.service?.trim()) {
-    errors.service = "Please select a service";
-  } else if (!ALLOWED_SERVICES.has(data.service.trim())) {
-    errors.service = "Invalid service selected";
-  }
-
-  if (!data.sessionType?.trim()) {
-    errors.sessionType = "Please select a session type";
-  } else if (!ALLOWED_SESSION_TYPES.has(data.sessionType.trim())) {
-    errors.sessionType = "Invalid session type selected";
-  }
-
-  if (data.preferredDate?.trim()) {
-    const date = new Date(data.preferredDate);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    if (isNaN(date.getTime())) {
-      errors.preferredDate = "Please enter a valid date";
-    } else if (date < today) {
-      errors.preferredDate = "Date cannot be in the past";
-    }
-  }
-
-  if (data.message?.trim() && data.message.trim().length > 1000) {
-    errors.message = "Message must be less than 1000 characters";
-  }
-
-  return errors;
-}
+const SESSION_LABELS: Record<SessionTypeKey, string> = {
+  inPerson: "In-Person",
+  online: "Online",
+};
 
 export async function POST(req: NextRequest) {
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+  const guard = await guardFormRequest(req, "booking");
+  if (!guard.ok) return guard.response;
+  const { body } = guard;
 
-  if (!checkRateLimit(ip, 5, 60_000).allowed) {
-    return NextResponse.json(
-      { error: "Too many requests. Please wait a moment." },
-      { status: 429 }
-    );
+  if (typeof body.website === "string" && body.website.trim() !== "") {
+    return respond.ok();
   }
 
-  try {
-    const body = await req.json();
-    const {
-      name,
-      email,
-      phone,
-      service,
-      sessionType,
-      preferredDate,
-      preferredTime,
-      message,
-    } = body;
+  const errors = validateBooking(body);
+  if (Object.keys(errors).length > 0) return respond.invalid(errors);
 
-    const errors = validateBooking({
-      name,
-      email,
-      phone,
-      service,
-      sessionType,
-      preferredDate,
-      preferredTime,
-      message,
+  if (!isEmailConfigured()) {
+    console.error("[booking] EMAIL_USER / EMAIL_PASS are not configured");
+    return respond.unavailable();
+  }
+
+  const s = (v: unknown) => (typeof v === "string" ? v.trim() : "");
+  const service = SERVICE_LABELS[body.service as ServiceKey];
+  const sessionType = SESSION_LABELS[body.sessionType as SessionTypeKey];
+  const name = s(body.name);
+  const email = s(body.email).toLowerCase();
+  const phone = s(body.phone) || "Not provided";
+  const date = s(body.preferredDate) || "Flexible";
+  const time = s(body.preferredTime) || "Flexible";
+  const message = s(body.message) || "No message provided";
+
+  try {
+    await sendOwnerNotification({
+      subject: `New booking request — ${service} (${sessionType})`,
+      title: "New Booking Request",
+      replyTo: email,
+      rows: [
+        ["Name", name],
+        ["Email", email],
+        ["Phone", phone],
+        ["Service", service],
+        ["Session Type", sessionType],
+        ["Preferred Date", date],
+        ["Preferred Time", time],
+        ["Message", message],
+      ],
     });
 
-    if (Object.keys(errors).length > 0) {
-      return NextResponse.json({ errors }, { status: 422 });
+    if (allowAutoReply(email)) {
+      await sendAutoReply({
+        to: email,
+        name,
+        subject: `Booking request received — ${service}`,
+        title: "Booking Request Received",
+        body: `Thank you for your booking request! I have received your request for a <strong style="color:#22c55e;">${escapeHtml(service)}</strong> session (${escapeHtml(sessionType)}) on <strong style="color:#fff;">${escapeHtml(date)}</strong> at <strong style="color:#fff;">${escapeHtml(time)}</strong>, and I will confirm it within <strong style="color:#fff;">24 hours</strong>.`,
+      }).catch((err) => console.error("[booking] auto-reply failed:", err));
     }
 
-    const sanitizedName = escapeHtml(name.trim());
-    const sanitizedEmail = email.trim().toLowerCase();
-    const sanitizedPhone = escapeHtml(phone?.trim() || "Not provided");
-    const sanitizedMessage = escapeHtml(message?.trim() || "No message provided");
-    const safeService = escapeHtml(service.trim());
-    const safeSessionType = escapeHtml(sessionType.trim());
-    const safeDate = escapeHtml(preferredDate?.trim() || "Flexible");
-    const safeTime = escapeHtml(preferredTime?.trim() || "Flexible");
-
-    const subjectService = stripNewlines(service.trim());
-    const subjectSessionType = stripNewlines(sessionType.trim());
-
-    await transporter.sendMail({
-      from: `"Karim Portfolio" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
-      subject: `New Booking Request — ${subjectService} (${subjectSessionType})`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #ffffff; border-radius: 12px; overflow: hidden;">
-          <div style="background: linear-gradient(135deg, #22c55e, #059669); padding: 32px; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px; color: #000;">New Booking Request</h1>
-            <p style="margin: 8px 0 0; color: #000; opacity: 0.8;">From your portfolio website</p>
-          </div>
-          <div style="padding: 32px;">
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #9ca3af; width: 40%;">Name</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff; font-weight: bold;">${sanitizedName}</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #9ca3af;">Email</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #22c55e;">${sanitizedEmail}</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #9ca3af;">Phone</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff;">${sanitizedPhone}</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #9ca3af;">Service</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff;">${safeService}</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #9ca3af;">Session Type</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff;">${safeSessionType}</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #9ca3af;">Preferred Date</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff;">${safeDate}</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #9ca3af;">Preferred Time</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ffffff;">${safeTime}</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px 0; color: #9ca3af; vertical-align: top;">Message</td>
-                <td style="padding: 12px 0; color: #ffffff;">${sanitizedMessage}</td>
-              </tr>
-            </table>
-          </div>
-          <div style="background: #111; padding: 16px; text-align: center;">
-            <p style="margin: 0; color: #4b5563; font-size: 12px;">Karim Boudabous Portfolio — Booking System</p>
-          </div>
-        </div>
-      `,
-    });
-
-    await transporter.sendMail({
-      from: `"Karim Boudabous" <${process.env.EMAIL_USER}>`,
-      to: sanitizedEmail,
-      subject: `Booking Request Received — ${subjectService}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #ffffff; border-radius: 12px; overflow: hidden;">
-          <div style="background: linear-gradient(135deg, #22c55e, #059669); padding: 32px; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px; color: #000;">Booking Request Received!</h1>
-            <p style="margin: 8px 0 0; color: #000; opacity: 0.8;">Thank you for reaching out</p>
-          </div>
-          <div style="padding: 32px;">
-            <p style="color: #d1d5db; line-height: 1.6;">Hi <strong style="color: #fff;">${sanitizedName}</strong>,</p>
-            <p style="color: #d1d5db; line-height: 1.6;">
-              Thank you for your booking request! I have received your request for a
-              <strong style="color: #22c55e;">${safeService}</strong> session
-              (${safeSessionType}) and will confirm your booking within
-              <strong style="color: #fff;">24 hours</strong>.
-            </p>
-            <div style="background: #111; border: 1px solid #1a1a1a; border-radius: 8px; padding: 20px; margin: 24px 0;">
-              <h3 style="margin: 0 0 16px; color: #22c55e; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Your Booking Summary</h3>
-              <p style="margin: 8px 0; color: #9ca3af;">Service: <span style="color: #fff;">${safeService}</span></p>
-              <p style="margin: 8px 0; color: #9ca3af;">Type: <span style="color: #fff;">${safeSessionType}</span></p>
-              <p style="margin: 8px 0; color: #9ca3af;">Date: <span style="color: #fff;">${safeDate}</span></p>
-              <p style="margin: 8px 0; color: #9ca3af;">Time: <span style="color: #fff;">${safeTime}</span></p>
-            </div>
-            <p style="color: #d1d5db; line-height: 1.6;">
-              If you have any questions in the meantime, feel free to reply to this email.
-            </p>
-            <p style="color: #d1d5db; line-height: 1.6;">
-              Looking forward to working with you!<br/>
-              <strong style="color: #fff;">Karim Boudabous</strong><br/>
-              <span style="color: #22c55e; font-size: 13px;">Football Coach (UEFA C) · Strength & Conditioning Coach · Personal Trainer</span>
-            </p>
-          </div>
-          <div style="background: #111; padding: 16px; text-align: center;">
-            <p style="margin: 0; color: #4b5563; font-size: 12px;">© ${new Date().getFullYear()} Karim Boudabous. All rights reserved.</p>
-          </div>
-        </div>
-      `,
-    });
-
-    return NextResponse.json(
-      { message: "Booking request sent successfully" },
-      { status: 200 }
-    );
+    return respond.ok();
   } catch (error) {
-    console.error("Booking email error:", error);
-    return NextResponse.json(
-      { error: "Failed to send booking request" },
-      { status: 500 }
-    );
+    console.error("[booking] send failed:", error);
+    return respond.error();
   }
 }

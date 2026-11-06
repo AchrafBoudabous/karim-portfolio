@@ -2,16 +2,17 @@
 
 import { useTranslations } from "next-intl";
 import SectionTitle from "@/components/ui/SectionTitle";
-import TimelineItem from "@/components/ui/TimelineItem";
+import TimelineItem, { type TimelineRole } from "@/components/ui/TimelineItem";
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 
 interface ExperienceItem {
-  role: string;
+  role?: string;
   company: string;
   period: string;
-  location: string;
-  description: string[];
+  location?: string;
+  description?: string[];
+  roles?: TimelineRole[];
 }
 
 export default function Experience() {
@@ -47,7 +48,7 @@ export default function Experience() {
               <p className="font-oswald text-lg font-bold text-white tracking-wide mb-1">
                 {t("careerPathTitle")}
               </p>
-              <p className="text-white/40 text-xs leading-relaxed">
+              <p className="text-white/55 text-xs leading-relaxed">
                 {t("careerPathSubtitle")}
               </p>
 
@@ -57,7 +58,7 @@ export default function Experience() {
                     <p className="text-white/70 text-xs font-semibold">
                       {item.company}
                     </p>
-                    <p className="text-white/30 text-xs">{item.period}</p>
+                    <p className="text-white/50 text-xs">{item.period}</p>
                   </div>
                 ))}
               </div>
@@ -73,6 +74,7 @@ export default function Experience() {
                 period={item.period}
                 location={item.location}
                 description={item.description}
+                roles={item.roles}
                 index={i}
                 isLast={i === items.length - 1}
               />

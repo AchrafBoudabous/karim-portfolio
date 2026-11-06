@@ -1,64 +1,42 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface SectionTitleProps {
   title: string;
   subtitle: string;
-  light?: boolean;
   centered?: boolean;
 }
 
-export default function SectionTitle({
-  title,
-  subtitle,
-  light = false,
-  centered = true,
-}: SectionTitleProps) {
+/** Eyebrow label + headline whose last word gets the brand gradient. */
+export default function SectionTitle({ title, subtitle, centered = true }: SectionTitleProps) {
+  const words = subtitle.trim().split(/\s+/);
+  const last = words.pop();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6 }}
-      className={`mb-14 ${centered ? "text-center" : "text-left"}`}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className={cn("mb-14", centered ? "text-center" : "text-left")}
     >
-      <motion.span
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4, delay: 0.1 }}
-        className="inline-block text-xs font-semibold tracking-[0.25em] uppercase text-green-400 mb-3 px-3 py-1 rounded-full border border-green-500/20 bg-green-500/5"
-      >
+      <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-green-500/25 bg-green-500/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-green-400">
+        <span aria-hidden className="h-1 w-1 rounded-full bg-green-400" />
         {title}
-      </motion.span>
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className={`font-oswald text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight ${
-          light ? "text-white" : "text-white"
-        }`}
-      >
-        {subtitle.split(" ").map((word, i) => (
-          <span key={i}>
-            {i === subtitle.split(" ").length - 1 ? (
-              <span className="gradient-text">{word}</span>
-            ) : (
-              word + " "
-            )}
-          </span>
-        ))}
-      </motion.h2>
+      </p>
+      <h2 className="font-oswald text-3xl font-bold tracking-tight text-white text-balance md:text-4xl lg:text-5xl">
+        {words.length > 0 && `${words.join(" ")} `}
+        <span className="gradient-text">{last}</span>
+      </h2>
       <motion.div
+        aria-hidden
         initial={{ width: 0 }}
-        whileInView={{ width: centered ? "60px" : "60px" }}
+        whileInView={{ width: 64 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        className={`h-0.5 bg-linear-to-r from-green-400 to-emerald-600 mt-4 rounded-full ${
-          centered ? "mx-auto" : ""
-        }`}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className={cn("mt-5 h-0.5 rounded-full bg-linear-to-r from-green-400 to-emerald-600", centered && "mx-auto")}
       />
     </motion.div>
   );

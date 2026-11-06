@@ -1,81 +1,108 @@
 "use client";
 
-import { useLocale } from "next-intl";
-import { useRouter, usePathname } from "next/navigation";
-import { useState } from "react";
-import { ChevronDown, Globe } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { useEffect, useRef, useState, useTransition } from "react";
+import { Check, ChevronDown, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { routing, type Locale } from "@/i18n/routing";
+import { cn } from "@/lib/utils";
 
-const languages = [
-  { code: "en", label: "English", flag: "🇬🇧" },
-  { code: "es", label: "Español", flag: "🇪🇸" },
-  { code: "fr", label: "Français", flag: "🇫🇷" },
-];
+// Text codes instead of flag emoji: Windows renders flag emoji as plain
+// letters, and languages are not countries.
+const LANGUAGES: Record<Locale, string> = {
+  en: "English",
+  es: "Español",
+  fr: "Français",
+};
 
-export default function LanguageSwitcher() {
-  const locale = useLocale();
+export default function LanguageSwitcher({ align = "right" }: { align?: "left" | "right" }) {
+  const locale = useLocale() as Locale;
+  const t = useTranslations("a11y");
   const router = useRouter();
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
+  const rootRef = useRef<HTMLDivElement>(null);
 
-  const current = languages.find((l) => l.code === locale) ?? languages[0];
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onClick = (e: MouseEvent) => {
+      if (!rootRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("mousedown", onClick);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("mousedown", onClick);
+    };
+  }, [open]);
 
-  const handleSwitch = (code: string) => {
-    const segments = pathname.split("/");
-    segments[1] = code;
-    router.push(segments.join("/"));
-    setIsOpen(false);
+  const switchTo = (next: Locale) => {
+    setOpen(false);
+    if (next === locale) return;
+    const hash = window.location.hash;
+    startTransition(() => {
+      router.replace(`${pathname}${hash}`, { locale: next, scroll: false });
+    });
   };
 
   return (
-    <div className="relative">
+    <div ref={rootRef} className="relative">
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-green-500/50 transition-all duration-200 text-sm font-medium"
-        aria-label="Switch language"
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-label={`${t("switchLanguage")} (${LANGUAGES[locale]})`}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        className={cn(
+          "flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium transition-all duration-200 hover:border-green-500/50 hover:bg-white/10",
+          isPending && "opacity-60"
+        )}
       >
-        <Globe size={14} className="text-green-400" />
-        <span>{current.flag}</span>
-        <span className="hidden sm:inline text-white/80">{current.label}</span>
+        <Globe size={14} className="text-green-400" aria-hidden />
+        <span className="font-semibold uppercase">{locale}</span>
         <ChevronDown
           size={14}
-          className={`text-white/50 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          aria-hidden
+          className={cn("text-white/60 transition-transform duration-200", open && "rotate-180")}
         />
       </button>
 
       <AnimatePresence>
-        {isOpen && (
-          <>
-            <div
-              className="fixed inset-0 z-40"
-              onClick={() => setIsOpen(false)}
-            />
-            <motion.div
-              initial={{ opacity: 0, y: -8, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.95 }}
-              transition={{ duration: 0.15 }}
-              className="absolute right-0 top-full mt-2 z-50 min-w-35 rounded-xl border border-white/10 bg-neutral-900/95 backdrop-blur-xl shadow-2xl shadow-black/50 overflow-hidden"
-            >
-              {languages.map((lang) => (
+        {open && (
+          <motion.ul
+            role="menu"
+            initial={{ opacity: 0, y: -8, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.96 }}
+            transition={{ duration: 0.15 }}
+            className={cn(
+              "absolute z-50 mt-2 min-w-40 overflow-hidden rounded-xl border border-white/10 bg-neutral-900/95 shadow-2xl shadow-black/50 backdrop-blur-xl",
+              align === "right" ? "right-0 top-full" : "bottom-full left-0 mb-2"
+            )}
+          >
+            {routing.locales.map((code) => (
+              <li key={code} role="none">
                 <button
-                  key={lang.code}
-                  onClick={() => handleSwitch(lang.code)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors duration-150 hover:bg-green-500/10 hover:text-green-400 ${
-                    lang.code === locale
-                      ? "bg-green-500/10 text-green-400 font-semibold"
-                      : "text-white/70"
-                  }`}
-                >
-                  <span className="text-base">{lang.flag}</span>
-                  <span>{lang.label}</span>
-                  {lang.code === locale && (
-                    <span className="ml-auto w-1.5 h-1.5 rounded-full bg-green-400" />
+                  type="button"
+                  role="menuitemradio"
+                  aria-checked={code === locale}
+                  lang={code}
+                  onClick={() => switchTo(code)}
+                  className={cn(
+                    "flex w-full items-center gap-3 px-4 py-3 text-sm transition-colors duration-150 hover:bg-green-500/10 hover:text-green-300",
+                    code === locale ? "bg-green-500/10 font-semibold text-green-300" : "text-white/75"
                   )}
+                >
+                  <span className="w-6 text-xs font-bold uppercase text-white/50">{code}</span>
+                  <span>{LANGUAGES[code]}</span>
+                  {code === locale && <Check size={14} className="ml-auto" aria-hidden />}
                 </button>
-              ))}
-            </motion.div>
-          </>
+              </li>
+            ))}
+          </motion.ul>
         )}
       </AnimatePresence>
     </div>

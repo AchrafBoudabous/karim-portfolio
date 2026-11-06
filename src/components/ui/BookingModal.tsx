@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import {
@@ -15,634 +16,534 @@ import {
   Phone,
   MapPin,
   Video,
+  Loader2,
+  Check,
 } from "lucide-react";
-
-interface BookingModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-interface FormData {
-  service: string;
-  sessionType: string;
-  name: string;
-  email: string;
-  phone: string;
-  preferredDate: string;
-  preferredTime: string;
-  message: string;
-}
-
-interface FormErrors {
-  name?: string;
-  email?: string;
-  phone?: string;
-  preferredDate?: string;
-  message?: string;
-}
+import FormField, { Honeypot, inputClasses, type FieldState } from "@/components/ui/FormField";
+import Button from "@/components/ui/Button";
+import {
+  LIMITS,
+  SERVICE_KEYS,
+  validateBooking,
+  type BookingField,
+  type BookingInput,
+  type ErrorCode,
+  type ServiceKey,
+  type SessionTypeKey,
+} from "@/lib/validation";
+import { cn } from "@/lib/utils";
 
 type SubmitStatus = "idle" | "loading" | "success" | "error";
+type ServerError = "rateLimited" | "unavailable" | "generic";
 
-const serviceIcons: Record<string, React.ElementType> = {
+const serviceIcons: Record<ServiceKey, React.ElementType> = {
   pt: Dumbbell,
   football: Trophy,
   sc: Activity,
   discovery: Phone,
 };
 
-function validateStep3(data: FormData): FormErrors {
-  const errors: FormErrors = {};
+const EMPTY: BookingInput = {
+  service: "",
+  sessionType: "",
+  name: "",
+  email: "",
+  phone: "",
+  preferredDate: "",
+  preferredTime: "",
+  message: "",
+};
 
-  if (!data.name.trim()) {
-    errors.name = "Name is required";
-  } else if (data.name.trim().length < 2) {
-    errors.name = "Name must be at least 2 characters";
-  } else if (data.name.trim().length > 100) {
-    errors.name = "Name must be less than 100 characters";
-  } else if (!/^[a-zA-ZÀ-ÿ\s'-]+$/.test(data.name.trim())) {
-    errors.name = "Name can only contain letters, spaces, hyphens and apostrophes";
-  }
+const DETAIL_FIELDS: BookingField[] = [
+  "name",
+  "email",
+  "phone",
+  "preferredDate",
+  "preferredTime",
+  "message",
+];
 
-  if (!data.email.trim()) {
-    errors.email = "Email is required";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) {
-    errors.email = "Please enter a valid email address";
-  } else if (data.email.trim().length > 254) {
-    errors.email = "Email address is too long";
-  }
-
-  if (data.phone.trim()) {
-    const phoneDigits = data.phone.replace(/[\s\-\+\(\)]/g, "");
-    if (!/^\d+$/.test(phoneDigits)) {
-      errors.phone = "Phone number contains invalid characters";
-    } else if (phoneDigits.length < 7) {
-      errors.phone = "Phone number is too short";
-    } else if (phoneDigits.length > 15) {
-      errors.phone = "Phone number is too long";
-    }
-  }
-
-  if (data.preferredDate.trim()) {
-    const date = new Date(data.preferredDate);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    if (isNaN(date.getTime())) {
-      errors.preferredDate = "Please enter a valid date";
-    } else if (date < today) {
-      errors.preferredDate = "Date cannot be in the past";
-    }
-  }
-
-  if (data.message.trim().length > 1000) {
-    errors.message = "Message must be less than 1000 characters";
-  }
-
-  return errors;
+function localIsoDate(offsetDays = 0) {
+  const d = new Date(Date.now() + offsetDays * 86_400_000);
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+  return d.toISOString().slice(0, 10);
 }
 
-export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
+export default function BookingModal({
+  open,
+  onOpenChange,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}) {
   const t = useTranslations("booking");
+  const tv = useTranslations("validation");
+
   const [step, setStep] = useState(1);
   const [status, setStatus] = useState<SubmitStatus>("idle");
-  const [fieldErrors, setFieldErrors] = useState<FormErrors>({});
-  const [touched, setTouched] = useState<Record<string, boolean>>({});
-  const [form, setForm] = useState<FormData>({
-    service: "",
-    sessionType: "",
-    name: "",
-    email: "",
-    phone: "",
-    preferredDate: "",
-    preferredTime: "",
-    message: "",
-  });
+  const [serverError, setServerError] = useState<ServerError>("generic");
+  const [form, setForm] = useState<BookingInput>(EMPTY);
+  const [honeypot, setHoneypot] = useState("");
+  const [touched, setTouched] = useState<Partial<Record<BookingField, boolean>>>({});
 
-  const serviceKeys = ["pt", "football", "sc", "discovery"] as const;
+  const errors = validateBooking(form);
 
-  const handleClose = () => {
-    onClose();
-    setTimeout(() => {
-      setStep(1);
-      setStatus("idle");
-      setFieldErrors({});
-      setTouched({});
-      setForm({
-        service: "",
-        sessionType: "",
-        name: "",
-        email: "",
-        phone: "",
-        preferredDate: "",
-        preferredTime: "",
-        message: "",
-      });
-    }, 300);
+  const errorText = (field: BookingField): string | undefined => {
+    const code = errors[field];
+    if (!touched[field] || !code) return undefined;
+    return tv(`${field}.${code}` as `name.${ErrorCode}`);
   };
 
-  const handleFieldChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setForm((p) => ({ ...p, [name]: value }));
-    if (touched[name]) {
-      const errors = validateStep3({ ...form, [name]: value });
-      setFieldErrors((prev) => ({ ...prev, [name]: errors[name as keyof FormErrors] }));
-    }
+  const fieldState = (field: BookingField): FieldState => {
+    if (!touched[field]) return "idle";
+    if (errors[field]) return "invalid";
+    return form[field] ? "valid" : "idle";
   };
 
-  const handleFieldBlur = (
-    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name } = e.target;
-    setTouched((prev) => ({ ...prev, [name]: true }));
-    const errors = validateStep3(form);
-    setFieldErrors((prev) => ({ ...prev, [name]: errors[name as keyof FormErrors] }));
+  const reset = () => {
+    setStep(1);
+    setStatus("idle");
+    setForm(EMPTY);
+    setHoneypot("");
+    setTouched({});
   };
 
-  const handleSubmit = async () => {
-    const allTouched = { name: true, email: true, phone: true, preferredDate: true, message: true };
-    setTouched(allTouched);
+  const handleOpenChange = (next: boolean) => {
+    onOpenChange(next);
+    // Reset after the exit animation so the content doesn't jump.
+    if (!next) setTimeout(reset, 250);
+  };
 
-    const errors = validateStep3(form);
-    setFieldErrors(errors);
+  const update =
+    (field: BookingField) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setForm((p) => ({ ...p, [field]: e.target.value }));
 
-    if (Object.keys(errors).length > 0) return;
+  const blur = (field: BookingField) => () =>
+    setTouched((p) => ({ ...p, [field]: true }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setTouched(Object.fromEntries(DETAIL_FIELDS.map((f) => [f, true])));
+    if (DETAIL_FIELDS.some((f) => errors[f])) return;
 
     setStatus("loading");
     try {
       const res = await fetch("/api/booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, website: honeypot }),
       });
-
-      if (!res.ok) throw new Error("Failed");
+      if (!res.ok) {
+        setServerError(
+          res.status === 429 ? "rateLimited" : res.status === 503 ? "unavailable" : "generic"
+        );
+        setStatus("error");
+        return;
+      }
       setStatus("success");
       setStep(4);
     } catch {
+      setServerError("generic");
       setStatus("error");
     }
   };
 
-  const inputBase =
-    "w-full bg-white/5 border rounded-xl px-4 py-3 text-white text-sm placeholder:text-white/30 outline-none transition-all duration-200 focus:bg-white/8";
+  const serviceLabel = form.service ? t(`services.${form.service}`) : "";
+  const sessionLabel = form.sessionType ? t(form.sessionType) : "";
+  const msgLen = form.message.length;
 
-  const getInputClass = (field: keyof FormErrors) => {
-    if (touched[field] && fieldErrors[field]) {
-      return `${inputBase} border-red-500/50 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/10`;
-    }
-    if (touched[field] && !fieldErrors[field] && form[field as keyof FormData]) {
-      return `${inputBase} border-green-500/40 focus:border-green-500/50 focus:ring-2 focus:ring-green-500/10`;
-    }
-    return `${inputBase} border-white/10 focus:border-green-500/40 focus:ring-2 focus:ring-green-500/5`;
+  const stepAnim = {
+    initial: { opacity: 0, x: 24 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -24 },
+    transition: { duration: 0.2 },
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[200] bg-black/80 backdrop-blur-xl flex items-center justify-center p-4"
-          onClick={handleClose}
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg bg-neutral-950 border border-white/10 rounded-2xl overflow-hidden shadow-2xl"
-          >
-            {/* Header */}
-            <div className="relative bg-linear-to-r from-green-500 to-emerald-600 px-6 py-5">
-              <h2 className="font-oswald text-xl font-bold text-black tracking-wide">
-                {t("title")}
-              </h2>
-              <p className="text-black/70 text-sm mt-0.5">{t("subtitle")}</p>
-              <button
-                onClick={handleClose}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center transition-colors"
+    <Dialog.Root open={open} onOpenChange={handleOpenChange}>
+      <AnimatePresence>
+        {open && (
+          <Dialog.Portal forceMount>
+            <Dialog.Overlay asChild forceMount>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 z-200 bg-black/80 backdrop-blur-md"
+              />
+            </Dialog.Overlay>
+            <Dialog.Content asChild forceMount aria-describedby={undefined}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 16 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 16 }}
+                transition={{ type: "spring", damping: 26, stiffness: 260 }}
+                className="fixed left-1/2 top-1/2 z-201 flex max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-2xl shadow-black/60 outline-none"
               >
-                <X size={16} className="text-black" />
-              </button>
-            </div>
-
-            {/* Step indicator */}
-            {step < 4 && (
-              <div className="px-6 pt-5 flex items-center gap-2">
-                {[1, 2, 3].map((s) => (
-                  <div key={s} className="flex items-center gap-2">
-                    <div
-                      className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
-                        s < step
-                          ? "bg-green-500 text-black"
-                          : s === step
-                          ? "bg-green-500/20 border border-green-500 text-green-400"
-                          : "bg-white/5 border border-white/10 text-white/30"
-                      }`}
-                    >
-                      {s < step ? "✓" : s}
-                    </div>
-                    <span
-                      className={`text-xs hidden sm:block transition-colors duration-300 ${
-                        s === step ? "text-green-400" : "text-white/30"
-                      }`}
-                    >
-                      {t(`step${s}` as "step1" | "step2" | "step3")}
-                    </span>
-                    {s < 3 && (
-                      <div
-                        className={`h-0.5 w-6 rounded-full transition-colors duration-300 ${
-                          s < step ? "bg-green-500" : "bg-white/10"
-                        }`}
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Content */}
-            <div className="px-6 py-5 min-h-[280px]">
-              <AnimatePresence mode="wait">
-
-                {/* Step 1 — Choose Service */}
-                {step === 1 && (
-                  <motion.div
-                    key="step1"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.2 }}
-                    className="grid grid-cols-2 gap-3"
+                {/* Header */}
+                <div className="relative shrink-0 bg-linear-to-r from-green-500 to-emerald-600 px-6 py-5">
+                  <Dialog.Title className="font-oswald text-xl font-bold tracking-wide text-black">
+                    {t("title")}
+                  </Dialog.Title>
+                  <p className="mt-0.5 text-sm text-black/75">{t("subtitle")}</p>
+                  <Dialog.Close
+                    aria-label={t("closeLabel")}
+                    className="absolute right-4 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/10 text-black transition-colors hover:bg-black/20 focus-visible:outline-black"
                   >
-                    {serviceKeys.map((key) => {
-                      const Icon = serviceIcons[key];
-                      const serviceLabel = t(`services.${key}` as "services.pt" | "services.football" | "services.sc" | "services.discovery");
-                      return (
-                        <button
-                          key={key}
-                          onClick={() => {
-                            setForm((p) => ({ ...p, service: serviceLabel }));
-                            setStep(2);
-                          }}
-                          className={`group relative p-4 rounded-xl border text-left transition-all duration-200 ${
-                            form.service === serviceLabel
-                              ? "border-green-500/50 bg-green-500/10"
-                              : "border-white/10 bg-white/3 hover:border-green-500/30 hover:bg-green-500/5"
-                          }`}
-                        >
-                          <div className="w-9 h-9 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200">
-                            <Icon size={18} className="text-green-400" />
-                          </div>
-                          <p className="text-white text-sm font-medium leading-tight">
-                            {serviceLabel}
-                          </p>
-                        </button>
-                      );
-                    })}
-                  </motion.div>
-                )}
+                    <X size={16} aria-hidden />
+                  </Dialog.Close>
+                </div>
 
-                {/* Step 2 — Session Type */}
-                {step === 2 && (
-                  <motion.div
-                    key="step2"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.2 }}
-                    className="space-y-3"
-                  >
-                    <p className="text-white/50 text-sm mb-4">
-                      {t("selected")}{" "}
-                      <span className="text-green-400 font-semibold">
-                        {form.service}
-                      </span>
-                    </p>
-                    {[
-                      { key: "inPerson", sub: "inPersonSub", icon: MapPin },
-                      { key: "online", sub: "onlineSub", icon: Video },
-                    ].map(({ key, sub, icon: Icon }) => (
-                      <button
-                        key={key}
-                        onClick={() => {
-                          setForm((p) => ({
-                            ...p,
-                            sessionType: t(key as "inPerson" | "online"),
-                          }));
-                          setStep(3);
-                        }}
-                        className={`w-full flex items-center gap-4 p-4 rounded-xl border text-left transition-all duration-200 ${
-                          form.sessionType === t(key as "inPerson" | "online")
-                            ? "border-green-500/50 bg-green-500/10"
-                            : "border-white/10 bg-white/3 hover:border-green-500/30 hover:bg-green-500/5"
-                        }`}
-                      >
-                        <div className="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center shrink-0">
-                          <Icon size={18} className="text-green-400" />
-                        </div>
-                        <div>
-                          <p className="text-white font-semibold text-sm">
-                            {t(key as "inPerson" | "online")}
-                          </p>
-                          <p className="text-white/40 text-xs mt-0.5">
-                            {t(sub as "inPersonSub" | "onlineSub")}
-                          </p>
-                        </div>
-                        <ChevronRight size={16} className="text-white/30 ml-auto" />
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-
-                {/* Step 3 — Details */}
-                {step === 3 && (
-                  <motion.div
-                    key="step3"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.2 }}
-                    className="space-y-3"
-                  >
-                    {/* Name */}
-                    <div>
-                      <label htmlFor="booking-name" className="sr-only">
-                        {t("namePlaceholder")}
-                      </label>
-                      <input
-                        id="booking-name"
-                        type="text"
-                        name="name"
-                        placeholder={t("namePlaceholder")}
-                        value={form.name}
-                        onChange={handleFieldChange}
-                        onBlur={handleFieldBlur}
-                        maxLength={100}
-                        className={getInputClass("name")}
-                      />
-                      <AnimatePresence>
-                        {touched.name && fieldErrors.name && (
-                          <motion.p
-                            initial={{ opacity: 0, y: -4 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -4 }}
-                            className="mt-1 text-red-400 text-xs flex items-center gap-1"
-                          >
-                            <AlertCircle size={11} />
-                            {fieldErrors.name}
-                          </motion.p>
-                        )}
-                      </AnimatePresence>
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <label htmlFor="booking-email" className="sr-only">
-                        {t("emailPlaceholder")}
-                      </label>
-                      <input
-                        id="booking-email"
-                        type="email"
-                        name="email"
-                        placeholder={t("emailPlaceholder")}
-                        value={form.email}
-                        onChange={handleFieldChange}
-                        onBlur={handleFieldBlur}
-                        maxLength={254}
-                        className={getInputClass("email")}
-                      />
-                      <AnimatePresence>
-                        {touched.email && fieldErrors.email && (
-                          <motion.p
-                            initial={{ opacity: 0, y: -4 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -4 }}
-                            className="mt-1 text-red-400 text-xs flex items-center gap-1"
-                          >
-                            <AlertCircle size={11} />
-                            {fieldErrors.email}
-                          </motion.p>
-                        )}
-                      </AnimatePresence>
-                    </div>
-
-                    {/* Phone */}
-                    <div>
-                      <label htmlFor="booking-phone" className="sr-only">
-                        {t("phonePlaceholder")}
-                      </label>
-                      <input
-                        id="booking-phone"
-                        type="tel"
-                        name="phone"
-                        placeholder={t("phonePlaceholder")}
-                        value={form.phone}
-                        onChange={handleFieldChange}
-                        onBlur={handleFieldBlur}
-                        maxLength={20}
-                        className={getInputClass("phone")}
-                      />
-                      <AnimatePresence>
-                        {touched.phone && fieldErrors.phone && (
-                          <motion.p
-                            initial={{ opacity: 0, y: -4 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -4 }}
-                            className="mt-1 text-red-400 text-xs flex items-center gap-1"
-                          >
-                            <AlertCircle size={11} />
-                            {fieldErrors.phone}
-                          </motion.p>
-                        )}
-                      </AnimatePresence>
-                    </div>
-
-                    {/* Date & Time */}
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <input
-                          type="date"
-                          name="preferredDate"
-                          value={form.preferredDate}
-                          onChange={handleFieldChange}
-                          onBlur={handleFieldBlur}
-                          className={`${getInputClass("preferredDate")} [color-scheme:dark]`}
-                        />
-                        <AnimatePresence>
-                          {touched.preferredDate && fieldErrors.preferredDate && (
-                            <motion.p
-                              initial={{ opacity: 0, y: -4 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -4 }}
-                              className="mt-1 text-red-400 text-xs flex items-center gap-1"
-                            >
-                              <AlertCircle size={11} />
-                              {fieldErrors.preferredDate}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                      <input
-                        type="time"
-                        name="preferredTime"
-                        value={form.preferredTime}
-                        onChange={handleFieldChange}
-                        className={`${inputBase} border-white/10 focus:border-green-500/40 [color-scheme:dark]`}
-                      />
-                    </div>
-
-                    {/* Message */}
-                    <div>
-                      <label htmlFor="booking-message" className="sr-only">
-                        {t("messagePlaceholder")}
-                      </label>
-                      <textarea
-                        id="booking-message"
-                        name="message"
-                        placeholder={t("messagePlaceholder")}
-                        value={form.message}
-                        onChange={handleFieldChange}
-                        onBlur={handleFieldBlur}
-                        rows={3}
-                        maxLength={1000}
-                        className={`${getInputClass("message")} resize-none`}
-                      />
-                      <div className="flex items-center justify-between mt-1">
-                        <AnimatePresence>
-                          {touched.message && fieldErrors.message && (
-                            <motion.p
-                              initial={{ opacity: 0, y: -4 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -4 }}
-                              className="text-red-400 text-xs flex items-center gap-1"
-                            >
-                              <AlertCircle size={11} />
-                              {fieldErrors.message}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
+                {/* Steps */}
+                {step < 4 && (
+                  <ol className="flex shrink-0 items-center gap-2 px-6 pt-5" aria-label={t("title")}>
+                    {[1, 2, 3].map((s) => (
+                      <li key={s} className="flex items-center gap-2" aria-current={s === step ? "step" : undefined}>
                         <span
-                          className={`text-xs ml-auto ${
-                            form.message.length > 900
-                              ? "text-red-400"
-                              : form.message.length > 700
-                              ? "text-yellow-400"
-                              : "text-white/20"
-                          }`}
+                          className={cn(
+                            "flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold transition-all duration-300",
+                            s < step && "bg-green-500 text-black",
+                            s === step && "border border-green-500 bg-green-500/20 text-green-400",
+                            s > step && "border border-white/10 bg-white/5 text-white/40"
+                          )}
                         >
-                          {form.message.length}/1000
+                          {s < step ? <Check size={14} aria-hidden /> : s}
                         </span>
-                      </div>
-                    </div>
-
-                    {/* API error */}
-                    <AnimatePresence>
-                      {status === "error" && (
-                        <motion.div
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm"
+                        <span
+                          className={cn(
+                            "hidden text-xs transition-colors duration-300 sm:block",
+                            s === step ? "text-green-400" : "text-white/45"
+                          )}
                         >
-                          <AlertCircle size={16} />
-                          {t("errorMsg")}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
+                          {t(`step${s}` as "step1")}
+                        </span>
+                        {s < 3 && (
+                          <span
+                            aria-hidden
+                            className={cn(
+                              "h-0.5 w-6 rounded-full transition-colors duration-300",
+                              s < step ? "bg-green-500" : "bg-white/10"
+                            )}
+                          />
+                        )}
+                      </li>
+                    ))}
+                  </ol>
                 )}
 
-                {/* Step 4 — Success */}
-                {step === 4 && (
-                  <motion.div
-                    key="step4"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="flex flex-col items-center justify-center py-8 text-center gap-4"
-                  >
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ type: "spring", delay: 0.1 }}
-                      className="w-16 h-16 rounded-full bg-green-500/15 border border-green-500/30 flex items-center justify-center"
-                    >
-                      <CheckCircle size={32} className="text-green-400" />
-                    </motion.div>
-                    <h3 className="font-oswald text-xl font-bold text-white">
-                      {t("successTitle")}
-                    </h3>
-                    <p className="text-white/50 text-sm max-w-sm leading-relaxed">
-                      {t("successText")}
-                    </p>
-                    <div className="mt-2 px-4 py-3 rounded-xl bg-white/3 border border-white/8 text-left w-full">
-                      <p className="text-white/40 text-xs mb-2 uppercase tracking-wider">
-                        {t("summary")}
-                      </p>
-                      <p className="text-white text-sm">
-                        {form.service} · {form.sessionType}
-                      </p>
-                      {form.preferredDate && (
-                        <p className="text-white/50 text-xs mt-1">
-                          {form.preferredDate}{" "}
-                          {form.preferredTime && `${t("at")} ${form.preferredTime}`}
+                {/* Body */}
+                <div className="min-h-[280px] overflow-y-auto px-6 py-5">
+                  <AnimatePresence mode="wait">
+                    {step === 1 && (
+                      <motion.div key="step1" {...stepAnim} className="grid grid-cols-2 gap-3">
+                        {SERVICE_KEYS.map((key) => {
+                          const Icon = serviceIcons[key];
+                          const selected = form.service === key;
+                          return (
+                            <button
+                              key={key}
+                              type="button"
+                              aria-pressed={selected}
+                              onClick={() => {
+                                setForm((p) => ({ ...p, service: key }));
+                                setStep(2);
+                              }}
+                              className={cn(
+                                "group rounded-xl border p-4 text-left transition-all duration-200",
+                                selected
+                                  ? "border-green-500/60 bg-green-500/10"
+                                  : "border-white/10 bg-white/3 hover:border-green-500/35 hover:bg-green-500/5"
+                              )}
+                            >
+                              <span className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg border border-green-500/20 bg-green-500/10 transition-transform duration-200 group-hover:scale-110">
+                                <Icon size={18} className="text-green-400" aria-hidden />
+                              </span>
+                              <span className="block text-sm font-medium leading-tight text-white">
+                                {t(`services.${key}`)}
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </motion.div>
+                    )}
+
+                    {step === 2 && (
+                      <motion.div key="step2" {...stepAnim} className="space-y-3">
+                        <p className="mb-4 text-sm text-white/60">
+                          {t("selected")}{" "}
+                          <span className="font-semibold text-green-400">{serviceLabel}</span>
                         </p>
+                        {(
+                          [
+                            { key: "inPerson", sub: "inPersonSub", icon: MapPin },
+                            { key: "online", sub: "onlineSub", icon: Video },
+                          ] as const
+                        ).map(({ key, sub, icon: Icon }) => (
+                          <button
+                            key={key}
+                            type="button"
+                            aria-pressed={form.sessionType === key}
+                            onClick={() => {
+                              setForm((p) => ({ ...p, sessionType: key as SessionTypeKey }));
+                              setStep(3);
+                            }}
+                            className={cn(
+                              "flex w-full items-center gap-4 rounded-xl border p-4 text-left transition-all duration-200",
+                              form.sessionType === key
+                                ? "border-green-500/60 bg-green-500/10"
+                                : "border-white/10 bg-white/3 hover:border-green-500/35 hover:bg-green-500/5"
+                            )}
+                          >
+                            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-green-500/20 bg-green-500/10">
+                              <Icon size={18} className="text-green-400" aria-hidden />
+                            </span>
+                            <span>
+                              <span className="block text-sm font-semibold text-white">{t(key)}</span>
+                              <span className="mt-0.5 block text-xs text-white/55">{t(sub)}</span>
+                            </span>
+                            <ChevronRight size={16} className="ml-auto text-white/40" aria-hidden />
+                          </button>
+                        ))}
+                        <button
+                          type="button"
+                          onClick={() => setStep(1)}
+                          className="mt-2 inline-flex items-center gap-1 text-xs text-white/55 hover:text-white"
+                        >
+                          <ChevronLeft size={14} aria-hidden />
+                          {t("back")}
+                        </button>
+                      </motion.div>
+                    )}
+
+                    {step === 3 && (
+                      <motion.form
+                        key="step3"
+                        id="booking-form"
+                        {...stepAnim}
+                        onSubmit={handleSubmit}
+                        noValidate
+                        className="relative space-y-3"
+                      >
+                        <p className="text-xs text-white/55">
+                          <span className="font-semibold text-green-400">{serviceLabel}</span> · {sessionLabel}
+                        </p>
+                        <Honeypot value={honeypot} onChange={setHoneypot} />
+
+                        <FormField id="booking-name" label={t("nameLabel")} error={errorText("name")}>
+                          {(aria) => (
+                            <input
+                              {...aria}
+                              type="text"
+                              name="name"
+                              autoComplete="name"
+                              placeholder={t("namePlaceholder")}
+                              value={form.name}
+                              onChange={update("name")}
+                              onBlur={blur("name")}
+                              maxLength={LIMITS.nameMax}
+                              className={inputClasses(fieldState("name"))}
+                            />
+                          )}
+                        </FormField>
+
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          <FormField id="booking-email" label={t("emailLabel")} error={errorText("email")}>
+                            {(aria) => (
+                              <input
+                                {...aria}
+                                type="email"
+                                name="email"
+                                autoComplete="email"
+                                inputMode="email"
+                                placeholder={t("emailPlaceholder")}
+                                value={form.email}
+                                onChange={update("email")}
+                                onBlur={blur("email")}
+                                maxLength={LIMITS.emailMax}
+                                className={inputClasses(fieldState("email"))}
+                              />
+                            )}
+                          </FormField>
+                          <FormField id="booking-phone" label={t("phoneLabel")} error={errorText("phone")}>
+                            {(aria) => (
+                              <input
+                                {...aria}
+                                type="tel"
+                                name="phone"
+                                autoComplete="tel"
+                                inputMode="tel"
+                                placeholder={t("phonePlaceholder")}
+                                value={form.phone}
+                                onChange={update("phone")}
+                                onBlur={blur("phone")}
+                                maxLength={LIMITS.phoneMax}
+                                className={inputClasses(fieldState("phone"))}
+                              />
+                            )}
+                          </FormField>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3">
+                          <FormField id="booking-date" label={t("dateLabel")} error={errorText("preferredDate")}>
+                            {(aria) => (
+                              <input
+                                {...aria}
+                                type="date"
+                                name="preferredDate"
+                                min={localIsoDate()}
+                                max={localIsoDate(LIMITS.bookingDaysAhead)}
+                                value={form.preferredDate}
+                                onChange={update("preferredDate")}
+                                onBlur={blur("preferredDate")}
+                                className={inputClasses(fieldState("preferredDate"), "[color-scheme:dark]")}
+                              />
+                            )}
+                          </FormField>
+                          <FormField id="booking-time" label={t("timeLabel")} error={errorText("preferredTime")}>
+                            {(aria) => (
+                              <input
+                                {...aria}
+                                type="time"
+                                name="preferredTime"
+                                value={form.preferredTime}
+                                onChange={update("preferredTime")}
+                                onBlur={blur("preferredTime")}
+                                className={inputClasses(fieldState("preferredTime"), "[color-scheme:dark]")}
+                              />
+                            )}
+                          </FormField>
+                        </div>
+
+                        <FormField
+                          id="booking-message"
+                          label={t("messageLabel")}
+                          error={errorText("message")}
+                          hint={
+                            <span
+                              className={cn(
+                                msgLen > LIMITS.bookingMessageMax * 0.9
+                                  ? "text-red-400"
+                                  : msgLen > LIMITS.bookingMessageMax * 0.7
+                                    ? "text-yellow-400"
+                                    : "text-white/40"
+                              )}
+                            >
+                              {msgLen}/{LIMITS.bookingMessageMax}
+                            </span>
+                          }
+                        >
+                          {(aria) => (
+                            <textarea
+                              {...aria}
+                              name="message"
+                              rows={3}
+                              placeholder={t("messagePlaceholder")}
+                              value={form.message}
+                              onChange={update("message")}
+                              onBlur={blur("message")}
+                              maxLength={LIMITS.bookingMessageMax}
+                              className={inputClasses(fieldState("message"), "resize-none")}
+                            />
+                          )}
+                        </FormField>
+
+                        <AnimatePresence>
+                          {status === "error" && (
+                            <motion.div
+                              role="alert"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              className="flex items-center gap-2 rounded-xl border border-red-500/25 bg-red-500/10 px-4 py-3 text-sm text-red-400"
+                            >
+                              <AlertCircle size={16} aria-hidden className="shrink-0" />
+                              {serverError === "rateLimited"
+                                ? t("rateLimited")
+                                : serverError === "unavailable"
+                                  ? t("unavailable")
+                                  : t("errorMsg")}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.form>
+                    )}
+
+                    {step === 4 && (
+                      <motion.div
+                        key="step4"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="flex flex-col items-center justify-center gap-4 py-8 text-center"
+                        role="status"
+                      >
+                        <motion.span
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ type: "spring", delay: 0.1 }}
+                          className="flex h-16 w-16 items-center justify-center rounded-full border border-green-500/30 bg-green-500/15"
+                        >
+                          <CheckCircle size={32} className="text-green-400" aria-hidden />
+                        </motion.span>
+                        <h3 className="font-oswald text-xl font-bold text-white">{t("successTitle")}</h3>
+                        <p className="max-w-sm text-sm leading-relaxed text-white/65">{t("successText")}</p>
+                        <div className="mt-2 w-full rounded-xl border border-white/10 bg-white/3 px-4 py-3 text-left">
+                          <p className="mb-2 text-xs uppercase tracking-wider text-white/50">{t("summary")}</p>
+                          <p className="text-sm text-white">
+                            {serviceLabel} · {sessionLabel}
+                          </p>
+                          {form.preferredDate && (
+                            <p className="mt-1 text-xs text-white/60">
+                              {form.preferredDate}{" "}
+                              {form.preferredTime && `${t("at")} ${form.preferredTime}`}
+                            </p>
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Footer */}
+                {step === 3 && (
+                  <div className="flex shrink-0 gap-3 px-6 pb-6">
+                    <Button variant="secondary" onClick={() => setStep(2)}>
+                      <ChevronLeft size={16} aria-hidden />
+                      {t("back")}
+                    </Button>
+                    <Button
+                      type="submit"
+                      form="booking-form"
+                      disabled={status === "loading"}
+                      className="flex-1"
+                      shine
+                    >
+                      {status === "loading" ? (
+                        <>
+                          <Loader2 size={16} className="animate-spin" aria-hidden />
+                          {t("submitting")}
+                        </>
+                      ) : (
+                        t("submit")
                       )}
-                    </div>
-                  </motion.div>
+                    </Button>
+                  </div>
                 )}
-              </AnimatePresence>
-            </div>
-
-            {/* Footer buttons */}
-            {step === 3 && (
-              <div className="px-6 pb-6 flex gap-3">
-                <button
-                  onClick={() => setStep(2)}
-                  className="flex items-center gap-2 px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white/60 hover:text-white hover:bg-white/10 text-sm transition-colors duration-200"
-                >
-                  <ChevronLeft size={16} />
-                  {t("back")}
-                </button>
-                <motion.button
-                  onClick={handleSubmit}
-                  disabled={status === "loading"}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="flex-1 py-3 rounded-xl bg-linear-to-r from-green-500 to-emerald-600 text-black font-bold text-sm tracking-wide disabled:opacity-60 disabled:cursor-not-allowed transition-opacity"
-                >
-                  {status === "loading" ? (
-                    <span className="flex items-center justify-center gap-2">
-                      <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
-                      </svg>
-                      {t("submitting")}
-                    </span>
-                  ) : (
-                    t("submit")
-                  )}
-                </motion.button>
-              </div>
-            )}
-
-            {step === 4 && (
-              <div className="px-6 pb-6">
-                <button
-                  onClick={handleClose}
-                  className="w-full py-3 rounded-xl border border-white/10 bg-white/5 text-white/70 hover:text-white hover:bg-white/10 text-sm font-medium transition-colors duration-200"
-                >
-                  {t("close")}
-                </button>
-              </div>
-            )}
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+                {step === 4 && (
+                  <div className="shrink-0 px-6 pb-6">
+                    <Dialog.Close asChild>
+                      <Button variant="secondary" className="w-full">
+                        {t("close")}
+                      </Button>
+                    </Dialog.Close>
+                  </div>
+                )}
+              </motion.div>
+            </Dialog.Content>
+          </Dialog.Portal>
+        )}
+      </AnimatePresence>
+    </Dialog.Root>
   );
 }

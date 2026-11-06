@@ -6,93 +6,53 @@ import {
   GraduationCap,
   Award,
   BookOpen,
-  School,
   Star,
   Zap,
   Clock,
   Dumbbell,
+  ShieldPlus,
+  type LucideIcon,
 } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
+import SpotlightCard from "@/components/ui/SpotlightCard";
+import Marquee from "@/components/ui/Marquee";
+import { cn } from "@/lib/utils";
 
 interface EducationItem {
   degree: string;
   institution: string;
   year: string;
   description: string;
+  inProgress?: boolean;
 }
 
-const icons = [GraduationCap, Award, Star, BookOpen, School, Zap, Clock, Dumbbell];
+const ICONS = {
+  uefa: Award,
+  fifa: ShieldPlus,
+  nsca: Dumbbell,
+  tactics: Star,
+  barca: Zap,
+  master: BookOpen,
+  progress: Clock,
+  degree: GraduationCap,
+} satisfies Record<string, LucideIcon>;
 
-const cardStyles = [
-  {
-    border: "border-green-500/20 hover:border-green-500/40",
-    glow: "bg-green-500/3",
-    icon: "text-green-400 bg-green-500/10 border-green-500/20",
-    badge: "bg-green-500/10 text-green-400 border-green-500/20",
-    accent: "from-green-500/0 via-green-500/50 to-green-500/0",
-  },
-  {
-    border: "border-yellow-500/20 hover:border-yellow-500/40",
-    glow: "bg-yellow-500/3",
-    icon: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
-    badge: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
-    accent: "from-yellow-500/0 via-yellow-500/50 to-yellow-500/0",
-  },
-  {
-    border: "border-orange-500/20 hover:border-orange-500/40",
-    glow: "bg-orange-500/3",
-    icon: "text-orange-400 bg-orange-500/10 border-orange-500/20",
-    badge: "bg-orange-500/10 text-orange-400 border-orange-500/20",
-    accent: "from-orange-500/0 via-orange-500/50 to-orange-500/0",
-  },
-  {
-    border: "border-blue-500/20 hover:border-blue-500/40",
-    glow: "bg-blue-500/3",
-    icon: "text-blue-400 bg-blue-500/10 border-blue-500/20",
-    badge: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    accent: "from-blue-500/0 via-blue-500/50 to-blue-500/0",
-  },
-  {
-    border: "border-purple-500/20 hover:border-purple-500/40",
-    glow: "bg-purple-500/3",
-    icon: "text-purple-400 bg-purple-500/10 border-purple-500/20",
-    badge: "bg-purple-500/10 text-purple-400 border-purple-500/20",
-    accent: "from-purple-500/0 via-purple-500/50 to-purple-500/0",
-  },
-  {
-    border: "border-red-500/20 hover:border-red-500/40",
-    glow: "bg-red-500/3",
-    icon: "text-red-400 bg-red-500/10 border-red-500/20",
-    badge: "bg-red-500/10 text-red-400 border-red-500/20",
-    accent: "from-red-500/0 via-red-500/50 to-red-500/0",
-  },
-  {
-    border: "border-cyan-500/20 hover:border-cyan-500/40",
-    glow: "bg-cyan-500/3",
-    icon: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
-    badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
-    accent: "from-cyan-500/0 via-cyan-500/50 to-cyan-500/0",
-  },
-  {
-    border: "border-pink-500/20 hover:border-pink-500/40",
-    glow: "bg-pink-500/3",
-    icon: "text-pink-400 bg-pink-500/10 border-pink-500/20",
-    badge: "bg-pink-500/10 text-pink-400 border-pink-500/20",
-    accent: "from-pink-500/0 via-pink-500/50 to-pink-500/0",
-  },
-];
+// Picked by keyword so the icon follows the credential, not its position.
+function iconKey(item: EducationItem): keyof typeof ICONS {
+  const d = `${item.degree} ${item.institution}`.toLowerCase();
+  if (d.includes("uefa")) return "uefa";
+  if (d.includes("fifa")) return "fifa";
+  if (d.includes("nsca") || d.includes("cscs")) return "nsca";
+  if (d.includes("scout") || d.includes("tácti") || d.includes("tacti")) return "tactics";
+  if (d.includes("barça")) return "barca";
+  if (d.includes("master") || d.includes("máster")) return "master";
+  if (item.inProgress) return "progress";
+  return "degree";
+}
 
-function EducationCard({
-  item,
-  actualIndex,
-  delay,
-}: {
-  item: EducationItem;
-  actualIndex: number;
-  delay: number;
-}) {
-  const Icon = icons[actualIndex];
-  const style = cardStyles[actualIndex];
+function EducationCard({ item, delay }: { item: EducationItem; delay: number }) {
+  const Icon = ICONS[iconKey(item)];
+  const progress = Boolean(item.inProgress);
 
   return (
     <motion.div
@@ -100,34 +60,41 @@ function EducationCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, delay }}
-      whileHover={{ y: -6 }}
-      className={`group relative rounded-2xl border ${style.border} ${style.glow} bg-white/3 p-8 transition-all duration-300 overflow-hidden cursor-default`}
+      className="h-full"
     >
-      <div
-        className={`absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r ${style.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-      />
-      <div
-        className={`w-12 h-12 rounded-xl border flex items-center justify-center mb-6 ${style.icon} group-hover:scale-110 transition-transform duration-300`}
+      <SpotlightCard
+        as="article"
+        className={cn("h-full p-7", progress && "border-dashed border-yellow-500/25 hover:border-yellow-500/45")}
+        glow={progress ? "rgba(234,179,8,0.12)" : undefined}
       >
-        <Icon size={22} />
-      </div>
-      <span
-        className={`inline-block text-xs font-semibold px-3 py-1 rounded-full border mb-4 ${style.badge}`}
-      >
-        {item.year}
-      </span>
-      <h3 className="font-oswald text-lg font-bold text-white tracking-wide mb-2 leading-tight">
-        {item.degree}
-      </h3>
-      <p className="text-white/50 text-xs font-medium mb-4 uppercase tracking-wider">
-        {item.institution}
-      </p>
-      <p className="text-white/55 text-sm leading-relaxed">
-        {item.description}
-      </p>
-      <span className="absolute bottom-4 right-4 font-oswald text-6xl font-bold text-white/3 select-none">
-        0{actualIndex + 1}
-      </span>
+        <div className="mb-5 flex items-start justify-between gap-4">
+          <span
+            className={cn(
+              "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border transition-transform duration-300 group-hover/spot:scale-110",
+              progress
+                ? "border-yellow-500/25 bg-yellow-500/10 text-yellow-400"
+                : "border-green-500/25 bg-green-500/10 text-green-400"
+            )}
+          >
+            <Icon size={22} aria-hidden />
+          </span>
+          <span
+            className={cn(
+              "rounded-full border px-3 py-1 text-xs font-semibold",
+              progress
+                ? "border-yellow-500/25 bg-yellow-500/10 text-yellow-300"
+                : "border-green-500/25 bg-green-500/10 text-green-300"
+            )}
+          >
+            {item.year}
+          </span>
+        </div>
+        <h3 className="mb-2 font-oswald text-lg font-bold leading-tight tracking-wide text-white">
+          {item.degree}
+        </h3>
+        <p className="mb-4 text-xs font-medium uppercase tracking-wider text-white/55">{item.institution}</p>
+        <p className="text-sm leading-relaxed text-white/65">{item.description}</p>
+      </SpotlightCard>
     </motion.div>
   );
 }
@@ -135,97 +102,73 @@ function EducationCard({
 export default function Education() {
   const t = useTranslations("education");
   const items = t.raw("items") as EducationItem[];
+  const skills = t.raw("skills") as string[];
+
+  const done = items.filter((i) => !i.inProgress);
+  const inProgress = items.filter((i) => i.inProgress);
+  const degrees = done.slice(0, 2);
+  const certificates = done.slice(2);
 
   return (
     <section
       id="education"
       className="section-padding relative overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg, #0a0a0a 0%, #0d1a0f 50%, #0a0a0a 100%)",
-      }}
+      style={{ background: "linear-gradient(180deg, #0a0a0a 0%, #0c1a10 50%, #0a0a0a 100%)" }}
     >
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-green-500/3 rounded-full blur-3xl pointer-events-none" />
+      <div aria-hidden className="pointer-events-none absolute right-1/4 top-0 h-96 w-96 rounded-full bg-green-500/5 blur-3xl" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <SectionTitle
-          title={t("sectionTitle")}
-          subtitle={t("sectionSubtitle")}
-        />
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <SectionTitle title={t("sectionTitle")} subtitle={t("sectionSubtitle")} />
 
-        {/* Top 2 cards — Bachelor's + Master's */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          {items.slice(0, 2).map((item, i) => (
-            <EducationCard key={i} item={item} actualIndex={i} delay={i * 0.15} />
+        <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {degrees.map((item, i) => (
+            <EducationCard key={item.degree} item={item} delay={i * 0.12} />
           ))}
         </div>
 
-        {/* Bottom 4 cards — UEFA C + FIFA Diploma + Barça Scouting + Barça Strength Training */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {items.slice(2, 6).map((item, i) => (
-            <EducationCard
-              key={i + 2}
-              item={item}
-              actualIndex={i + 2}
-              delay={i * 0.15}
-            />
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {certificates.map((item, i) => (
+            <EducationCard key={item.degree} item={item} delay={i * 0.1} />
           ))}
         </div>
 
-        {/* In Progress heading + row — UEFA B + NSCA CSCS® */}
-        <div className="mt-10 mb-6 flex items-center gap-4">
-          <span className="shrink-0 text-xs font-semibold tracking-[0.25em] uppercase text-yellow-400 px-3 py-1 rounded-full border border-yellow-500/20 bg-yellow-500/5">
-            {t("inProgressLabel")}
-          </span>
-          <div className="flex-1 h-px bg-white/10" />
-        </div>
+        {inProgress.length > 0 && (
+          <>
+            <div className="mb-6 mt-12 flex items-center gap-4">
+              <span className="shrink-0 rounded-full border border-yellow-500/25 bg-yellow-500/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-yellow-300">
+                {t("inProgressLabel")}
+              </span>
+              <span aria-hidden className="h-px flex-1 bg-white/10" />
+            </div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {inProgress.map((item, i) => (
+                <EducationCard key={item.degree} item={item} delay={i * 0.12} />
+              ))}
+            </div>
+          </>
+        )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {items.slice(6).map((item, i) => (
-            <EducationCard
-              key={i + 6}
-              item={item}
-              actualIndex={i + 6}
-              delay={i * 0.15}
-            />
-          ))}
-        </div>
-
-        {/* Certifications strip */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-10 rounded-2xl border border-white/8 bg-white/3 px-8 py-6"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-12 overflow-hidden rounded-2xl border border-white/10 bg-white/3 py-6"
         >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <p className="font-oswald text-lg font-bold text-white tracking-wide mb-1">
-                {t("skillsTitle")}
-              </p>
-              <p className="text-white/40 text-sm">
-                {t("skillsSubtitle")}
-              </p>
-            </div>
-
-            <div className="flex flex-wrap justify-center md:justify-end gap-3">
-              {[
-                "Football Coach (UEFA B)",
-                "MSc S&C",
-                "BSc Sport Science",
-                "Barça Innovation Hub",
-                "CPR Certified",
-              ].map((cert, i) => (
-                <span
-                  key={i}
-                  className="px-4 py-2 rounded-xl border border-green-500/20 bg-green-500/5 text-green-400 text-xs font-semibold tracking-wide"
-                >
-                  {cert}
-                </span>
-              ))}
-            </div>
+          <div className="mb-5 px-6 text-center md:px-8">
+            <p className="mb-1 font-oswald text-lg font-bold tracking-wide text-white">{t("skillsTitle")}</p>
+            <p className="text-sm text-white/60">{t("skillsSubtitle")}</p>
           </div>
+          <Marquee duration="30s" gap="0.75rem">
+            {skills.map((skill) => (
+              <span
+                key={skill}
+                className="whitespace-nowrap rounded-xl border border-green-500/25 bg-green-500/5 px-4 py-2 text-xs font-semibold tracking-wide text-green-300"
+              >
+                {skill}
+              </span>
+            ))}
+          </Marquee>
         </motion.div>
       </div>
     </section>

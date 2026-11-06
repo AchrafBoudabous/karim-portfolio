@@ -12,268 +12,211 @@ import {
   Mail,
   MapPin,
   Phone,
+  Loader2,
+  ArrowUpRight,
 } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import TikTokIcon from "@/components/ui/TikTokIcon";
-
-interface FormState {
-  name: string;
-  email: string;
-  message: string;
-}
-
-interface FormErrors {
-  name?: string;
-  email?: string;
-  message?: string;
-}
+import SpotlightCard from "@/components/ui/SpotlightCard";
+import Button from "@/components/ui/Button";
+import FormField, { Honeypot, inputClasses, type FieldState } from "@/components/ui/FormField";
+import {
+  LIMITS,
+  validateContact,
+  type ContactField,
+  type ContactInput,
+  type ErrorCode,
+} from "@/lib/validation";
+import { SITE } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 type SubmitStatus = "idle" | "loading" | "success" | "error";
+type ServerError = "rateLimited" | "unavailable" | "generic";
 
-function validateForm(values: FormState): FormErrors {
-  const errors: FormErrors = {};
-
-  if (!values.name.trim()) {
-    errors.name = "Name is required";
-  } else if (values.name.trim().length < 2) {
-    errors.name = "Name must be at least 2 characters";
-  } else if (values.name.trim().length > 100) {
-    errors.name = "Name must be less than 100 characters";
-  } else if (!/^[a-zA-ZÀ-ÿ\s'-]+$/.test(values.name.trim())) {
-    errors.name = "Name can only contain letters, spaces, hyphens and apostrophes";
-  }
-
-  if (!values.email.trim()) {
-    errors.email = "Email is required";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
-    errors.email = "Please enter a valid email address";
-  } else if (values.email.trim().length > 254) {
-    errors.email = "Email address is too long";
-  }
-
-  if (!values.message.trim()) {
-    errors.message = "Message is required";
-  } else if (values.message.trim().length < 10) {
-    errors.message = "Message must be at least 10 characters";
-  } else if (values.message.trim().length > 2000) {
-    errors.message = "Message must be less than 2000 characters";
-  }
-
-  return errors;
-}
+const EMPTY: ContactInput = { name: "", email: "", message: "" };
+const FIELDS: ContactField[] = ["name", "email", "message"];
 
 export default function Contact() {
   const t = useTranslations("contact");
+  const tv = useTranslations("validation");
 
-  const [form, setForm] = useState<FormState>({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [form, setForm] = useState<ContactInput>(EMPTY);
+  const [honeypot, setHoneypot] = useState("");
+  const [touched, setTouched] = useState<Partial<Record<ContactField, boolean>>>({});
   const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [serverError, setServerError] = useState<ServerError>("generic");
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-    if (touched[name]) {
-      const newErrors = validateForm({ ...form, [name]: value });
-      setErrors((prev) => ({
-        ...prev,
-        [name]: newErrors[name as keyof FormErrors],
-      }));
-    }
+  const errors = validateContact(form);
+
+  const errorText = (field: ContactField) => {
+    const code = errors[field];
+    if (!touched[field] || !code) return undefined;
+    return tv(`${field}.${code}` as `name.${ErrorCode}`);
   };
 
-  const handleBlur = (
-    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name } = e.target;
-    setTouched((prev) => ({ ...prev, [name]: true }));
-    const newErrors = validateForm(form);
-    setErrors((prev) => ({
-      ...prev,
-      [name]: newErrors[name as keyof FormErrors],
-    }));
+  const fieldState = (field: ContactField): FieldState => {
+    if (!touched[field]) return "idle";
+    if (errors[field]) return "invalid";
+    return form[field] ? "valid" : "idle";
   };
+
+  const update =
+    (field: ContactField) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setForm((p) => ({ ...p, [field]: e.target.value }));
+
+  const blur = (field: ContactField) => () =>
+    setTouched((p) => ({ ...p, [field]: true }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const allTouched = { name: true, email: true, message: true };
-    setTouched(allTouched);
-
-    const validationErrors = validateForm(form);
-    setErrors(validationErrors);
-
-    if (Object.keys(validationErrors).length > 0) return;
+    setTouched({ name: true, email: true, message: true });
+    if (FIELDS.some((f) => errors[f])) return;
 
     setStatus("loading");
-
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, website: honeypot }),
       });
-
-      if (!res.ok) throw new Error("Failed");
+      if (!res.ok) {
+        setServerError(
+          res.status === 429 ? "rateLimited" : res.status === 503 ? "unavailable" : "generic"
+        );
+        setStatus("error");
+        return;
+      }
       setStatus("success");
-      setForm({ name: "", email: "", message: "" });
+      setForm(EMPTY);
       setTouched({});
-      setErrors({});
     } catch {
+      setServerError("generic");
       setStatus("error");
     }
   };
 
-  const inputBase =
-    "w-full bg-white/3 border rounded-xl px-4 py-3.5 text-white text-sm placeholder:text-white/30 outline-none transition-all duration-200 focus:bg-white/5";
+  const contactItems = [
+    { icon: MapPin, label: t("locationLabel"), value: "Madrid, Spain", href: undefined },
+    { icon: Mail, label: t("emailLabel"), value: SITE.email, href: `mailto:${SITE.email}` },
+    { icon: Phone, label: t("phoneLabel"), value: SITE.phone, href: `tel:${SITE.phoneHref}` },
+  ];
 
-  const getInputClass = (field: keyof FormErrors) => {
-    if (touched[field] && errors[field]) {
-      return `${inputBase} border-red-500/50 focus:border-red-500/80 focus:ring-2 focus:ring-red-500/10`;
-    }
-    if (touched[field] && !errors[field] && form[field]) {
-      return `${inputBase} border-green-500/40 focus:border-green-500/60 focus:ring-2 focus:ring-green-500/10`;
-    }
-    return `${inputBase} border-white/8 focus:border-green-500/40 focus:ring-2 focus:ring-green-500/5`;
-  };
+  const socials = [
+    {
+      icon: Linkedin,
+      label: "LinkedIn",
+      handle: SITE.name,
+      href: SITE.socials.linkedin,
+      color: "hover:border-blue-500/40 hover:bg-blue-500/5 hover:text-blue-300",
+    },
+    {
+      icon: Instagram,
+      label: "Instagram",
+      handle: "@karimboudabous.coach",
+      href: SITE.socials.instagram,
+      color: "hover:border-pink-500/40 hover:bg-pink-500/5 hover:text-pink-300",
+    },
+    {
+      icon: TikTokIcon,
+      label: "TikTok",
+      handle: "@karimboudabous.coach",
+      href: SITE.socials.tiktok,
+      color: "hover:border-cyan-500/40 hover:bg-cyan-500/5 hover:text-cyan-300",
+    },
+  ];
+
+  const msgLen = form.message.length;
 
   return (
-    <section
-      id="contact"
-      className="section-padding bg-neutral-950 relative overflow-hidden"
-    >
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-green-500/4 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/4 right-0 w-64 h-64 bg-emerald-600/3 rounded-full blur-3xl pointer-events-none" />
+    <section id="contact" className="section-padding relative overflow-hidden bg-neutral-950">
+      <div aria-hidden className="pointer-events-none absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-green-500/5 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute right-0 top-1/4 h-64 w-64 rounded-full bg-emerald-600/5 blur-3xl" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <SectionTitle
-          title={t("sectionTitle")}
-          subtitle={t("sectionSubtitle")}
-        />
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <SectionTitle title={t("sectionTitle")} subtitle={t("sectionSubtitle")} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-          {/* Left info panel */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 lg:gap-10">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-2 flex flex-col gap-6"
+            className="flex flex-col gap-6 lg:col-span-2"
           >
-            {/* Info card */}
-            <div className="rounded-2xl border border-white/8 bg-white/3 p-6">
-              <h3 className="font-oswald text-lg font-bold text-white tracking-wide mb-5">
+            <SpotlightCard className="p-6">
+              <h3 className="mb-5 font-oswald text-lg font-bold tracking-wide text-white">
                 {t("infoTitle")}
               </h3>
-              <div className="space-y-4">
-                {[
-                  {
-                    icon: MapPin,
-                    label: t("locationLabel"),
-                    value: "Madrid, Spain",
-                  },
-                  {
-                    icon: Mail,
-                    label: t("emailLabel"),
-                    value: "karimboudabous04@gmail.com",
-                  },
-                  {
-                    icon: Phone,
-                    label: t("phoneLabel"),
-                    value: "+34 666 850 841",
-                  },
-                ].map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center shrink-0">
-                      <Icon size={16} className="text-green-400" />
-                    </div>
-                    <div>
-                      <p className="text-white/30 text-xs uppercase tracking-wider">
-                        {label}
-                      </p>
-                      <p className="text-white/80 text-sm font-medium">
-                        {value}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+              <ul className="space-y-4">
+                {contactItems.map(({ icon: Icon, label, value, href }) => {
+                  const content = (
+                    <>
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-green-500/20 bg-green-500/10">
+                        <Icon size={16} className="text-green-400" aria-hidden />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block text-xs uppercase tracking-wider text-white/50">{label}</span>
+                        <span className="block truncate text-sm font-medium text-white/85">{value}</span>
+                      </span>
+                    </>
+                  );
+                  return (
+                    <li key={label}>
+                      {href ? (
+                        <a
+                          href={href}
+                          className="group flex items-center gap-4 rounded-xl transition-opacity hover:opacity-80"
+                        >
+                          {content}
+                        </a>
+                      ) : (
+                        <div className="flex items-center gap-4">{content}</div>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </SpotlightCard>
 
-            {/* Social links */}
-            <div className="rounded-2xl border border-white/8 bg-white/3 p-6">
-              <p className="text-white/40 text-xs uppercase tracking-widest mb-4">
-                {t("follow")}
-              </p>
-              <div className="flex flex-col gap-3">
-                {[
-                  {
-                    icon: Linkedin,
-                    label: "LinkedIn",
-                    handle: "Karim Boudabous",
-                    href: "https://www.linkedin.com/in/karim-boudabous-a389902b3",
-                    color: "hover:border-blue-500/40 hover:bg-blue-500/5 hover:text-blue-400",
-                  },
-                  {
-                    icon: Instagram,
-                    label: "Instagram",
-                    handle: "@karimboudabous.coach",
-                    href: "https://www.instagram.com/karimboudabous.coach/",
-                    color: "hover:border-pink-500/40 hover:bg-pink-500/5 hover:text-pink-400",
-                  },
-                  {
-                    icon: TikTokIcon,
-                    label: "TikTok",
-                    handle: "@karimboudabous.coach",
-                    href: "https://www.tiktok.com/@karimboudabous.coach",
-                    color: "hover:border-cyan-500/40 hover:bg-cyan-500/5 hover:text-cyan-400",
-                  },
-                ].map(({ icon: Icon, label, handle, href, color }) => (
-                  <motion.a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ x: 4 }}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl border border-white/8 bg-white/3 text-white/60 transition-all duration-200 group ${color}`}
-                  >
-                    <Icon size={16} className="shrink-0" />
-                    <div className="min-w-0">
-                      <p className="text-xs font-semibold">{label}</p>
-                      <p className="text-xs text-white/30 truncate">{handle}</p>
-                    </div>
-                  </motion.a>
+            <SpotlightCard className="p-6">
+              <p className="mb-4 text-xs uppercase tracking-widest text-white/55">{t("follow")}</p>
+              <ul className="flex flex-col gap-3">
+                {socials.map(({ icon: Icon, label, handle, href, color }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cn(
+                        "group flex items-center gap-3 rounded-xl border border-white/10 bg-white/3 px-4 py-3 text-white/70 transition-all duration-200 hover:translate-x-1",
+                        color
+                      )}
+                    >
+                      <Icon size={16} className="shrink-0" aria-hidden />
+                      <span className="min-w-0">
+                        <span className="block text-xs font-semibold">{label}</span>
+                        <span className="block truncate text-xs text-white/45">{handle}</span>
+                      </span>
+                      <ArrowUpRight size={14} className="ml-auto opacity-0 transition-opacity group-hover:opacity-100" aria-hidden />
+                    </a>
+                  </li>
                 ))}
-              </div>
-            </div>
+              </ul>
+            </SpotlightCard>
 
-            {/* Availability badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-              className="rounded-2xl border border-green-500/20 bg-green-500/5 p-5 flex items-center gap-4"
-            >
-              <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse shrink-0" />
+            <div className="flex items-center gap-4 rounded-2xl border border-green-500/25 bg-green-500/5 p-5">
+              <span className="relative flex h-3 w-3 shrink-0" aria-hidden>
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60" />
+                <span className="relative inline-flex h-3 w-3 rounded-full bg-green-400" />
+              </span>
               <div>
-                <p className="text-green-400 text-sm font-semibold">
-                  {t("availableTitle")}
-                </p>
-                <p className="text-white/40 text-xs mt-0.5">
-                  {t("availableText")}
-                </p>
+                <p className="text-sm font-semibold text-green-400">{t("availableTitle")}</p>
+                <p className="mt-0.5 text-xs text-white/60">{t("availableText")}</p>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
 
-          {/* Right — Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -281,31 +224,25 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-3"
           >
-            <div className="rounded-2xl border border-white/8 bg-white/3 p-8">
+            <SpotlightCard className="p-6 sm:p-8">
               <AnimatePresence mode="wait">
                 {status === "success" ? (
                   <motion.div
                     key="success"
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    role="status"
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    className="flex flex-col items-center justify-center py-16 text-center gap-4"
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="flex flex-col items-center justify-center gap-4 py-16 text-center"
                   >
-                    <div className="w-16 h-16 rounded-full bg-green-500/15 border border-green-500/30 flex items-center justify-center">
-                      <CheckCircle size={32} className="text-green-400" />
-                    </div>
-                    <h3 className="font-oswald text-xl font-bold text-white">
-                      {t("successTitle")}
-                    </h3>
-                    <p className="text-white/50 text-sm max-w-sm leading-relaxed">
-                      {t("success")}
-                    </p>
-                    <button
-                      onClick={() => setStatus("idle")}
-                      className="mt-2 px-5 py-2.5 rounded-xl border border-white/10 bg-white/5 text-white/60 hover:text-white hover:bg-white/10 text-sm transition-colors duration-200"
-                    >
+                    <span className="flex h-16 w-16 items-center justify-center rounded-full border border-green-500/30 bg-green-500/15">
+                      <CheckCircle size={32} className="text-green-400" aria-hidden />
+                    </span>
+                    <h3 className="font-oswald text-xl font-bold text-white">{t("successTitle")}</h3>
+                    <p className="max-w-sm text-sm leading-relaxed text-white/65">{t("success")}</p>
+                    <Button variant="secondary" size="sm" className="mt-2" onClick={() => setStatus("idle")}>
                       {t("sendAnother")}
-                    </button>
+                    </Button>
                   </motion.div>
                 ) : (
                   <motion.form
@@ -315,187 +252,115 @@ export default function Contact() {
                     exit={{ opacity: 0 }}
                     onSubmit={handleSubmit}
                     noValidate
-                    className="space-y-5"
+                    className="relative space-y-4"
                   >
-                    {/* Name */}
-                    <div>
-                      <label htmlFor="contact-name" className="sr-only">
-                        {t("namePlaceholder")}
-                      </label>
-                      <input
-                        id="contact-name"
-                        type="text"
-                        name="name"
-                        value={form.name}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        placeholder={t("namePlaceholder")}
-                        className={getInputClass("name")}
-                        autoComplete="name"
-                        maxLength={100}
-                      />
-                      <AnimatePresence>
-                        {touched.name && errors.name && (
-                          <motion.p
-                            initial={{ opacity: 0, y: -4 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -4 }}
-                            className="mt-1.5 text-red-400 text-xs flex items-center gap-1"
-                          >
-                            <AlertCircle size={11} />
-                            {errors.name}
-                          </motion.p>
+                    <Honeypot value={honeypot} onChange={setHoneypot} />
+
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <FormField id="contact-name" label={t("nameLabel")} error={errorText("name")}>
+                        {(aria) => (
+                          <input
+                            {...aria}
+                            type="text"
+                            name="name"
+                            autoComplete="name"
+                            placeholder={t("namePlaceholder")}
+                            value={form.name}
+                            onChange={update("name")}
+                            onBlur={blur("name")}
+                            maxLength={LIMITS.nameMax}
+                            className={inputClasses(fieldState("name"), "py-3.5")}
+                          />
                         )}
-                      </AnimatePresence>
+                      </FormField>
+                      <FormField id="contact-email" label={t("emailLabel2")} error={errorText("email")}>
+                        {(aria) => (
+                          <input
+                            {...aria}
+                            type="email"
+                            name="email"
+                            autoComplete="email"
+                            inputMode="email"
+                            placeholder={t("emailPlaceholder")}
+                            value={form.email}
+                            onChange={update("email")}
+                            onBlur={blur("email")}
+                            maxLength={LIMITS.emailMax}
+                            className={inputClasses(fieldState("email"), "py-3.5")}
+                          />
+                        )}
+                      </FormField>
                     </div>
 
-                    {/* Email */}
-                    <div>
-                      <label htmlFor="contact-email" className="sr-only">
-                        {t("emailPlaceholder")}
-                      </label>
-                      <input
-                        id="contact-email"
-                        type="email"
-                        name="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        placeholder={t("emailPlaceholder")}
-                        className={getInputClass("email")}
-                        autoComplete="email"
-                        maxLength={254}
-                      />
-                      <AnimatePresence>
-                        {touched.email && errors.email && (
-                          <motion.p
-                            initial={{ opacity: 0, y: -4 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -4 }}
-                            className="mt-1.5 text-red-400 text-xs flex items-center gap-1"
-                          >
-                            <AlertCircle size={11} />
-                            {errors.email}
-                          </motion.p>
-                        )}
-                      </AnimatePresence>
-                    </div>
-
-                    {/* Message */}
-                    <div>
-                      <label htmlFor="contact-message" className="sr-only">
-                        {t("messagePlaceholder")}
-                      </label>
-                      <textarea
-                        id="contact-message"
-                        name="message"
-                        value={form.message}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        placeholder={t("messagePlaceholder")}
-                        rows={6}
-                        maxLength={2000}
-                        className={`${getInputClass("message")} resize-none`}
-                      />
-                      <div className="flex items-center justify-between mt-1.5">
-                        <AnimatePresence>
-                          {touched.message && errors.message && (
-                            <motion.p
-                              initial={{ opacity: 0, y: -4 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -4 }}
-                              className="text-red-400 text-xs flex items-center gap-1"
-                            >
-                              <AlertCircle size={11} />
-                              {errors.message}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
+                    <FormField
+                      id="contact-message"
+                      label={t("messageLabel")}
+                      error={errorText("message")}
+                      hint={
                         <span
-                          className={`text-xs ml-auto ${
-                            form.message.length > 1800
+                          className={cn(
+                            msgLen > LIMITS.contactMessageMax * 0.9
                               ? "text-red-400"
-                              : form.message.length > 1500
-                              ? "text-yellow-400"
-                              : "text-white/20"
-                          }`}
+                              : msgLen > LIMITS.contactMessageMax * 0.75
+                                ? "text-yellow-400"
+                                : "text-white/40"
+                          )}
                         >
-                          {form.message.length}/2000
+                          {msgLen}/{LIMITS.contactMessageMax}
                         </span>
-                      </div>
-                    </div>
+                      }
+                    >
+                      {(aria) => (
+                        <textarea
+                          {...aria}
+                          name="message"
+                          rows={6}
+                          placeholder={t("messagePlaceholder")}
+                          value={form.message}
+                          onChange={update("message")}
+                          onBlur={blur("message")}
+                          maxLength={LIMITS.contactMessageMax}
+                          className={inputClasses(fieldState("message"), "resize-none py-3.5")}
+                        />
+                      )}
+                    </FormField>
 
-                    {/* Error status */}
                     <AnimatePresence>
                       {status === "error" && (
                         <motion.div
+                          role="alert"
                           initial={{ opacity: 0, y: -4 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0 }}
-                          className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm"
+                          className="flex items-center gap-2 rounded-xl border border-red-500/25 bg-red-500/10 px-4 py-3 text-sm text-red-400"
                         >
-                          <AlertCircle size={16} />
-                          {t("error")}
+                          <AlertCircle size={16} aria-hidden className="shrink-0" />
+                          {serverError === "rateLimited"
+                            ? t("rateLimited")
+                            : serverError === "unavailable"
+                              ? t("unavailable")
+                              : t("error")}
                         </motion.div>
                       )}
                     </AnimatePresence>
 
-                    {/* Submit */}
-                    <motion.button
-                      type="submit"
-                      disabled={status === "loading"}
-                      whileHover={{ scale: status === "loading" ? 1 : 1.02 }}
-                      whileTap={{ scale: status === "loading" ? 1 : 0.98 }}
-                      className="w-full relative overflow-hidden py-4 rounded-xl bg-linear-to-r from-green-500 to-emerald-600 text-black font-bold text-sm tracking-wide disabled:opacity-70 disabled:cursor-not-allowed transition-opacity duration-200"
-                    >
-                      <AnimatePresence mode="wait">
-                        {status === "loading" ? (
-                          <motion.span
-                            key="loading"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="flex items-center justify-center gap-2"
-                          >
-                            <svg
-                              className="animate-spin w-4 h-4"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                            >
-                              <circle
-                                className="opacity-25"
-                                cx="12"
-                                cy="12"
-                                r="10"
-                                stroke="currentColor"
-                                strokeWidth="4"
-                              />
-                              <path
-                                className="opacity-75"
-                                fill="currentColor"
-                                d="M4 12a8 8 0 018-8v8H4z"
-                              />
-                            </svg>
-                            {t("sending")}
-                          </motion.span>
-                        ) : (
-                          <motion.span
-                            key="send"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="flex items-center justify-center gap-2"
-                          >
-                            <Send size={15} />
-                            {t("send")}
-                          </motion.span>
-                        )}
-                      </AnimatePresence>
-                    </motion.button>
+                    <Button type="submit" size="lg" className="w-full" disabled={status === "loading"} shine>
+                      {status === "loading" ? (
+                        <>
+                          <Loader2 size={16} className="animate-spin" aria-hidden />
+                          {t("sending")}
+                        </>
+                      ) : (
+                        <>
+                          <Send size={15} aria-hidden />
+                          {t("send")}
+                        </>
+                      )}
+                    </Button>
                   </motion.form>
                 )}
               </AnimatePresence>
-            </div>
+            </SpotlightCard>
           </motion.div>
         </div>
       </div>

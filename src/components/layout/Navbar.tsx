@@ -1,206 +1,190 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, CalendarDays } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
-import BookingModal from "@/components/ui/BookingModal";
-
-const navLinks = [
-  { key: "about", href: "#about" },
-  { key: "services", href: "#services" },
-  { key: "experience", href: "#experience" },
-  { key: "gallery", href: "#gallery" },
-  { key: "education", href: "#education" },
-  { key: "contact", href: "#contact" },
-];
+import Button from "@/components/ui/Button";
+import { useBooking } from "@/components/booking/BookingProvider";
+import { NAV_KEYS } from "@/lib/nav";
+import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   const t = useTranslations("nav");
   const tBooking = useTranslations("booking");
+  const tA11y = useTranslations("a11y");
+  const { openBooking } = useBooking();
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [active, setActive] = useState<string>("");
 
+  // Header background
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-
-      const sections = [...navLinks].reverse();
-      for (const link of sections) {
-        const el = document.getElementById(link.key);
-        if (el && window.scrollY >= el.offsetTop - 120) {
-          setActiveSection(link.key);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleNavClick = (href: string) => {
-    setMobileOpen(false);
-    const id = href.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
+  // Active section via IntersectionObserver (no layout reads on scroll).
+  useEffect(() => {
+    const sections = NAV_KEYS.map((k) => document.getElementById(k)).filter(
+      (el): el is HTMLElement => el !== null
+    );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        }
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
 
-  const headerClass = scrolled
-    ? "bg-neutral-950/90 backdrop-blur-xl border-b border-white/5 shadow-xl shadow-black/20"
-    : "bg-transparent";
+  // Mobile menu: Escape to close + lock page scroll while open.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMobileOpen(false);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [mobileOpen]);
 
   return (
     <>
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-      />
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-300 focus:rounded-lg focus:bg-green-500 focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-black"
+      >
+        {tA11y("skipToContent")}
+      </a>
 
       <motion.header
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerClass}`}
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+          scrolled
+            ? "border-b border-white/5 bg-neutral-950/80 shadow-xl shadow-black/20 backdrop-blur-xl"
+            : "bg-transparent"
+        )}
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
-          {/* Logo */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-2 group"
-          >
-            <div className="w-8 h-8 rounded-lg bg-linear-to-br from-green-400 to-emerald-600 flex items-center justify-center font-bold text-black text-sm">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:h-20 md:px-8">
+          <a href="#main" className="group flex items-center gap-2" aria-label={tA11y("backToTop")}>
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-linear-to-br from-green-400 to-emerald-600 font-oswald text-sm font-bold text-black transition-transform duration-300 group-hover:rotate-6">
               KB
-            </div>
-            <span className="font-bold text-lg tracking-wide hidden sm:block">
+            </span>
+            <span className="hidden font-oswald text-lg font-bold tracking-wide sm:block">
               <span className="text-white">KARIM</span>
               <span className="text-green-400"> B.</span>
             </span>
-          </button>
+          </a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <button
-                key={link.key}
-                onClick={() => handleNavClick(link.href)}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-lg hover:text-green-400 ${
-                  activeSection === link.key
-                    ? "text-green-400"
-                    : "text-white/70"
-                }`}
-              >
-                {t(
-                  link.key as
-                    | "about"
-                    | "services"
-                    | "experience"
-                    | "gallery"
-                    | "education"
-                    | "contact"
+          <nav aria-label={tA11y("mainNav")} className="hidden items-center gap-1 rounded-full border border-white/5 bg-white/2 p-1 lg:flex">
+            {NAV_KEYS.map((key) => (
+              <a
+                key={key}
+                href={`#${key}`}
+                aria-current={active === key ? "true" : undefined}
+                className={cn(
+                  "relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200",
+                  active === key ? "text-green-300" : "text-white/70 hover:text-white"
                 )}
-                {activeSection === link.key && (
-                  <motion.div
+              >
+                {active === key && (
+                  <motion.span
                     layoutId="activeNav"
-                    className="absolute inset-0 bg-green-500/10 rounded-lg border border-green-500/20"
+                    className="absolute inset-0 rounded-full border border-green-500/25 bg-green-500/10"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
                   />
                 )}
-              </button>
+                <span className="relative">{t(key)}</span>
+              </a>
             ))}
           </nav>
 
-          {/* Right side */}
           <div className="flex items-center gap-3">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsBookingOpen(true)}
-              className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-linear-to-r from-green-500 to-emerald-600 text-black font-bold text-sm"
-            >
-              <CalendarDays size={15} />
+            <Button size="sm" onClick={openBooking} className="hidden md:inline-flex" shine>
+              <CalendarDays size={15} aria-hidden />
               {tBooking("title")}
-            </motion.button>
+            </Button>
             <LanguageSwitcher />
             <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-colors"
-              aria-label="Toggle menu"
+              type="button"
+              onClick={() => setMobileOpen((v) => !v)}
+              className="rounded-lg border border-white/10 bg-white/5 p-2 transition-colors hover:bg-white/10 lg:hidden"
+              aria-label={mobileOpen ? tA11y("closeMenu") : tA11y("openMenu")}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-menu"
             >
-              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+              {mobileOpen ? <X size={18} aria-hidden /> : <Menu size={18} aria-hidden />}
             </button>
           </div>
         </div>
       </motion.header>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            id="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             className="fixed inset-0 z-40 lg:hidden"
           >
-            <div
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-              onClick={() => setMobileOpen(false)}
-            />
-            <div className="absolute right-0 top-0 bottom-0 w-72 bg-neutral-950 border-l border-white/10 flex flex-col pt-20 pb-8 px-6">
-              <nav className="flex flex-col gap-1">
-                {navLinks.map((link, i) => (
-                  <motion.button
-                    key={link.key}
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 28, stiffness: 240 }}
+              className="absolute bottom-0 right-0 top-0 flex w-72 max-w-[85vw] flex-col border-l border-white/10 bg-neutral-950 px-6 pb-8 pt-20"
+            >
+              <nav aria-label={tA11y("mainNav")} className="flex flex-col gap-1">
+                {NAV_KEYS.map((key, i) => (
+                  <motion.a
+                    key={key}
+                    href={`#${key}`}
+                    onClick={() => setMobileOpen(false)}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    onClick={() => handleNavClick(link.href)}
-                    className={`text-left px-4 py-3 rounded-xl text-base font-medium transition-colors duration-200 ${
-                      activeSection === link.key
-                        ? "bg-green-500/10 text-green-400 border border-green-500/20"
-                        : "text-white/70 hover:text-white hover:bg-white/5"
-                    }`}
-                  >
-                    {t(
-                      link.key as
-                        | "about"
-                        | "services"
-                        | "experience"
-                        | "gallery"
-                        | "education"
-                        | "contact"
+                    transition={{ delay: i * 0.04 }}
+                    className={cn(
+                      "rounded-xl px-4 py-3 text-base font-medium transition-colors duration-200",
+                      active === key
+                        ? "border border-green-500/20 bg-green-500/10 text-green-300"
+                        : "text-white/75 hover:bg-white/5 hover:text-white"
                     )}
-                  </motion.button>
+                  >
+                    {t(key)}
+                  </motion.a>
                 ))}
-
-                {/* Book button in mobile menu */}
-                <motion.button
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: navLinks.length * 0.05 }}
+                <Button
+                  className="mt-3"
                   onClick={() => {
                     setMobileOpen(false);
-                    setIsBookingOpen(true);
+                    openBooking();
                   }}
-                  className="mt-2 flex items-center gap-2 px-4 py-3 rounded-xl bg-linear-to-r from-green-500 to-emerald-600 text-black font-bold text-sm"
                 >
-                  <CalendarDays size={16} />
+                  <CalendarDays size={16} aria-hidden />
                   {tBooking("title")}
-                </motion.button>
+                </Button>
               </nav>
 
-              <div className="mt-auto pt-6 border-t border-white/10">
-                <p className="text-xs text-white/30 mb-4 uppercase tracking-widest">
-                  {t("language")}
-                </p>
-                <LanguageSwitcher />
+              <div className="mt-auto border-t border-white/10 pt-6">
+                <p className="mb-4 text-xs uppercase tracking-widest text-white/50">{t("language")}</p>
+                <LanguageSwitcher align="left" />
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
