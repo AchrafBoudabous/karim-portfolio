@@ -74,11 +74,11 @@ export default function About() {
         >
           <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-green-500/30 ring-4 ring-green-500/10">
             <Image
-              src="/images/Wallpaper.jpeg"
+              src="/images/Coaching/CDE FUENLABRADA ATLANTIS/Under 19/WhatsApp Image 2026-11-06 at 10.45.04 (3).jpeg"
               alt=""
               fill
-              sizes="64px"
-              className="object-cover object-[50%_42%] scale-[2.2]"
+              sizes="160px"
+              className="scale-[2.4] object-cover object-[49%_44%]"
             />
           </div>
 
@@ -86,7 +86,7 @@ export default function About() {
             Karim Boudabous
           </p>
 
-          <dl className="grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-4">
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-5">
             {highlights.map((item) => (
               <div key={item.label} className="flex flex-col-reverse text-center">
                 <dt className="text-xs text-white/55">{item.sublabel}</dt>

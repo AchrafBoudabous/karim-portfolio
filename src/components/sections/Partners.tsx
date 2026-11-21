@@ -3,6 +3,7 @@ import Marquee from "@/components/ui/Marquee";
 
 // Proper names — identical in every language.
 const PARTNERS = [
+  "Rayo Vallecano",
   "CDE Fuenlabrada Atlantis",
   "Syrian Football Association",
   "El Palmar CF",

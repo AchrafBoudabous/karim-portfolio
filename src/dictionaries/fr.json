@@ -18,12 +18,22 @@
     "statsExperienceLabel": "Années d'Expérience",
     "statsMscLabel": "Terminé",
     "statsUefaLabel": "Licence de Football",
-    "scroll": "Défiler"
+    "scroll": "Défiler",
+    "currentClubs": [
+      {
+        "club": "Rayo Vallecano",
+        "role": "Préparateur Physique U23"
+      },
+      {
+        "club": "CDE Fuenlabrada Atlantis",
+        "role": "Entraîneur & Prépa. Physique"
+      }
+    ]
   },
   "about": {
     "sectionTitle": "À Propos",
     "sectionSubtitle": "Scientifique du Sport. Entraîneur de Football UEFA. Préparateur Physique.",
-    "intro": "Je suis Préparateur Physique, Entraîneur de Football UEFA C (UEFA B en cours) et Coach Personnel, avec une expérience dans le football professionnel, le développement des jeunes et les environnements de haute performance. J'entraîne actuellement et supervise la préparation physique au CDE FUENLABRADA ATLANTIS à Madrid, en parallèle de mon activité de Coach Personnel chez Funziona – BASIC-FIT.",
+    "intro": "Je suis Préparateur Physique, Entraîneur de Football UEFA C (UEFA B en cours) et Coach Personnel, avec une expérience dans le football professionnel, le développement des jeunes et les environnements de haute performance. Je suis actuellement Préparateur Physique de l'équipe U23 du Rayo Vallecano, et j'entraîne et supervise la préparation physique au CDE Fuenlabrada Atlantis à Madrid, en parallèle de mon activité de Coach Personnel chez Funziona – BASIC-FIT.",
     "academic": {
       "title": "Socle Académique",
       "body": "Je suis titulaire d'une Licence en Sciences du Sport et de l'Activité Physique et d'un Master en Sport de Haute Performance, spécialisé en Force et Conditionnement. Ma formation me permet d'appliquer des principes scientifiques dans le développement de la force, le suivi de la charge d'entraînement, la prévention des blessures, le retour au jeu, l'analyse de la performance et le développement à long terme de l'athlète."
@@ -44,6 +54,10 @@
       {
         "label": "UCAM",
         "sublabel": "Diplômé"
+      },
+      {
+        "label": "Rayo Vallecano",
+        "sublabel": "Préparateur Physique U23"
       },
       {
         "label": "CDE Atlantis",
@@ -85,6 +99,19 @@
     "careerPathTitle": "Parcours Professionnel",
     "careerPathSubtitle": "De la Tunisie à l'Espagne — construire une expertise dans les milieux sportifs d'élite.",
     "items": [
+      {
+        "role": "Préparateur Physique – Équipe U23",
+        "company": "Rayo Vallecano de Madrid, S.A.D · Contrat",
+        "period": "Nov 2026 — Présent · 1 mois",
+        "location": "Région métropolitaine de Madrid · Présentiel",
+        "description": [
+          "Planification et animation de séances de préparation physique adaptées aux exigences du football U23.",
+          "Développement de la force, de la puissance, de la vitesse, de l'agilité et de l'endurance des joueurs.",
+          "Suivi des charges d'entraînement et évaluation de la condition physique et des performances des joueurs.",
+          "Mise en place de stratégies de prévention des blessures et optimisation de la récupération physique.",
+          "Collaboration avec le staff technique pour améliorer la préparation physique des joueurs en vue des entraînements et de la compétition."
+        ]
+      },
       {
         "company": "CDE Fuenlabrada Atlantis · Contrat",
         "period": "Août 2026 — Présent · 4 mois",

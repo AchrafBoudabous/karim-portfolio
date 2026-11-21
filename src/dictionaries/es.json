@@ -18,12 +18,22 @@
     "statsExperienceLabel": "Años de Experiencia",
     "statsMscLabel": "Completado",
     "statsUefaLabel": "Licencia de Fútbol",
-    "scroll": "Desplázate"
+    "scroll": "Desplázate",
+    "currentClubs": [
+      {
+        "club": "Rayo Vallecano",
+        "role": "Preparador Físico Sub-23"
+      },
+      {
+        "club": "CDE Fuenlabrada Atlantis",
+        "role": "Entrenador y Prep. Físico"
+      }
+    ]
   },
   "about": {
     "sectionTitle": "Sobre Mí",
     "sectionSubtitle": "Científico del Deporte. Entrenador de Fútbol UEFA. Entrenador de Fuerza y Acondicionamiento.",
-    "intro": "Soy Entrenador de Fuerza y Acondicionamiento, Entrenador de Fútbol UEFA C (UEFA B en curso) y Entrenador Personal, con experiencia en fútbol profesional, desarrollo de jóvenes talentos y entornos de alto rendimiento. Actualmente entreno y superviso la preparación física en CDE FUENLABRADA ATLANTIS en Madrid, además de mi trabajo como Entrenador Personal en Funziona – BASIC-FIT.",
+    "intro": "Soy Entrenador de Fuerza y Acondicionamiento, Entrenador de Fútbol UEFA C (UEFA B en curso) y Entrenador Personal, con experiencia en fútbol profesional, desarrollo de jóvenes talentos y entornos de alto rendimiento. Actualmente soy Preparador Físico del equipo Sub-23 del Rayo Vallecano, y entreno y superviso la preparación física en el CDE Fuenlabrada Atlantis en Madrid, además de mi trabajo como Entrenador Personal en Funziona – BASIC-FIT.",
     "academic": {
       "title": "Base Académica",
       "body": "Soy titulado con un Grado en Ciencias del Deporte y la Actividad Física y un Máster en Alto Rendimiento en el Deporte, especializado en Fuerza y Acondicionamiento. Mi formación me permite aplicar principios científicos en el desarrollo de la fuerza, el control de la carga, la prevención de lesiones, la vuelta al juego, el análisis del rendimiento y el desarrollo a largo plazo del deportista."
@@ -44,6 +54,10 @@
       {
         "label": "UCAM",
         "sublabel": "Graduado"
+      },
+      {
+        "label": "Rayo Vallecano",
+        "sublabel": "Preparador Físico Sub-23"
       },
       {
         "label": "CDE Atlantis",
@@ -85,6 +99,19 @@
     "careerPathTitle": "Trayectoria Profesional",
     "careerPathSubtitle": "De Túnez a España — construyendo experiencia en entornos deportivos de élite.",
     "items": [
+      {
+        "role": "Preparador Físico – Equipo Sub-23",
+        "company": "Rayo Vallecano de Madrid, S.A.D · Contrato",
+        "period": "Nov 2026 — Presente · 1 mes",
+        "location": "Área metropolitana de Madrid · Presencial",
+        "description": [
+          "Planificación e impartición de sesiones de preparación física adaptadas a las exigencias del fútbol Sub-23.",
+          "Desarrollo de la fuerza, la potencia, la velocidad, la agilidad y la resistencia de los jugadores.",
+          "Control de las cargas de entrenamiento y evaluación de la condición física y el rendimiento de los jugadores.",
+          "Aplicación de estrategias de prevención de lesiones y optimización de la recuperación física.",
+          "Colaboración con el cuerpo técnico para mejorar la preparación física de los jugadores de cara a los entrenamientos y la competición."
+        ]
+      },
       {
         "company": "CDE Fuenlabrada Atlantis · Contrato",
         "period": "Ago 2026 — Presente · 4 meses",

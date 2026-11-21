@@ -18,12 +18,22 @@
     "statsExperienceLabel": "Years of Experience",
     "statsMscLabel": "Completed",
     "statsUefaLabel": "Football Licence",
-    "scroll": "Scroll Down"
+    "scroll": "Scroll Down",
+    "currentClubs": [
+      {
+        "club": "Rayo Vallecano",
+        "role": "U23 S&C Coach"
+      },
+      {
+        "club": "CDE Fuenlabrada Atlantis",
+        "role": "Head Coach & S&C"
+      }
+    ]
   },
   "about": {
     "sectionTitle": "About Me",
     "sectionSubtitle": "Sports Scientist. UEFA Football Coach. Strength & Conditioning Coach.",
-    "intro": "I am a Strength & Conditioning Coach, UEFA C Football Coach (UEFA B in progress), and Personal Trainer with experience in professional football, youth development, and high-performance environments. I currently coach and oversee physical preparation at CDE FUENLABRADA ATLANTIS in Madrid, alongside my work as a Personal Trainer at Funziona – BASIC-FIT.",
+    "intro": "I am a Strength & Conditioning Coach, UEFA C Football Coach (UEFA B in progress), and Personal Trainer with experience in professional football, youth development, and high-performance environments. I am currently the U23 Strength & Conditioning Coach at Rayo Vallecano, and I coach and oversee physical preparation at CDE Fuenlabrada Atlantis in Madrid, alongside my work as a Personal Trainer at Funziona – BASIC-FIT.",
     "academic": {
       "title": "Academic Foundation",
       "body": "I hold a Bachelor's degree in Sport Science and Physical Activity and a Master's degree in High Performance in Sport, specializing in Strength and Conditioning. My education allows me to apply scientific principles in strength development, load monitoring, injury prevention, return-to-play, performance analysis, and long-term athlete development."
@@ -44,6 +54,10 @@
       {
         "label": "UCAM",
         "sublabel": "Graduate"
+      },
+      {
+        "label": "Rayo Vallecano",
+        "sublabel": "U23 S&C Coach"
       },
       {
         "label": "CDE Atlantis",
@@ -85,6 +99,19 @@
     "careerPathTitle": "Career Path",
     "careerPathSubtitle": "From Tunisia to Spain — building expertise across elite sport environments.",
     "items": [
+      {
+        "role": "Strength & Conditioning Coach – U23 Team",
+        "company": "Rayo Vallecano de Madrid, S.A.D · Contract",
+        "period": "Nov 2026 — Present · 1 mo",
+        "location": "Greater Madrid Metropolitan Area · On-site",
+        "description": [
+          "Plan and deliver physical conditioning sessions tailored to the demands of U23 football.",
+          "Develop players’ strength, power, speed, agility and endurance.",
+          "Monitor training loads and assess players’ physical condition and performance.",
+          "Implement injury prevention strategies and optimise physical recovery.",
+          "Collaborate with the coaching staff to improve players’ physical preparation for training and competition."
+        ]
+      },
       {
         "company": "CDE Fuenlabrada Atlantis · Contract",
         "period": "Aug 2026 — Present · 4 mos",

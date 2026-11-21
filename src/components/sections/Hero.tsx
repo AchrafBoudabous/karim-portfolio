@@ -17,9 +17,8 @@ const fadeUp = (delay: number) => ({
 export default function Hero() {
   const t = useTranslations("hero");
   const tBooking = useTranslations("booking");
-  const tAbout = useTranslations("about");
   const { openBooking } = useBooking();
-  const currentRole = (tAbout.raw("highlights") as { sublabel: string }[])[2]?.sublabel;
+  const currentClubs = t.raw("currentClubs") as { club: string; role: string }[];
   const roles = t("subtitle").split("|").map((r) => r.trim()).filter(Boolean);
 
   return (
@@ -136,16 +135,26 @@ export default function Hero() {
               className="object-cover object-[50%_45%]"
             />
             <div aria-hidden className="absolute inset-0 bg-linear-to-t from-neutral-950/80 via-transparent to-transparent" />
-            <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-2xl border border-white/10 bg-neutral-950/70 px-4 py-3 backdrop-blur-md">
-              <div>
-                <p className="font-oswald text-sm font-bold tracking-wide text-white">CDE Fuenlabrada Atlantis</p>
-                <p className="text-xs text-white/60">Madrid</p>
-              </div>
-              <span className="relative overflow-hidden rounded-full bg-green-500 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-black">
-                <Shine />
-                <span className="relative">{currentRole}</span>
-              </span>
-            </div>
+            <ul className="absolute inset-x-4 bottom-4 divide-y divide-white/10 rounded-2xl border border-white/10 bg-neutral-950/75 px-4 backdrop-blur-md">
+              {currentClubs.map(({ club, role }, i) => (
+                <li key={club} className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 py-2.5">
+                  <span className="flex min-w-0 items-center gap-2">
+                    <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-green-400" />
+                    <span className="font-oswald text-sm font-bold tracking-wide text-white">{club}</span>
+                  </span>
+                  <span
+                    className={
+                      i === 0
+                        ? "relative shrink-0 overflow-hidden rounded-full bg-green-500 px-2.5 py-0.5 text-[11px] font-bold text-black"
+                        : "shrink-0 rounded-full border border-green-500/30 bg-green-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-green-300"
+                    }
+                  >
+                    {i === 0 && <Shine />}
+                    <span className="relative">{role}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Floating credential chips */}
