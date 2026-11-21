@@ -127,12 +127,12 @@ export default function Hero() {
           <div aria-hidden className="absolute -inset-4 rounded-4xl bg-linear-to-br from-green-500/25 via-transparent to-emerald-600/20 blur-2xl" />
           <div className="relative aspect-4/5 overflow-hidden rounded-[1.75rem] border border-white/10 bg-neutral-900 shadow-2xl shadow-black/60">
             <Image
-              src="/images/Wallpaper.jpeg"
-              alt="Karim Boudabous"
+              src="/images/Coaching/Rayo Vallecano de Madrid/Rayo Vallecano de Madrid.jpeg"
+              alt="Karim Boudabous — Rayo Vallecano"
               fill
               priority
               sizes="(max-width: 1024px) 90vw, 40vw"
-              className="object-cover object-[50%_45%]"
+              className="object-cover object-[50%_20%]"
             />
             <div aria-hidden className="absolute inset-0 bg-linear-to-t from-neutral-950/80 via-transparent to-transparent" />
             <ul className="absolute inset-x-4 bottom-4 divide-y divide-white/10 rounded-2xl border border-white/10 bg-neutral-950/75 px-4 backdrop-blur-md">

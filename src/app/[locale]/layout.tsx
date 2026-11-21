@@ -45,9 +45,9 @@ export async function generateMetadata({
   const title = t("title");
   const description = t("description");
   const ogImage = {
-    url: "/images/Wallpaper.jpeg",
-    width: 1536,
-    height: 2048,
+    url: "/images/Coaching/Rayo%20Vallecano%20de%20Madrid/Rayo%20Vallecano%20de%20Madrid.jpeg",
+    width: 1024,
+    height: 1240,
     alt: SITE.name,
   };
 
@@ -111,7 +111,7 @@ export default async function LocaleLayout({
     "@type": "Person",
     name: SITE.name,
     url: `${SITE.url}/${locale}`,
-    image: `${SITE.url}/images/Wallpaper.jpeg`,
+    image: `${SITE.url}/images/Coaching/Rayo%20Vallecano%20de%20Madrid/Rayo%20Vallecano%20de%20Madrid.jpeg`,
     jobTitle: "Strength & Conditioning Coach · Football Coach (UEFA C)",
     address: {
       "@type": "PostalAddress",

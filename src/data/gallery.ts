@@ -5,6 +5,7 @@ export type SubCategory =
   | "trainingVideos"
   | "syriaU20"
   | "elPalmarCF"
+  | "rayoVallecano"
   | "fuenlabradaAtlantis"
   | "certificates";
 
@@ -17,12 +18,13 @@ export const mainCategoryOf: Record<SubCategory, Exclude<MainCategory, "all">> =
   trainingVideos: "training",
   syriaU20: "coaching",
   elPalmarCF: "coaching",
+  rayoVallecano: "coaching",
   fuenlabradaAtlantis: "coaching",
   certificates: "certificates",
 };
 
 export const subTabsByMain: Partial<Record<MainCategory, SubCategory[]>> = {
-  coaching: ["fuenlabradaAtlantis", "syriaU20", "elPalmarCF"],
+  coaching: ["rayoVallecano", "fuenlabradaAtlantis", "syriaU20", "elPalmarCF"],
   training: ["trainingPhotos", "trainingVideos"],
 };
 
@@ -46,6 +48,7 @@ const TRAINING = "/images/Training/Personal training pictures";
 const VIDEOS = "/images/Training/Personal training videos";
 const SYRIA = "/images/Coaching/SYRIAN U20 NATIONAL TEAM";
 const PALMAR = "/images/Coaching/EL PALMAR CF";
+const RAYO = "/images/Coaching/Rayo Vallecano de Madrid";
 const FUEN = "/images/Coaching/CDE FUENLABRADA ATLANTIS";
 const CERTS = "/images/Certificates";
 
@@ -68,8 +71,11 @@ const video = (file: string, featured = false): GalleryItem => ({
 });
 
 export const galleryItems: GalleryItem[] = [
+  // Coaching — Rayo Vallecano
+  { id: "rayo-main", type: "image", category: "rayoVallecano", src: `${RAYO}/Rayo Vallecano de Madrid.jpeg`, caption: "rayo", tall: true, featured: true },
+
   // Coaching — CDE Fuenlabrada Atlantis
-  { id: "fuen-main", type: "image", category: "fuenlabradaAtlantis", src: `${FUEN}/Academy Head Coach & Strength and Conditioning Coach.jpeg`, caption: "fuenlabrada", tall: true },
+  { id: "fuen-main", type: "image", category: "fuenlabradaAtlantis", src: `${FUEN}/academy-head-coach-sc-coach.jpeg`, caption: "fuenlabrada", tall: true },
   { id: "u15-win", type: "image", category: "fuenlabradaAtlantis", src: `${FUEN}/Under 15/WhatsApp Image 2026-11-06 at 10.44.44 (3).jpeg`, role: "u15Role", caption: "u15Win", featured: true },
   { id: "u15-instructions", type: "image", category: "fuenlabradaAtlantis", src: `${FUEN}/Under 15/WhatsApp Image 2026-11-06 at 10.44.44 (1).jpeg`, role: "u15Role", caption: "u15Instructions", featured: true },
   { id: "u15-area", type: "image", category: "fuenlabradaAtlantis", src: `${FUEN}/Under 15/WhatsApp Image 2026-11-06 at 10.44.44.jpeg`, role: "u15Role", caption: "u15TechnicalArea" },

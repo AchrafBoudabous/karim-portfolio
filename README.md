@@ -78,7 +78,7 @@ npm start
 Experience entries can be a single role or a company with several `roles` — see the
 `CDE Fuenlabrada Atlantis` entry in the dictionaries.
 
-Avoid double spaces in media file names: Next.js' image optimizer cannot load them.
+Avoid `&` in media file names: Next.js' image optimizer returns 404 for them. Prefer simple names (letters, digits, hyphens).
 
 ---
 

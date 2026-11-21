@@ -299,7 +299,8 @@
       "syriaU20": "Siria U20",
       "elPalmarCF": "El Palmar CF",
       "fuenlabradaAtlantis": "Fuenlabrada Atlantis",
-      "certificates": "Certificados"
+      "certificates": "Certificados",
+      "rayoVallecano": "Rayo Vallecano"
     },
     "playVideo": "Reproducir Video",
     "noItems": "No se encontraron elementos.",
@@ -335,7 +336,8 @@
       "master": "Graduación del Máster — Alto Rendimiento Deportivo",
       "uefaC": "Diploma de Entrenador UEFA C",
       "fifa": "Diploma FIFA en Medicina del Fútbol",
-      "barcaStrength": "Entrenamiento de Fuerza — Barça Innovation Hub"
+      "barcaStrength": "Entrenamiento de Fuerza — Barça Innovation Hub",
+      "rayo": "Rayo Vallecano Sub-23 | Preparador Físico"
     }
   },
   "education": {
